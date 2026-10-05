@@ -1,0 +1,6 @@
+{
+  "name": "Sports Hub",
+  "description": "Connecting People, Places & Opportunities in Sports. A digital sports ecosystem for athletes, facilities, academies, organizers, and communities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

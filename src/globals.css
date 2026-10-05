@@ -1,0 +1,39 @@
+:root {
+  /* Sports Hub Brand Design Tokens (HSL) */
+  --background: 228 24% 96%;
+  --foreground: 0 0% 13%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 13%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 13%;
+
+  /* Primary Neon Lime (#CDFF00) with dark text on top */
+  --primary: 72 100% 50%;
+  --primary-foreground: 0 0% 13%;
+
+  /* Primary Dark (#9ECC00) */
+  --primary-dark: 74 100% 40%;
+
+  /* Primary Light (#F8FFD9) */
+  --secondary: 71 100% 93%;
+  --secondary-foreground: 0 0% 13%;
+
+  --accent: 71 100% 93%;
+  --accent-foreground: 0 0% 13%;
+
+  --muted: 228 24% 96%;
+  --muted-foreground: 220 9% 46%;
+
+  --border: 203 18% 91%;
+  --input: 203 18% 91%;
+  --ring: 74 100% 40%;
+
+  --success: 72 100% 50%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --radius: 0.75rem;
+}
