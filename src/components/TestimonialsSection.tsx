@@ -354,19 +354,28 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           className="flex items-stretch gap-5 overflow-x-auto no-scrollbar scroll-smooth py-2 px-1 cursor-grab active:cursor-grabbing"
         >
           {filteredTestimonials.map((item) => (
-            <div
+            <motion.div
               key={item.id}
-              className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] hover:bg-white border border-[#E5EAED] hover:border-[#222222] rounded-2xl p-6 shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
+              whileHover={{
+                y: -6,
+                scale: 1.015,
+                transition: { type: 'spring', stiffness: 350, damping: 20 },
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
             >
+              {/* Animated top lime highlight bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
               <div className="space-y-4">
                 {/* Card Top: Persona info & Metric */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#222222] text-[#CDFF00] border border-[#CDFF00]/40 flex items-center justify-center font-bold text-xs shadow-2xs">
+                    <div className="w-10 h-10 rounded-xl bg-[#222222] text-[#CDFF00] border border-[#CDFF00]/40 flex items-center justify-center font-bold text-xs shadow-2xs group-hover:scale-105 group-hover:border-[#CDFF00] transition-all duration-300">
                       {item.initials}
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm text-[#222222] font-display leading-tight group-hover:text-black">
+                      <h3 className="font-bold text-sm text-[#222222] font-display leading-tight group-hover:text-black transition-colors">
                         {item.name}
                       </h3>
                       <p className="text-[11px] text-[#6B7280]">
@@ -377,7 +386,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
                   {/* Impact Metric Badge */}
                   <div className="text-right shrink-0">
-                    <span className="inline-block text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#F8FFD9] text-[#222222] border border-[#CDFF00]/70">
+                    <span className="inline-block text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#F8FFD9] text-[#222222] border border-[#CDFF00]/70 group-hover:bg-[#CDFF00] transition-colors">
                       {item.metric}
                     </span>
                     <span className="block text-[9.5px] text-[#6B7280] mt-0.5 uppercase tracking-wider font-semibold">
@@ -408,7 +417,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               {/* Card Bottom: Role Tag & CTA trigger */}
               <div className="mt-5 pt-4 border-t border-[#E5EAED] flex items-center justify-between text-xs">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#4B5563]">
-                  <span className="w-6 h-6 rounded-md bg-[#F2F3F7] flex items-center justify-center">
+                  <span className="w-6 h-6 rounded-md bg-[#F2F3F7] group-hover:bg-[#F8FFD9] flex items-center justify-center transition-colors">
                     {getCategoryIcon(item.roleCategory)}
                   </span>
                   <span>{getCategoryLabel(item.roleCategory)}</span>
@@ -420,47 +429,63 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   className="inline-flex items-center gap-1 text-[11px] font-bold text-[#222222] hover:text-[#9ECC00] cursor-pointer transition-colors"
                 >
                   <span>Connect</span>
-                  <ArrowRight className="w-3 h-3 text-[#222222]" />
+                  <ArrowRight className="w-3 h-3 text-[#222222] transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Quick Social Proof Proofpoints Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-4">
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-3.5 sm:p-4 text-center">
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
               3,500+
             </div>
             <div className="text-xs text-[#6B7280] font-medium mt-0.5">
               Verified Sports Venues
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-3.5 sm:p-4 text-center">
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
               48 hrs
             </div>
             <div className="text-xs text-[#6B7280] font-medium mt-0.5">
               Avg. Tournament Roster Fill
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-3.5 sm:p-4 text-center">
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
               99.2%
             </div>
             <div className="text-xs text-[#6B7280] font-medium mt-0.5">
               Confirmed Booking Rate
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-3.5 sm:p-4 text-center">
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
               Zero
             </div>
             <div className="text-xs text-[#6B7280] font-medium mt-0.5">
               Manual Phone Tag &amp; Unlisted Pricing
             </div>
-          </div>
+          </motion.div>
         </div>
 
       </div>

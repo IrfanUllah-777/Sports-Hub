@@ -325,35 +325,44 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
 
               return (
                 <StaggerItem key={cap.id}>
-                  <div
+                  <motion.div
                     onClick={() => setSelectedCapability(cap.id)}
-                    className={`bg-white border rounded-xl p-6 transition-all duration-200 cursor-pointer flex flex-col justify-between h-full ${
+                    whileHover={{
+                      y: -6,
+                      scale: 1.02,
+                      transition: { type: 'spring', stiffness: 350, damping: 20 },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`group relative bg-white border rounded-xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full overflow-hidden ${
                       isSelected
                         ? 'border-[#222222] ring-2 ring-[#CDFF00] shadow-md -translate-y-1'
-                        : 'border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-xs'
+                        : 'border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
                     }`}
                   >
+                    {/* Animated top lime highlight bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                     <div>
-                      {/* Icon container: #CDFF00 on #F8FFD9 background */}
-                      <div className="w-12 h-12 rounded-xl bg-[#F8FFD9] border border-[#CDFF00]/60 flex items-center justify-center mb-5">
-                        <Icon className="w-6 h-6 text-[#222222]" />
+                      {/* Icon container: #CDFF00 on #F8FFD9 background with animated hover scale */}
+                      <div className="w-12 h-12 rounded-xl bg-[#F8FFD9] border border-[#CDFF00]/60 group-hover:border-[#CDFF00] group-hover:scale-110 group-hover:-rotate-3 flex items-center justify-center mb-5 transition-all duration-300 shadow-2xs">
+                        <Icon className="w-6 h-6 text-[#222222] transition-transform duration-300 group-hover:scale-105" />
                       </div>
 
-                      <h3 className="text-base font-bold text-[#222222] mb-2 font-display">
+                      <h3 className="text-base font-bold text-[#222222] group-hover:text-black mb-2 font-display transition-colors">
                         {cap.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#6B7280] leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#6B7280] group-hover:text-[#4B5563] leading-relaxed transition-colors">
                         {cap.description}
                       </p>
                     </div>
 
                     <div className="mt-5 pt-4 border-t border-[#E5EAED] flex items-center justify-between text-xs font-semibold">
-                      <span className={isSelected ? 'text-[#222222]' : 'text-[#6B7280]'}>
+                      <span className={isSelected ? 'text-[#222222] font-bold' : 'text-[#6B7280] group-hover:text-[#222222] transition-colors'}>
                         {isSelected ? 'Active Spotlight' : 'View Spec'}
                       </span>
-                      <ArrowRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'translate-x-1 text-[#222222]' : 'text-[#9CA3AF]'}`} />
+                      <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-200 ${isSelected ? 'translate-x-1 text-[#222222]' : 'text-[#9CA3AF] group-hover:translate-x-1 group-hover:text-[#222222]'}`} />
                     </div>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
               );
             })}

@@ -104,8 +104,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        /* Height: 100vh on desktop, 85svh on mobile to eliminate mobile browser URL-bar jump */
-        className="relative overflow-hidden bg-[#0A0D14] text-white min-h-[85svh] lg:min-h-screen flex items-center py-16 md:py-24 border-b border-neutral-800"
+        /* Compact controlled height: clamp(600px, 74vh, 720px) on desktop; content-driven on mobile/tablet */
+        className="relative overflow-hidden bg-[#0A0D14] text-white min-h-[560px] lg:min-h-[600px] lg:h-[clamp(600px,74vh,720px)] flex items-center py-10 md:py-12 lg:py-0 border-b border-neutral-800"
       >
         {/* Full-bleed background video container */}
         <div
@@ -136,85 +136,118 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               style={{ objectPosition: 'var(--hero-focus, center 35%)' }}
             >
-              {/* 1. Primary modern VP9 WebM */}
-              <source src="/hero.webm" type="video/webm" />
-              {/* 2. Faststart H.264 MP4 fallback */}
-              <source src="/hero.mp4" type="video/mp4" />
+              {/* 1. Modern VP9 WebM */}
+              <source src="/videos/sports-hub-hero.webm" type="video/webm" />
+              {/* 2. Universal H.264 MP4 production video */}
+              <source src="/videos/sports-hub-hero.mp4" type="video/mp4" />
               <img src="/hero-poster.jpg" alt="" aria-hidden="true" className="w-full h-full object-cover" />
             </video>
           )}
 
-          {/* Subtle dark gradient overlay (between 0.15 and 0.45 average, 0.85 behind text for WCAG AA) */}
+          {/* Layered directional gradient overlay: Strong on left (text readability), moderate center, lighter right (visible athlete) */}
           <div
             className="absolute inset-0 z-1 pointer-events-none"
             style={{
-              background: 'linear-gradient(to right, rgba(7, 9, 14, 0.85) 0%, rgba(7, 9, 14, 0.55) 50%, rgba(7, 9, 14, 0.15) 100%), linear-gradient(to top, rgba(7, 9, 14, 0.70) 0%, transparent 60%)',
+              background: 'linear-gradient(to right, rgba(10, 13, 20, 0.93) 0%, rgba(10, 13, 20, 0.88) 32%, rgba(10, 13, 20, 0.55) 58%, rgba(10, 13, 20, 0.20) 100%), linear-gradient(to top, rgba(10, 13, 20, 0.85) 0%, transparent 45%)',
             }}
             aria-hidden="true"
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl py-4 sm:py-8 lg:py-12">
+        {/* Global centered container: max-w-7xl aligned with page grid */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+          {/* Content Column: Compact left-aligned column */}
+          <div className="max-w-[660px] lg:max-w-[680px] py-3 sm:py-5 lg:py-6">
             
             {/* Hero Main Content */}
-            <FadeIn direction="up" distance={8} className="space-y-6">
-              {/* Editorial label */}
-              <div className="flex items-center gap-2 text-xs font-bold tracking-wider">
-                <span className="text-[#CDFF00] font-extrabold">SPORTS TECHNOLOGY</span>
-                <span aria-hidden="true" className="text-white/40">·</span>
-                <span className="text-neutral-300">DIGITAL ECOSYSTEM</span>
-              </div>
+            <div className="space-y-4 sm:space-y-5">
+              {/* 1. Top Eyebrow Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md shadow-xs select-none"
+              >
+                <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
+                <span className="text-[#CDFF00] font-bold text-[10px] sm:text-[11px] tracking-[0.06em] uppercase leading-none">
+                  PLAY. COMPETE. CONNECT.
+                </span>
+                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/35" />
+                <span className="text-neutral-300 font-semibold text-[10px] sm:text-[11px] tracking-[0.04em] uppercase leading-none">
+                  DIGITAL SPORTS ECOSYSTEM
+                </span>
+              </motion.div>
 
-              {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white font-display text-balance leading-[1.08]">
-                Connecting People, Places &amp;{' '}
-                <span className="inline-block bg-[#CDFF00] px-2 py-0.5 rounded-md text-[#222222] mt-1 shadow-sm">
-                  Opportunities
-                </span>{' '}
-                in Sports.
-              </h1>
+              {/* 2. Main Headline: Scaled slightly smaller for a tighter, more compact look */}
+              <motion.h1
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.08, ease: 'easeOut' }}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.85rem] xl:text-[3.2rem] font-extrabold sm:font-black tracking-[-0.03em] text-white font-display leading-[1.05] sm:leading-[1.08] lg:leading-[1.1] max-w-[620px] text-balance"
+              >
+                <span className="block">Connecting People, Places</span>
+                <span className="block mt-1 sm:mt-1.5 text-white">
+                  &amp;{' '}
+                  <span className="inline-flex items-baseline px-2 sm:px-2.5 py-[0.06em] rounded-[5px] bg-[#CDFF00] text-[#11161B] font-black tracking-[-0.02em] shadow-xs align-baseline">
+                    Opportunities
+                  </span>{' '}
+                  in Sports.
+                </span>
+              </motion.h1>
 
-              {/* Supporting Copy */}
-              <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-2xl font-normal">
-                Sports Hub is a digital sports ecosystem designed to make sports facilities, events,
-                competitions, training, communities, and opportunities easier to discover, access,
-                and participate in.
-              </p>
+              {/* 3. Supporting Description: Compact proportion */}
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.16, ease: 'easeOut' }}
+                className="text-[14px] sm:text-[16px] text-neutral-300/90 leading-[1.58] max-w-[540px] font-normal antialiased"
+              >
+                Sports Hub brings facilities, events, competitions, training, communities, and opportunities together in one connected sports ecosystem.
+              </motion.p>
 
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              {/* 4. Action Buttons: 44-46px height */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.24, ease: 'easeOut' }}
+                className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+              >
                 <button
                   onClick={() => onNavigate('solution')}
-                  className="px-6 py-3.5 bg-[#CDFF00] hover:bg-[#b8e600] text-[#222222] font-extrabold text-sm rounded-lg transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] group"
+                  className="h-[44px] sm:h-[46px] px-5 sm:px-6 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-extrabold text-sm rounded-lg transition-all shadow-[0_4px_14px_rgba(205,255,0,0.18)] hover:shadow-[0_6px_18px_rgba(205,255,0,0.28)] flex items-center justify-center gap-2 cursor-pointer group active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
                 >
                   Explore Our Solution
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={() => onNavigate('opportunities')}
-                  className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 font-bold text-sm rounded-lg transition-all backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
+                  className="h-[44px] sm:h-[46px] px-5 sm:px-6 bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/35 font-bold text-sm rounded-lg transition-all backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   Discover Opportunities
                 </button>
-              </div>
+              </motion.div>
 
-              {/* Ecosystem trust tags */}
-              <div className="pt-6 border-t border-white/15 grid grid-cols-3 gap-6 text-xs max-w-xl">
+              {/* 5. Key Metrics: Compact divider and labels */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.32, ease: 'easeOut' }}
+                className="pt-5 sm:pt-6 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-6 max-w-[580px]"
+              >
                 <div>
-                  <div className="font-bold text-white text-sm">6 Pillars</div>
-                  <div className="text-neutral-400">Unified Network</div>
+                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">6 Pillars</div>
+                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">Unified Network</div>
                 </div>
                 <div>
-                  <div className="font-bold text-white text-sm">Open Access</div>
-                  <div className="text-neutral-400">Direct Connections</div>
+                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">Open Access</div>
+                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">Direct Connections</div>
                 </div>
                 <div>
-                  <div className="font-bold text-white text-sm">Real Visibility</div>
-                  <div className="text-neutral-400">For Facilities &amp; Teams</div>
+                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">Real Visibility</div>
+                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">For Facilities &amp; Teams</div>
                 </div>
-              </div>
-            </FadeIn>
+              </motion.div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -316,52 +349,90 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
           </FadeIn>
 
           {/* Interactive Visual Ecosystem flow */}
-          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white border border-[#E5EAED] rounded-2xl p-6 sm:p-10 shadow-xs">
+          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white border border-[#E5EAED] rounded-2xl p-6 sm:p-10 shadow-xs relative overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
               
               {/* Left participants */}
               <div className="md:col-span-2 space-y-3">
-                <div className="p-4 bg-[#F2F3F7] rounded-xl border border-[#E5EAED]">
-                  <div className="font-bold text-[#222222] text-sm">Athletes &amp; Players</div>
-                  <div className="text-xs text-[#6B7280]">
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                    <span>Athletes &amp; Players</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                  </div>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
                     Discover facilities, events, trials &amp; teams
                   </div>
-                </div>
-                <div className="p-4 bg-[#F2F3F7] rounded-xl border border-[#E5EAED]">
-                  <div className="font-bold text-[#222222] text-sm">Sports Communities</div>
-                  <div className="text-xs text-[#6B7280]">
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                    <span>Sports Communities</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                  </div>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
                     Organize weekly pickups &amp; coordinate clubs
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Center Platform Hub */}
               <div className="md:col-span-1 flex flex-col items-center justify-center py-4">
-                <div className="w-full py-6 px-3 bg-[#222222] text-white rounded-xl border-2 border-[#CDFF00] shadow-md text-center flex flex-col items-center">
-                  <span className="text-[10px] font-bold text-[#CDFF00] tracking-wider uppercase">
+                <motion.div
+                  whileHover={{ scale: 1.06, y: -4, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.96 }}
+                  className="group w-full py-6 px-3 bg-[#222222] text-white rounded-xl border-2 border-[#CDFF00] shadow-[0_4px_20px_rgba(205,255,0,0.20)] hover:shadow-[0_8px_28px_rgba(205,255,0,0.35)] text-center flex flex-col items-center cursor-pointer transition-all duration-300"
+                >
+                  <span className="text-[10px] font-bold text-[#CDFF00] tracking-wider uppercase group-hover:tracking-widest transition-all">
                     Platform
                   </span>
-                  <span className="font-black text-sm tracking-tight text-white mt-0.5">
+                  <span className="font-black text-sm tracking-tight text-white mt-0.5 group-hover:text-[#CDFF00] transition-colors">
                     SPORTS HUB
                   </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] mt-1" />
-                </div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] mt-1.5 animate-pulse shadow-[0_0_8px_#CDFF00]" />
+                </motion.div>
               </div>
 
               {/* Right participants */}
               <div className="md:col-span-2 space-y-3">
-                <div className="p-4 bg-[#F2F3F7] rounded-xl border border-[#E5EAED]">
-                  <div className="font-bold text-[#222222] text-sm">Facilities &amp; Grounds</div>
-                  <div className="text-xs text-[#6B7280]">
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                    <span>Facilities &amp; Grounds</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                  </div>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
                     Digital profile, slot booking &amp; visibility
                   </div>
-                </div>
-                <div className="p-4 bg-[#F2F3F7] rounded-xl border border-[#E5EAED]">
-                  <div className="font-bold text-[#222222] text-sm">Academies &amp; Organizers</div>
-                  <div className="text-xs text-[#6B7280]">
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                    <span>Academies &amp; Organizers</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                  </div>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
                     Tournaments, coaching clinics &amp; talent pathways
                   </div>
-                </div>
+                </motion.div>
               </div>
 
             </div>
@@ -373,10 +444,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
               </div>
               <button
                 onClick={() => onNavigate('solution')}
-                className="px-5 py-2.5 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#222222] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="group px-5 py-2.5 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-extrabold text-xs rounded-lg transition-all shadow-xs hover:shadow-sm flex items-center gap-1.5 cursor-pointer active:scale-[0.98]"
               >
                 See How It Works
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
             </div>
           </FadeIn>

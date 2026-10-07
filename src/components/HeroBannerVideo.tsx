@@ -10,9 +10,9 @@ export interface HeroBannerVideoProps {
 }
 
 export const HeroBannerVideo: React.FC<HeroBannerVideoProps> = ({
-  posterSrc = '/images/hero-banner-poster.jpg',
-  webmSrc = '/videos/hero-banner.webm',
-  mp4Src = '/videos/hero-banner.mp4',
+  posterSrc = '/hero-poster.jpg',
+  webmSrc = '/videos/sports-hub-hero.webm',
+  mp4Src = '/videos/sports-hub-hero.mp4',
   className = '',
   overlayClassName = '',
 }) => {

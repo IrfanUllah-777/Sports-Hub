@@ -93,42 +93,58 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
           </FadeIn>
         </div>
 
-        {/* 4 Cards: Clean, simple, and easy for users to understand */}
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {CHALLENGES.map((item) => {
+        {/* 4 Cards: Clean, animated interactive problem analysis cards */}
+        <StaggerContainer
+          staggerDelay={0.08}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
+        >
+          {CHALLENGES.map((item, idx) => {
             const Icon = item.icon;
 
             return (
               <StaggerItem key={item.number}>
                 <motion.div
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.18, ease: 'easeOut' }}
-                  className="bg-white border border-[#E5EAED] hover:border-[#222222] rounded-xl p-5 hover:shadow-xs transition-all duration-200 flex flex-col justify-between h-full cursor-default"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.35, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{
+                    y: -6,
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 350, damping: 20 },
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-5 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                 >
-                  {/* Top row: Simple Icon & Problem label */}
+                  {/* Animated top lime highlight bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+                  {/* Top row: Animated Icon & Problem label */}
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-8 h-8 rounded-lg bg-[#F2F3F7] flex items-center justify-center text-[#222222]">
-                        <Icon className="w-4 h-4" />
+                      <div className="w-9 h-9 rounded-lg bg-[#F2F3F7] group-hover:bg-[#CDFF00] flex items-center justify-center text-[#222222] group-hover:text-[#11161B] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-xs">
+                        <Icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
                       </div>
-                      <span className="text-[11px] font-mono font-bold text-[#9CA3AF]">
+                      <span className="text-[11px] font-mono font-bold text-[#9CA3AF] group-hover:text-[#222222] px-2 py-0.5 rounded group-hover:bg-neutral-100 transition-colors">
                         {item.problemLabel}
                       </span>
                     </div>
 
-                    <h3 className="text-[15px] font-bold text-[#222222] font-display tracking-tight mb-2">
+                    <h3 className="text-[15px] font-bold text-[#222222] group-hover:text-black font-display tracking-tight mb-2 transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="text-xs text-[#6B7280] leading-relaxed">
+                    <p className="text-xs text-[#6B7280] group-hover:text-[#4B5563] leading-relaxed transition-colors">
                       {item.description}
                     </p>
                   </div>
 
-                  {/* Clean takeaway: What this means in real life */}
-                  <div className="mt-5 pt-3.5 border-t border-[#F2F3F7] flex items-center gap-1.5 text-[11px] text-[#4B5563]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 shrink-0" />
-                    <span className="font-medium text-[#222222] leading-snug">{item.impact}</span>
+                  {/* Takeaway: What this means in real life */}
+                  <div className="mt-5 pt-3.5 border-t border-[#F2F3F7] group-hover:border-[#E5EAED] flex items-center gap-1.5 text-[11px] text-[#4B5563] transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:border-[#222222] group-hover:scale-125 transition-all duration-200 shrink-0" />
+                    <span className="font-medium text-[#222222] leading-snug group-hover:translate-x-0.5 transition-transform duration-200">
+                      {item.impact}
+                    </span>
                   </div>
                 </motion.div>
               </StaggerItem>
