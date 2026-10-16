@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -16,21 +16,27 @@ export const FadeIn: React.FC<FadeInProps> = ({
   direction = 'up',
   className = '',
   distance = 8,
-  duration = 0.26,
+  duration = 0.24,
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   const getInitialPosition = () => {
     switch (direction) {
       case 'up':
-        return { y: distance, x: 0, rotateX: 2 };
+        return { y: distance, x: 0 };
       case 'down':
-        return { y: -distance, x: 0, rotateX: -2 };
+        return { y: -distance, x: 0 };
       case 'left':
-        return { x: distance, y: 0, rotateY: -2 };
+        return { x: distance, y: 0 };
       case 'right':
-        return { x: -distance, y: 0, rotateY: 2 };
+        return { x: -distance, y: 0 };
       case 'none':
       default:
-        return { x: 0, y: 0, rotateX: 0, rotateY: 0 };
+        return { x: 0, y: 0 };
     }
   };
 
@@ -39,15 +45,12 @@ export const FadeIn: React.FC<FadeInProps> = ({
   return (
     <motion.div
       initial={{ opacity: 0, ...initialOffset }}
-      whileInView={{ opacity: 1, x: 0, y: 0, rotateX: 0, rotateY: 0 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{
         duration,
         delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      style={{
-        transformStyle: 'preserve-3d',
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
     >
@@ -62,21 +65,27 @@ export const MotionSection: React.FC<{
   delay?: number;
   distance?: number;
   id?: string;
-}> = ({ children, className = '', delay = 0, distance = 10, id }) => {
+}> = ({ children, className = '', delay = 0, distance = 8, id }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <section id={id} className={className}>
+        {children}
+      </section>
+    );
+  }
+
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: distance, rotateX: 2, scale: 0.995 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      initial={{ opacity: 0, y: distance }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{
-        duration: 0.3,
+        duration: 0.25,
         delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      style={{
-        transformStyle: 'preserve-3d',
-        transformOrigin: '50% 100%',
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
     >
@@ -89,7 +98,7 @@ export const StaggerContainer: React.FC<{
   children: React.ReactNode;
   className?: string;
   staggerDelay?: number;
-}> = ({ children, className = '', staggerDelay = 0.04 }) => {
+}> = ({ children, className = '', staggerDelay = 0.03 }) => {
   return (
     <motion.div
       initial="hidden"
@@ -114,22 +123,24 @@ export const StaggerItem: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className = '' }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 8, rotateX: 2 },
+        hidden: { opacity: 0, y: 6 },
         visible: {
           opacity: 1,
           y: 0,
-          rotateX: 0,
           transition: {
-            duration: 0.22,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 0.2,
+            ease: [0.22, 1, 0.36, 1],
           },
         },
-      }}
-      style={{
-        transformStyle: 'preserve-3d',
       }}
       className={className}
     >
@@ -145,14 +156,8 @@ export const CinematicCard3D: React.FC<{
   return (
     <motion.div
       whileHover={{
-        y: -4,
-        rotateX: 2,
-        rotateY: -2,
-        scale: 1.01,
-        transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] },
-      }}
-      style={{
-        transformStyle: 'preserve-3d',
+        y: -3,
+        transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] },
       }}
       className={className}
     >
@@ -165,39 +170,32 @@ export const PageTransition: React.FC<{
   children: React.ReactNode;
   pageKey: string;
 }> = ({ children, pageKey }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className="w-full">{children}</div>;
+  }
+
   return (
-    <div className="w-full relative [perspective:1400px]">
-      <AnimatePresence mode="wait">
+    <div className="w-full relative">
+      <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
           key={pageKey}
           initial={{
             opacity: 0,
-            y: 16,
-            rotateX: 3.5,
-            scale: 0.985,
-            filter: 'blur(3px)',
+            y: 8,
           }}
           animate={{
             opacity: 1,
             y: 0,
-            rotateX: 0,
-            scale: 1,
-            filter: 'blur(0px)',
           }}
           exit={{
             opacity: 0,
-            y: -12,
-            rotateX: -2.5,
-            scale: 0.99,
-            filter: 'blur(2px)',
+            y: -4,
           }}
           transition={{
-            duration: 0.32,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          style={{
-            transformStyle: 'preserve-3d',
-            transformOrigin: '50% 25%',
+            duration: 0.22,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="w-full"
         >

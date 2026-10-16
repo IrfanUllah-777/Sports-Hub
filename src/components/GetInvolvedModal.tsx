@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Copy, Check } from 'lucide-react';
 import { StakeholderRole } from '../types';
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 
 interface GetInvolvedModalProps {
   isOpen: boolean;
@@ -53,6 +54,8 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
   onClose,
   defaultRole = 'athlete',
 }) => {
+  useBodyScrollLock(isOpen);
+
   const [selectedRole, setSelectedRole] = useState<StakeholderRole>(defaultRole);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

@@ -68,11 +68,11 @@ interface SportsStoreContextType {
 }
 
 const STORAGE_KEYS = {
-  USER: 'sportshub_user_v2',
-  BOOKINGS: 'sportshub_bookings_v2',
-  FACILITIES: 'sportshub_facilities_v2',
-  TOURNAMENTS: 'sportshub_tournaments_v2',
-  SCHEMES: 'sportshub_schemes_v2',
+  USER: 'sportshub_user_v3_pkr',
+  BOOKINGS: 'sportshub_bookings_v3_pkr',
+  FACILITIES: 'sportshub_facilities_v3_pkr',
+  TOURNAMENTS: 'sportshub_tournaments_v3_pkr',
+  SCHEMES: 'sportshub_schemes_v3_pkr',
 };
 
 // Generates slots for today, tomorrow, and day-after
@@ -104,7 +104,7 @@ function generateDefaultSlots(facilityId: string, basePrice: number): FacilitySl
         date: dateStr,
         time: t.label,
         court: t.court,
-        price: idx >= 4 ? basePrice + 10 : basePrice, // peak evening rate
+        price: idx >= 4 ? basePrice + 1000 : basePrice, // peak evening rate in PKR
         status: isPreReserved ? 'reserved' : 'available',
         bookedBy: isPreReserved ? 'Metro Youth FC' : undefined,
       });
@@ -119,46 +119,46 @@ const INITIAL_FACILITIES: Facility[] = [
     id: 'fac-1',
     name: 'Apex Sports Arena & Futsal Turf',
     sport: 'Football & Futsal',
-    city: 'Metropolitan District',
-    area: 'Central Sports Complex',
+    city: 'Lahore',
+    area: 'DHA Sports Complex',
     surface: 'FIFA 2-Star Synthetic Turf (Non-Infill)',
     lighting: 'LED Stadium Floodlights (500 Lux Broadcast Quality)',
-    hourlyRate: 45,
+    hourlyRate: 4500,
     rating: 4.9,
     reviewsCount: 142,
     imageUrl: '/hero-poster.jpg',
     amenities: ['Locker Rooms', 'Showers', 'Night Floodlights', 'Water Station', 'First Aid On-Site'],
-    slots: generateDefaultSlots('fac-1', 45),
+    slots: generateDefaultSlots('fac-1', 4500),
   },
   {
     id: 'fac-2',
     name: 'Olympic Youth Badminton & Squash Hub',
     sport: 'Badminton & Squash',
-    city: 'Olympic Town',
-    area: 'Sector 4 Indoor Stadium',
+    city: 'Karachi',
+    area: 'Clifton Sector 4 Arena',
     surface: 'BWF-Approved Wooden Flooring + PVC Mat',
     lighting: 'Anti-Glare High-Bay LEDs (450 Lux)',
-    hourlyRate: 30,
+    hourlyRate: 2800,
     rating: 4.8,
     reviewsCount: 98,
     imageUrl: '/hero-poster.jpg',
     amenities: ['Air Conditioned', 'Pro Shop & Stringing', 'Changing Rooms', 'Live Scoreboards'],
-    slots: generateDefaultSlots('fac-2', 30),
+    slots: generateDefaultSlots('fac-2', 2800),
   },
   {
     id: 'fac-3',
     name: 'Vanguard Basketball & Multi-Court Dome',
     sport: 'Basketball & Volleyball',
-    city: 'Downtown Hub',
-    area: 'East Riverside Park',
+    city: 'Islamabad',
+    area: 'F-7 Sports Enclave',
     surface: 'Hardwood Maple Court with Breakaway Rims',
     lighting: 'Directional Arena Spotlights (600 Lux)',
-    hourlyRate: 50,
+    hourlyRate: 4000,
     rating: 4.9,
     reviewsCount: 84,
     imageUrl: '/hero-poster.jpg',
     amenities: ['Electronic Scoreboards', 'Bleachers (200 Seats)', 'Locker Suites', 'Free Parking'],
-    slots: generateDefaultSlots('fac-3', 50),
+    slots: generateDefaultSlots('fac-3', 4000),
   },
 ];
 
@@ -167,18 +167,18 @@ const INITIAL_TOURNAMENTS: Tournament[] = [
     id: 'trn-1',
     name: 'Metropolitan Youth Futsal Championship 2026',
     sport: 'Football / Futsal',
-    city: 'Metropolitan District',
+    city: 'Lahore',
     venueName: 'Apex Sports Arena',
     startDate: '2026-10-18',
     endDate: '2026-10-20',
-    entryFee: 120,
-    prizePool: '$3,500 + Championship Trophy',
+    entryFee: 12000,
+    prizePool: 'PKR 350,000 + Championship Trophy',
     squadCapacity: 16,
     registeredTeams: [
-      { teamName: 'Apex Thunderbolts', captain: 'Alex Rivers', contact: '+1 (555) 234-5678', registeredAt: '2026-10-01' },
-      { teamName: 'Metro Rangers FC', captain: 'Tariq Vance', contact: '+1 (555) 345-6789', registeredAt: '2026-10-02' },
-      { teamName: 'Solar Velocity', captain: 'Jordan Cruz', contact: '+1 (555) 456-7890', registeredAt: '2026-10-03' },
-      { teamName: 'Iron Hawks United', captain: 'Leo Sterling', contact: '+1 (555) 567-8901', registeredAt: '2026-10-04' },
+      { teamName: 'Apex Thunderbolts', captain: 'Alex Rivers', contact: '+92 300 2345678', registeredAt: '2026-10-01' },
+      { teamName: 'Metro Rangers FC', captain: 'Tariq Vance', contact: '+92 321 3456789', registeredAt: '2026-10-02' },
+      { teamName: 'Solar Velocity', captain: 'Jordan Cruz', contact: '+92 333 4567890', registeredAt: '2026-10-03' },
+      { teamName: 'Iron Hawks United', captain: 'Leo Sterling', contact: '+92 345 5678901', registeredAt: '2026-10-04' },
     ],
     skillLevel: 'Under-19 & Open Grassroots',
     status: 'open',
@@ -211,16 +211,16 @@ const INITIAL_TOURNAMENTS: Tournament[] = [
     id: 'trn-2',
     name: 'National NextGen 3x3 Streetball Clash',
     sport: 'Basketball',
-    city: 'Downtown Hub',
+    city: 'Islamabad',
     venueName: 'Vanguard Multi-Court Dome',
     startDate: '2026-10-24',
     endDate: '2026-10-25',
-    entryFee: 80,
-    prizePool: '$2,000 + National Scouting Scout Badges',
+    entryFee: 8000,
+    prizePool: 'PKR 200,000 + National Scouting Scout Badges',
     squadCapacity: 12,
     registeredTeams: [
-      { teamName: 'Skyline Ballers', captain: 'Marcus Chen', contact: '+1 (555) 789-0123', registeredAt: '2026-10-02' },
-      { teamName: 'Coastline Rim Crashers', captain: 'Devon Hayes', contact: '+1 (555) 890-1234', registeredAt: '2026-10-03' },
+      { teamName: 'Skyline Ballers', captain: 'Marcus Chen', contact: '+92 301 7890123', registeredAt: '2026-10-02' },
+      { teamName: 'Coastline Rim Crashers', captain: 'Devon Hayes', contact: '+92 312 8901234', registeredAt: '2026-10-03' },
     ],
     skillLevel: 'U-17 & U-21 Divisions',
     status: 'open',
@@ -248,7 +248,7 @@ const INITIAL_SCHEMES: GovernmentScheme[] = [
     title: 'National Grassroots Sports Grant 2026',
     department: 'Department of Youth & Sports Infrastructure',
     category: 'equipment_grant',
-    grantAmount: 'Up to $15,000 per Registered Club',
+    grantAmount: 'Up to PKR 1,500,000 per Registered Club',
     eligibility: 'Grassroots clubs, verified youth coaches, non-profit community leagues.',
     deadline: '2026-11-30',
     verified: true,
@@ -293,17 +293,23 @@ export const SportsStoreProvider: React.FC<{ children: ReactNode }> = ({ childre
     return {
       name: 'Kai Sterling',
       email: 'kai.sterling@sportshub.net',
-      phone: '+1 (555) 728-1904',
+      phone: '+92 (300) 728-1904',
       role: 'athlete',
-      city: 'Metropolitan District',
+      city: 'Lahore',
     };
   });
 
-  // 2. Facilities with Slots
+  // 2. Facilities with Slots (with PKR legacy migration guard)
   const [facilities, setFacilities] = useState<Facility[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.FACILITIES);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].hourlyRate < 500) {
+          return INITIAL_FACILITIES;
+        }
+        return parsed;
+      }
     } catch (_) {}
     return INITIAL_FACILITIES;
   });
@@ -317,11 +323,17 @@ export const SportsStoreProvider: React.FC<{ children: ReactNode }> = ({ childre
     return [];
   });
 
-  // 4. Tournaments
+  // 4. Tournaments (with PKR legacy migration guard)
   const [tournaments, setTournaments] = useState<Tournament[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.TOURNAMENTS);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].entryFee < 500) {
+          return INITIAL_TOURNAMENTS;
+        }
+        return parsed;
+      }
     } catch (_) {}
     return INITIAL_TOURNAMENTS;
   });
@@ -330,7 +342,13 @@ export const SportsStoreProvider: React.FC<{ children: ReactNode }> = ({ childre
   const [schemes, setSchemes] = useState<GovernmentScheme[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.SCHEMES);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].grantAmount?.includes('$')) {
+          return INITIAL_SCHEMES;
+        }
+        return parsed;
+      }
     } catch (_) {}
     return INITIAL_SCHEMES;
   });
@@ -506,7 +524,7 @@ export const SportsStoreProvider: React.FC<{ children: ReactNode }> = ({ childre
         };
       })
     );
-    addToast('success', 'Rate Updated', `Hourly slot rate set to $${newPrice}.`);
+    addToast('success', 'Rate Updated', `Hourly slot rate set to PKR ${newPrice.toLocaleString()}.`);
   };
 
   // TOURNAMENT TEAM REGISTRATION

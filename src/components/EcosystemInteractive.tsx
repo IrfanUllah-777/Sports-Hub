@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { StakeholderRole } from '../types';
 import { 
   Building2, 
@@ -138,20 +139,31 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
                   x2={node.xPercent}
                   y2={node.yPercent}
                   stroke={isSelected ? '#9ECC00' : '#E5EAED'}
-                  strokeWidth={isSelected ? '1.5' : '0.8'}
+                  strokeWidth={isSelected ? '1.8' : '0.8'}
                   strokeDasharray={isSelected ? 'none' : '2,2'}
                   className="transition-colors duration-300"
                 />
                 {/* Active node neon ping indicator */}
                 {isSelected && (
-                  <circle
-                    cx={node.xPercent}
-                    cy={node.yPercent}
-                    r="2.5"
-                    fill="#CDFF00"
-                    stroke="#222222"
-                    strokeWidth="0.8"
-                  />
+                  <g>
+                    <motion.circle
+                      cx={node.xPercent}
+                      cy={node.yPercent}
+                      r="4"
+                      fill="#CDFF00"
+                      initial={{ scale: 0.8, opacity: 0.2 }}
+                      animate={{ scale: [1, 1.6, 1], opacity: [0.2, 0.5, 0.2] }}
+                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    <circle
+                      cx={node.xPercent}
+                      cy={node.yPercent}
+                      r="2.5"
+                      fill="#CDFF00"
+                      stroke="#222222"
+                      strokeWidth="0.8"
+                    />
+                  </g>
                 )}
               </g>
             );
@@ -159,8 +171,11 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
         </svg>
 
         {/* Central Hub Block */}
-        <div className="relative z-10 w-32 h-32 sm:w-36 sm:h-36 rounded-2xl bg-[#222222] border-2 border-[#CDFF00] p-3 text-center flex flex-col items-center justify-center shadow-lg transition-transform">
-          <div className="w-2 h-2 rounded-full bg-[#CDFF00] mb-1.5 animate-pulse" />
+        <motion.div
+          whileHover={{ scale: 1.04, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+          className="relative z-10 w-32 h-32 sm:w-36 sm:h-36 rounded-2xl bg-[#222222] border-2 border-[#CDFF00] p-3 text-center flex flex-col items-center justify-center shadow-[0_8px_24px_rgba(205,255,0,0.25)] cursor-default select-none transition-shadow"
+        >
+          <div className="w-2 h-2 rounded-full bg-[#CDFF00] mb-1.5 animate-pulse shadow-[0_0_8px_#CDFF00]" />
           <span className="text-xs font-bold uppercase tracking-wider text-[#CDFF00]">
             The Digital Core
           </span>
@@ -170,68 +185,97 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
           <span className="text-[10px] text-[#9CA3AF] mt-1 text-balance leading-tight">
             Interconnected Network
           </span>
-        </div>
+        </motion.div>
 
-        {/* Satellite Nodes */}
+        {/* Satellite Nodes - Wrapped in fixed positioning div to prevent framer-motion transform conflict */}
         {NODES.map((node) => {
           const Icon = node.icon;
           const isSelected = node.id === activeNodeId;
 
           return (
-            <button
+            <div
               key={node.id}
-              onClick={() => setActiveNodeId(node.id)}
-              onMouseEnter={() => setActiveNodeId(node.id)}
               style={{
                 left: `${node.xPercent}%`,
                 top: `${node.yPercent}%`,
                 transform: 'translate(-50%, -50%)',
               }}
-              className={`absolute z-20 group flex flex-col items-center p-2 rounded-xl transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] ${
-                isSelected
-                  ? 'bg-white border-2 border-[#CDFF00] shadow-md scale-105'
-                  : 'bg-[#F2F3F7] border border-[#E5EAED] hover:border-[#9ECC00] hover:bg-white'
-              }`}
+              className="absolute z-20 pointer-events-auto"
             >
-              <div
-                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-colors ${
-                  isSelected ? 'bg-[#F8FFD9] text-[#222222]' : 'bg-white text-[#6B7280]'
+              <motion.button
+                type="button"
+                onClick={() => setActiveNodeId(node.id)}
+                onMouseEnter={() => setActiveNodeId(node.id)}
+                whileHover={{
+                  scale: 1.08,
+                  y: -3,
+                  transition: { type: 'spring', stiffness: 400, damping: 22 },
+                }}
+                whileTap={{ scale: 0.95 }}
+                className={`group relative flex flex-col items-center p-2 rounded-xl transition-[border-color,background-color,box-shadow] duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden select-none ${
+                  isSelected
+                    ? 'bg-white border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35),0_0_0_1px_#CDFF00]'
+                    : 'bg-[#F2F3F7] border border-[#E5EAED] hover:border-[#CDFF00] hover:bg-white hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
                 }`}
               >
-                <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-[#222222]' : ''}`} />
-              </div>
-              <span
-                className={`text-[11px] sm:text-xs font-bold mt-1 tracking-tight ${
-                  isSelected ? 'text-[#222222]' : 'text-[#6B7280]'
-                }`}
-              >
-                {node.name}
-              </span>
-            </button>
+                {/* Animated top lime highlight bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+                <div
+                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 ${
+                    isSelected ? 'bg-[#F8FFD9] text-[#222222]' : 'bg-white text-[#6B7280] group-hover:bg-[#CDFF00] group-hover:text-[#222222]'
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:scale-110 ${isSelected ? 'text-[#222222]' : ''}`} />
+                </div>
+                <span
+                  className={`text-[11px] sm:text-xs font-bold mt-1 tracking-tight transition-colors whitespace-nowrap ${
+                    isSelected ? 'text-[#222222]' : 'text-[#6B7280] group-hover:text-[#222222]'
+                  }`}
+                >
+                  {node.name}
+                </span>
+              </motion.button>
+            </div>
           );
         })}
       </div>
 
       {/* Node Detail Callout Bar */}
-      <div className="w-full mt-4 p-4.5 rounded-xl bg-[#F8FFD9] border border-[#CDFF00]/60 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xs">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-[#222222] tracking-wide uppercase">
-              {activeNode.name}
-            </span>
-            <span className="text-xs text-[#6B7280]">·</span>
-            <span className="text-xs font-semibold text-[#222222]">{activeNode.highlightText}</span>
-          </div>
-          <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed max-w-xl">
-            {activeNode.valueProp}
-          </p>
-        </div>
+      <motion.div
+        layout
+        whileHover={{ y: -2, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+        className="w-full mt-4 p-4.5 rounded-xl bg-[#F8FFD9] border border-[#CDFF00]/60 hover:border-[#CDFF00] hover:shadow-[0_8px_24px_-4px_rgba(205,255,0,0.25)] transition-[border-color,box-shadow] duration-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xs relative overflow-hidden group"
+      >
+        {/* Animated top lime highlight bar */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeNode.id}
+            initial={{ opacity: 0, y: 3 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -3 }}
+            transition={{ duration: 0.16 }}
+            className="space-y-1"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-[#222222] tracking-wide uppercase">
+                {activeNode.name}
+              </span>
+              <span className="text-xs text-[#6B7280]">·</span>
+              <span className="text-xs font-semibold text-[#222222]">{activeNode.highlightText}</span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed max-w-xl">
+              {activeNode.valueProp}
+            </p>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="shrink-0 flex flex-wrap items-center gap-2">
           {onOpenGetInvolved && (
             <button
               onClick={() => onOpenGetInvolved(NODE_ROLE_MAP[activeNode.id])}
-              className="px-4 py-2 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-4 py-2 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
             >
               <span>Inquire as {activeNode.name}</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00]" />
@@ -241,13 +285,13 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
           {onNavigateToOpportunities && (
             <button
               onClick={onNavigateToOpportunities}
-              className="px-3.5 py-2 bg-white hover:bg-[#F2F3F7] text-[#222222] border border-[#E5EAED] font-semibold text-xs rounded-lg transition-colors flex items-center gap-1 cursor-pointer"
+              className="px-3.5 py-2 bg-white hover:bg-[#F2F3F7] text-[#222222] border border-[#E5EAED] font-semibold text-xs rounded-lg transition-colors flex items-center gap-1 cursor-pointer active:scale-98"
             >
               <span>Explore Opportunities</span>
             </button>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

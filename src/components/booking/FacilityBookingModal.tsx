@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Facility, FacilitySlot, Booking } from '../../types';
 import { useSportsStore } from '../../lib/sportsStore';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface FacilityBookingModalProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
   facility,
 }) => {
   const { bookFacilitySlot, currentUser } = useSportsStore();
+  useBodyScrollLock(isOpen);
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedSlot, setSelectedSlot] = useState<FacilitySlot | null>(null);
@@ -73,10 +75,8 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, isSubmitting, onClose]);
 
-  if (!isOpen || !facility) return null;
-
-  const uniqueDates = Array.from(new Set(facility.slots.map((s) => s.date)));
-  const visibleSlots = facility.slots.filter((s) => s.date === selectedDate);
+  const uniqueDates = facility ? Array.from(new Set(facility.slots.map((s) => s.date))) : [];
+  const visibleSlots = facility ? facility.slots.filter((s) => s.date === selectedDate) : [];
 
   const handleSlotSelect = (slot: FacilitySlot) => {
     if (slot.status !== 'available') return;
@@ -91,7 +91,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
 
   const handleConfirmBooking = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedSlot) return;
+    if (!selectedSlot || !facility) return;
 
     if (!name.trim() || !email.trim() || !phone.trim()) {
       setBookingError('Please provide your full name, email, and contact phone number.');
@@ -121,19 +121,26 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="booking-modal-title"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 12 }}
-          transition={{ duration: 0.2 }}
-          className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+      {isOpen && facility && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="booking-modal-title"
+          onClick={onClose}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Header */}
           <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
             <div className="space-y-1 pr-6">
@@ -255,7 +262,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                             </div>
 
                             <div className="text-right">
-                              <div className="text-sm font-black">${slot.price}/hr</div>
+                              <div className="text-sm font-black">PKR {slot.price.toLocaleString()}/hr</div>
                               <span
                                 className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${
                                   slot.status === 'available'
@@ -280,7 +287,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                   <div className="text-xs text-[#6B7280]">
                     {selectedSlot ? (
                       <span className="font-semibold text-[#222222]">
-                        Selected: {selectedSlot.time} (${selectedSlot.price})
+                        Selected: {selectedSlot.time} (PKR {selectedSlot.price.toLocaleString()})
                       </span>
                     ) : (
                       <span>Select an open slot to continue</span>
@@ -312,7 +319,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-black text-[#222222]">${selectedSlot.price}.00</div>
+                    <div className="text-lg font-black text-[#222222]">PKR {selectedSlot.price.toLocaleString()}</div>
                     <span className="text-[10px] text-emerald-700 font-bold uppercase">Ready to Reserve</span>
                   </div>
                 </div>
@@ -479,7 +486,8 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
             )}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 };

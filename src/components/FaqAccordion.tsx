@@ -49,17 +49,19 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
           {categories.map((cat) => {
             const isSelected = activeCategory === cat;
             return (
-              <button
+              <motion.button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+                whileHover={{ scale: 1.03, y: -1, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                whileTap={{ scale: 0.97 }}
                 className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-xs'
-                    : 'bg-white text-[#6B7280] border border-[#E5EAED] hover:text-[#222222] hover:border-[#CBD5E1]'
+                    : 'bg-white text-[#6B7280] border border-[#E5EAED] hover:text-[#222222] hover:border-[#CDFF00]'
                 }`}
               >
                 {cat}
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -107,14 +109,18 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
             const buttonId = `faq-button-${item.id}`;
 
             return (
-              <div
+              <motion.div
                 key={item.id}
-                className={`bg-white border rounded-xl overflow-hidden transition-all duration-200 ${
+                whileHover={{ y: -2, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                className={`group relative bg-white border rounded-xl overflow-hidden transition-all duration-300 ${
                   isOpen
-                    ? 'border-[#222222] ring-1 ring-[#CDFF00]/60 shadow-sm'
-                    : 'border-[#E5EAED] hover:border-[#CBD5E1]'
+                    ? 'border-[#222222] ring-1 ring-[#CDFF00]/60 shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
+                    : 'border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
                 }`}
               >
+                {/* Animated top lime highlight bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                 <h3>
                   <button
                     id={buttonId}
@@ -127,16 +133,16 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
                       <span className="text-[11px] font-bold uppercase tracking-wider text-[#9ECC00] block">
                         {item.category}
                       </span>
-                      <span className="text-base sm:text-lg font-bold text-[#222222] font-display block leading-snug">
+                      <span className="text-base sm:text-lg font-bold text-[#222222] group-hover:text-black font-display block leading-snug transition-colors">
                         {item.question}
                       </span>
                     </div>
 
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors mt-0.5 ${
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 mt-0.5 group-hover:scale-105 ${
                         isOpen
                           ? 'bg-[#CDFF00] text-[#222222]'
-                          : 'bg-[#F2F3F7] text-[#6B7280] group-hover:text-[#222222]'
+                          : 'bg-[#F2F3F7] group-hover:bg-[#CDFF00] text-[#6B7280] group-hover:text-[#222222]'
                       }`}
                     >
                       <ChevronDown
@@ -179,17 +185,23 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })
         )}
       </div>
 
       {/* Still have questions banner */}
-      <div className="p-5 sm:p-6 bg-[#F8FFD9] border border-[#CDFF00]/70 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <motion.div
+        whileHover={{ y: -2, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+        className="group relative p-5 sm:p-6 bg-[#F8FFD9] border border-[#CDFF00]/70 hover:border-[#CDFF00] rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 overflow-hidden transition-all duration-300 shadow-2xs hover:shadow-[0_8px_20px_-4px_rgba(205,255,0,0.25)]"
+      >
+        {/* Animated top lime highlight bar */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <HelpCircle className="w-4 h-4 text-[#9ECC00]" />
+            <HelpCircle className="w-4 h-4 text-[#9ECC00] group-hover:scale-110 transition-transform duration-200" />
             <h4 className="text-sm font-bold text-[#222222]">Have a specific inquiry about your community or venue?</h4>
           </div>
           <p className="text-xs text-[#6B7280]">
@@ -200,13 +212,13 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
         {onOpenGetInvolved && (
           <button
             onClick={() => onOpenGetInvolved('enthusiast')}
-            className="px-4.5 py-2.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer shadow-xs"
+            className="px-4.5 py-2.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer shadow-xs active:scale-98"
           >
             <MessageSquarePlus className="w-3.5 h-3.5 text-[#CDFF00]" />
             Submit Your Inquiry
           </button>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

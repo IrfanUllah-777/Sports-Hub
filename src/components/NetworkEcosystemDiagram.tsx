@@ -284,29 +284,32 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
               <motion.button
                 onClick={() => setActiveNodeId(node.id)}
                 onMouseEnter={() => setActiveNodeId(node.id)}
-                whileHover={{ scale: 1.06, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className={`flex flex-col items-center justify-center rounded-2xl p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] ${
+                whileHover={{ scale: 1.08, y: -3, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                whileTap={{ scale: 0.96 }}
+                className={`group relative flex flex-col items-center justify-center rounded-2xl p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden ${
                   isActive
-                    ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] border-2 border-[#CDFF00] shadow-md ring-4 ring-[#CDFF00]/20'
-                    : 'w-22 sm:w-26 md:w-28 bg-[#F2F4F7] border border-[#E2E6EA] hover:bg-white hover:border-[#9ECC00] shadow-xs'
+                    ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'
+                    : 'w-22 sm:w-26 md:w-28 bg-[#F2F4F7] border border-[#E2E6EA] hover:bg-white hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
                 }`}
               >
+                {/* Animated top lime highlight bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                 {/* White inner rounded square container for icon */}
                 <div
-                  className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all ${
+                  className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 ${
                     isActive
                       ? 'bg-white text-[#222222] shadow-xs'
-                      : 'bg-white text-[#4B5563] group-hover:text-[#222222]'
+                      : 'bg-white text-[#4B5563] group-hover:bg-[#CDFF00] group-hover:text-[#222222]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-[#222222]' : 'text-[#4B5563]'}`} />
+                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:scale-110 ${isActive ? 'text-[#222222]' : 'text-[#4B5563]'}`} />
                 </div>
 
                 {/* Node Label */}
                 <span
                   className={`text-[11px] sm:text-xs font-bold mt-1.5 sm:mt-2 tracking-tight transition-colors ${
-                    isActive ? 'text-[#222222]' : 'text-[#4B5563]'
+                    isActive ? 'text-[#222222]' : 'text-[#4B5563] group-hover:text-[#222222]'
                   }`}
                 >
                   {node.name}

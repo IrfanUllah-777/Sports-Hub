@@ -4,7 +4,6 @@ import { PageId, StakeholderRole } from '../../types';
 import { EcosystemInteractive } from '../EcosystemInteractive';
 import { ChallengeSection } from '../ChallengeSection';
 import { TestimonialsSection } from '../TestimonialsSection';
-import { FloatingCommunityButton } from '../FloatingCommunityButton';
 import { FadeIn } from '../MotionTransitions';
 import { 
   ArrowRight, 
@@ -100,12 +99,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
       {/* 1. HERO SECTION WITH FULL-BLEED BACKGROUND VIDEO */}
       <motion.section
         ref={sectionRef}
+        id="hero-section"
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        /* Compact controlled height: clamp(600px, 74vh, 720px) on desktop; content-driven on mobile/tablet */
-        className="relative overflow-hidden bg-[#0A0D14] text-white min-h-[560px] lg:min-h-[600px] lg:h-[clamp(600px,74vh,720px)] flex items-center py-10 md:py-12 lg:py-0 border-b border-neutral-800"
+        /* Professional controlled desktop height: clamp(660px, 80vh, 780px); responsive and content-driven on mobile/tablet */
+        className="relative overflow-hidden bg-[#0A0D14] text-white min-h-[620px] lg:min-h-[660px] lg:h-[clamp(660px,80vh,780px)] flex items-center py-12 md:py-16 lg:py-0 border-b border-neutral-800"
       >
         {/* Full-bleed background video container */}
         <div
@@ -148,7 +148,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
           <div
             className="absolute inset-0 z-1 pointer-events-none"
             style={{
-              background: 'linear-gradient(to right, rgba(10, 13, 20, 0.93) 0%, rgba(10, 13, 20, 0.88) 32%, rgba(10, 13, 20, 0.55) 58%, rgba(10, 13, 20, 0.20) 100%), linear-gradient(to top, rgba(10, 13, 20, 0.85) 0%, transparent 45%)',
+              background: 'linear-gradient(to right, rgba(10, 13, 20, 0.94) 0%, rgba(10, 13, 20, 0.88) 35%, rgba(10, 13, 20, 0.58) 64%, rgba(10, 13, 20, 0.22) 100%), linear-gradient(to top, rgba(10, 13, 20, 0.88) 0%, transparent 45%)',
             }}
             aria-hidden="true"
           />
@@ -156,96 +156,108 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
 
         {/* Global centered container: max-w-7xl aligned with page grid */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-          {/* Content Column: Compact left-aligned column */}
-          <div className="max-w-[660px] lg:max-w-[680px] py-3 sm:py-5 lg:py-6">
+          {/* Content Column: Professionally proportioned left-aligned column */}
+          <div className="max-w-[700px] lg:max-w-[760px] py-4 sm:py-6 lg:py-8">
             
             {/* Hero Main Content */}
             <div className="space-y-4 sm:space-y-5">
-              {/* 1. Top Eyebrow Badge */}
+              {/* 1. Top Eyebrow Badge: Refined editorial sports tech pill */}
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md shadow-xs select-none"
+                className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-black/70 border border-white/20 backdrop-blur-md shadow-xs select-none"
               >
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
-                <span className="text-[#CDFF00] font-bold text-[10px] sm:text-[11px] tracking-[0.06em] uppercase leading-none">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_10px_#CDFF00]" />
+                <span className="text-[#CDFF00] font-bold text-[11px] sm:text-[12px] tracking-[0.05em] uppercase font-mono leading-none">
                   PLAY. COMPETE. CONNECT.
                 </span>
-                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/35" />
-                <span className="text-neutral-300 font-semibold text-[10px] sm:text-[11px] tracking-[0.04em] uppercase leading-none">
+                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
+                <span className="text-neutral-200 font-semibold text-[10.5px] sm:text-[11.5px] tracking-[0.04em] uppercase leading-none">
                   DIGITAL SPORTS ECOSYSTEM
                 </span>
               </motion.div>
 
-              {/* 2. Main Headline: Scaled slightly smaller for a tighter, more compact look */}
+              {/* 2. Main Headline: Refined, balanced typography with deliberate line breaking */}
               <motion.h1
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.08, ease: 'easeOut' }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.85rem] xl:text-[3.2rem] font-extrabold sm:font-black tracking-[-0.03em] text-white font-display leading-[1.05] sm:leading-[1.08] lg:leading-[1.1] max-w-[620px] text-balance"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black tracking-[-0.03em] text-white font-display leading-[1.04] sm:leading-[1.06] lg:leading-[1.08] max-w-[720px] text-balance"
               >
                 <span className="block">Connecting People, Places</span>
                 <span className="block mt-1 sm:mt-1.5 text-white">
                   &amp;{' '}
-                  <span className="inline-flex items-baseline px-2 sm:px-2.5 py-[0.06em] rounded-[5px] bg-[#CDFF00] text-[#11161B] font-black tracking-[-0.02em] shadow-xs align-baseline">
+                  <span className="inline-flex items-baseline px-2.5 sm:px-3 py-[0.04em] rounded-md bg-[#CDFF00] text-[#11161B] font-black tracking-[-0.02em] shadow-[0_2px_10px_rgba(205,255,0,0.3)] align-baseline">
                     Opportunities
                   </span>{' '}
                   in Sports.
                 </span>
               </motion.h1>
 
-              {/* 3. Supporting Description: Compact proportion */}
+              {/* 3. Supporting Description: Professional proportion and crisp readability */}
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.16, ease: 'easeOut' }}
-                className="text-[14px] sm:text-[16px] text-neutral-300/90 leading-[1.58] max-w-[540px] font-normal antialiased"
+                className="text-[15px] sm:text-[17px] text-neutral-300/95 leading-[1.62] max-w-[620px] font-normal antialiased"
               >
                 Sports Hub brings facilities, events, competitions, training, communities, and opportunities together in one connected sports ecosystem.
               </motion.p>
 
-              {/* 4. Action Buttons: 44-46px height */}
+              {/* 4. Action Buttons: 48-50px professional button height */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.24, ease: 'easeOut' }}
-                className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+                className="pt-1.5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4"
               >
                 <button
                   onClick={() => onNavigate('solution')}
-                  className="h-[44px] sm:h-[46px] px-5 sm:px-6 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-extrabold text-sm rounded-lg transition-all shadow-[0_4px_14px_rgba(205,255,0,0.18)] hover:shadow-[0_6px_18px_rgba(205,255,0,0.28)] flex items-center justify-center gap-2 cursor-pointer group active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
+                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-extrabold text-sm sm:text-[15px] rounded-xl transition-all shadow-[0_4px_16px_rgba(205,255,0,0.22)] hover:shadow-[0_8px_24px_rgba(205,255,0,0.32)] flex items-center justify-center gap-2 cursor-pointer group active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
                 >
                   Explore Our Solution
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={() => onNavigate('opportunities')}
-                  className="h-[44px] sm:h-[46px] px-5 sm:px-6 bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/35 font-bold text-sm rounded-lg transition-all backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-white/10 hover:bg-white/16 text-white border border-white/20 hover:border-white/35 font-bold text-sm sm:text-[15px] rounded-xl transition-all backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   Discover Opportunities
                 </button>
               </motion.div>
 
-              {/* 5. Key Metrics: Compact divider and labels */}
+              {/* 5. Key Metrics: Polished divider and balanced grid */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.32, ease: 'easeOut' }}
-                className="pt-5 sm:pt-6 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-6 max-w-[580px]"
+                className="pt-6 sm:pt-7 mt-2 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8 max-w-[640px]"
               >
-                <div>
-                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">6 Pillars</div>
-                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">Unified Network</div>
-                </div>
-                <div>
-                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">Open Access</div>
-                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">Direct Connections</div>
-                </div>
-                <div>
-                  <div className="font-extrabold text-white text-sm sm:text-[15px] tracking-tight leading-tight">Real Visibility</div>
-                  <div className="text-neutral-400 text-[11px] sm:text-xs font-medium leading-normal mt-0.5">For Facilities &amp; Teams</div>
-                </div>
+                <motion.div
+                  whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                >
+                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">6 Pillars</div>
+                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Unified Network</div>
+                </motion.div>
+                <motion.div
+                  whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                >
+                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">Open Access</div>
+                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Direct Connections</div>
+                </motion.div>
+                <motion.div
+                  whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                >
+                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">Real Visibility</div>
+                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">For Facilities &amp; Teams</div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -453,11 +465,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
           </FadeIn>
         </div>
       </motion.section>
-
-      {/* Floating 'Join Our Community' call-to-action button */}
-      <FloatingCommunityButton
-        onClick={() => onOpenGetInvolved('community_leader')}
-      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -12,6 +12,7 @@ import {
   Ticket
 } from 'lucide-react';
 import { useSportsStore } from '../../lib/sportsStore';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface MyPassesModalProps {
   isOpen: boolean;
@@ -20,24 +21,40 @@ interface MyPassesModalProps {
 
 export const MyPassesModal: React.FC<MyPassesModalProps> = ({ isOpen, onClose }) => {
   const { bookings, cancelBooking } = useSportsStore();
+  useBodyScrollLock(isOpen);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="passes-modal-title"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 12 }}
-          transition={{ duration: 0.2 }}
-          className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="passes-modal-title"
+          onClick={onClose}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Header */}
           <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
             <div className="space-y-1">
@@ -130,7 +147,8 @@ export const MyPassesModal: React.FC<MyPassesModalProps> = ({ isOpen, onClose })
             )}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 };

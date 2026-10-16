@@ -24,12 +24,26 @@ export default function App() {
   const [isMyPassesOpen, setIsMyPassesOpen] = useState(false);
   const [isOwnerDrawerOpen, setIsOwnerDrawerOpen] = useState(false);
 
-  // Sync with browser hash if present
+  // Ensure clean scroll behavior on refresh and initial load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Scroll to top on fresh load unless navigating to a specific section anchor
+    const hash = window.location.hash.replace('#', '');
+    if (!hash || hash === 'home') {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
+  // Sync with browser hash if present and restore scroll to top
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') as PageId;
       if (['home', 'gap', 'solution', 'opportunities', 'vision', 'demo'].includes(hash)) {
         setCurrentPage(hash);
+        window.scrollTo(0, 0);
       }
     };
 

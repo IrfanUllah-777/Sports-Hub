@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -9,11 +9,11 @@ import {
   ShieldCheck, 
   ArrowRight,
   Send,
-  Calendar,
-  DollarSign
+  Calendar
 } from 'lucide-react';
 import { GovernmentScheme } from '../../types';
 import { useSportsStore } from '../../lib/sportsStore';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface GovernmentSchemeModalProps {
   isOpen: boolean;
@@ -27,6 +27,7 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
   scheme,
 }) => {
   const { applyToScheme, currentUser } = useSportsStore();
+  useBodyScrollLock(isOpen);
 
   const [applicantName, setApplicantName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
@@ -37,10 +38,19 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  if (!isOpen || !scheme) return null;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen && !isSubmitting) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, isSubmitting, onClose]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!scheme) return;
     if (!applicantName.trim() || !email.trim()) {
       setErrorMsg('Please complete required contact details.');
       return;
@@ -66,19 +76,26 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="gov-scheme-title"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 12 }}
-          transition={{ duration: 0.2 }}
-          className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+      {isOpen && scheme && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="gov-scheme-title"
+          onClick={onClose}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Header */}
           <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
             <div className="space-y-1 pr-6">
@@ -224,7 +241,8 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
             )}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 };

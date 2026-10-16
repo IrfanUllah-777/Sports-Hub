@@ -401,10 +401,12 @@ export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({
           {/* Quick Clickable Story Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
             {stories.map((story, idx) => (
-              <button
+              <motion.button
                 key={story.id}
                 type="button"
                 onClick={() => setCurrentIndex(idx)}
+                whileHover={{ scale: 1.03, y: -1, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+                whileTap={{ scale: 0.97 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
                   idx === currentIndex
                     ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'
@@ -415,7 +417,7 @@ export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({
                 <span className="text-[10px] ml-1.5 opacity-70">
                   ({story.roleType === 'athlete' ? 'Athlete' : 'Facility'})
                 </span>
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -442,38 +444,61 @@ export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({
 
         {/* Platform Proof Metrics Banner */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-[#E5EAED]">
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-4 text-center">
-            <div className="text-2xl font-black text-[#222222] font-display">
+          <motion.div
+            whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-4 text-center transition-all duration-300 hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="text-2xl font-black text-[#222222] group-hover:text-black font-display transition-colors">
               +46%
             </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
+            <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] font-medium mt-0.5 transition-colors">
               Avg. Off-Peak Slot Utilization
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-4 text-center">
-            <div className="text-2xl font-black text-[#222222] font-display">
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-4 text-center transition-all duration-300 hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="text-2xl font-black text-[#222222] group-hover:text-black font-display transition-colors">
               30 sec
             </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
+            <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] font-medium mt-0.5 transition-colors">
               Verified Court Booking Time
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-4 text-center">
-            <div className="text-2xl font-black text-[#222222] font-display">
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-4 text-center transition-all duration-300 hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="text-2xl font-black text-[#222222] group-hover:text-black font-display transition-colors">
               100%
             </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
+            <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] font-medium mt-0.5 transition-colors">
               Digital Payment &amp; Roster Verification
             </div>
-          </div>
-          <div className="bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-4 text-center">
-            <div className="text-2xl font-black text-[#222222] font-display">
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-4 text-center transition-all duration-300 hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] overflow-hidden cursor-default"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="text-2xl font-black text-[#222222] group-hover:text-black font-display transition-colors">
               Zero
             </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
+            <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] font-medium mt-0.5 transition-colors">
               Phone Calls or Manual Double-Bookings
             </div>
-          </div>
+          </motion.div>
         </div>
 
       </div>

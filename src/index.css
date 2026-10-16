@@ -25,17 +25,28 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --color-success: hsl(var(--success));
+
+  /* Theme semantic variables */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-subtle: var(--bg-card-subtle);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
 
   /* Backward compatible brand names */
-  --color-brand-neon: #CDFF00;
-  --color-brand-dark: #9ECC00;
-  --color-brand-light: #F8FFD9;
-  --color-brand-bg: #F2F3F7;
-  --color-brand-card: #FFFFFF;
-  --color-brand-border: #E5EAED;
-  --color-brand-text: #222222;
-  --color-brand-muted: #6B7280;
+  --color-brand-neon: var(--accent-neon);
+  --color-brand-dark: var(--accent-dark);
+  --color-brand-light: var(--accent-subtle);
+  --color-brand-bg: var(--bg-primary);
+  --color-brand-card: var(--bg-surface);
+  --color-brand-border: var(--border-default);
+  --color-brand-text: var(--text-primary);
+  --color-brand-muted: var(--text-muted);
 }
 
 @layer base {
@@ -55,13 +66,123 @@
 
   html {
     font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html[data-theme="dark"],
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     min-height: 100vh;
   }
+}
+
+/* ==========================================================================
+   Smooth Color-Only Theme Transition System
+   Ensures seamless color interpolation across resting, hover, focus,
+   and active states without flickering or disrupting existing transforms.
+   ========================================================================== */
+
+/* Universal baseline transition for complex UI elements (cards, buttons, inputs, interactive rows).
+   Guarantees smooth, continuous color interpolation during user interaction AND theme switching.
+   Uses :where() with zero specificity to preserve custom utility durations. */
+:where(
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [role="tab"],
+  [role="link"],
+  [role="menuitem"],
+  [class*="card"],
+  [class*="Card"],
+  [class*="btn"],
+  [class*="badge"],
+  [class*="chip"],
+  [class*="tab"],
+  [class*="hover:"],
+  [class*="group-hover:"],
+  .group,
+  .group *
+):not([class*="transition-all"]):not([class*="transition-transform"]) {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global theme switching state: active for 220ms when toggling theme */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-property: 
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke,
+    box-shadow,
+    outline-color,
+    text-decoration-color,
+    column-rule-color,
+    caret-color,
+    opacity,
+    backdrop-filter,
+    -webkit-backdrop-filter !important;
+  transition-duration: 220ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-delay: 0s !important;
+}
+
+/* Maintain smooth color interpolation on complex UI elements with active hover/focus/active states */
+html.theme-transitioning :is(
+  *:hover,
+  *:hover *,
+  *:hover::before,
+  *:hover::after,
+  *:focus,
+  *:focus-visible,
+  *:focus-within,
+  *:active,
+  *:active *,
+  [class*="group"]:hover,
+  [class*="group"]:hover *,
+  [class*="peer"]:hover ~ *
+) {
+  transition-property: 
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke,
+    box-shadow,
+    outline-color,
+    text-decoration-color,
+    caret-color,
+    opacity,
+    backdrop-filter,
+    -webkit-backdrop-filter !important;
+  transition-duration: 220ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-delay: 0s !important;
 }
 
 /* Professional Architectural Sports Tech Backgrounds */
@@ -72,6 +193,14 @@
     linear-gradient(to bottom, rgba(34, 34, 34, 0.02) 1px, transparent 1px);
   background-size: 24px 24px, 96px 96px, 96px 96px;
   background-position: 0 0, 0 0, 0 0;
+}
+
+[data-theme="dark"] .bg-grid-pattern,
+.dark .bg-grid-pattern {
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1.25px, transparent 1.25px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 .bg-dark-grid-pattern {
@@ -113,7 +242,7 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
@@ -121,4 +250,279 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background: #2A313C;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3E4756;
+}
+
+/* ==========================================================================
+   Comprehensive Dark Theme Component Overrides
+   Strictly changes COLORS ONLY. Zero changes to dimensions, layout, or padding.
+   ========================================================================== */
+
+[data-theme="dark"],
+.dark {
+  /* Surfaces & Cards */
+  .bg-white,
+  .bg-\[\#FFFFFF\],
+  .bg-\[\#FBFBFC\] {
+    background-color: var(--bg-surface) !important;
+  }
+
+  .bg-\[\#F2F3F7\],
+  .bg-\[\#F2F4F7\],
+  .bg-\[\#F4F5F7\],
+  .bg-\[\#F1F5F9\],
+  .bg-\[\#F8FAFC\],
+  .bg-\[\#F9FAFB\],
+  .bg-neutral-100,
+  .bg-gray-100 {
+    background-color: var(--bg-primary) !important;
+  }
+
+  /* Smooth Surface & Card Hover Background Overrides in Dark Mode */
+  .hover\:bg-white:hover {
+    background-color: var(--bg-surface) !important;
+  }
+
+  :is(
+    .hover\:bg-\[\#F2F3F7\],
+    .hover\:bg-\[\#F2F3F7\]\/50,
+    .hover\:bg-\[\#F4F5F7\],
+    .hover\:bg-\[\#F8FAFC\],
+    .hover\:bg-\[\#F9FAFB\],
+    .hover\:bg-\[\#E2E8F0\],
+    .hover\:bg-\[\#E5EAED\],
+    .hover\:bg-neutral-100,
+    .hover\:bg-neutral-200
+  ):hover {
+    background-color: var(--bg-elevated) !important;
+  }
+
+  .group:hover :is(
+    .group-hover\:bg-\[\#F2F3F7\],
+    .group-hover\:bg-\[\#F4F5F7\],
+    .group-hover\:bg-\[\#E2E8F0\],
+    .group-hover\:bg-\[\#E5EAED\]
+  ) {
+    background-color: var(--bg-elevated) !important;
+  }
+
+  .hover\:bg-white\/60:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  :is(
+    .hover\:bg-\[\#F8FFD9\],
+    .hover\:bg-\[\#F8FFD9\]\/40,
+    .hover\:bg-\[\#F8FFD9\]\/60
+  ):hover,
+  .group:hover .group-hover\:bg-\[\#F8FFD9\] {
+    background-color: rgba(205, 255, 0, 0.14) !important;
+  }
+
+  :is(.hover\:bg-neutral-800, .hover\:bg-neutral-700):hover,
+  .hover\:bg-\[\#222222\]:hover,
+  .group:hover .group-hover\:bg-\[\#222222\] {
+    background-color: var(--bg-elevated) !important;
+  }
+
+  .group:hover .group-hover\:bg-\[\#CDFF00\] {
+    background-color: var(--accent-neon) !important;
+  }
+
+  /* Interactive Hover & Group-Hover Text Overrides */
+  :is(
+    .hover\:text-\[\#222222\],
+    .hover\:text-\[\#11161B\],
+    .hover\:text-black,
+    .hover\:text-\[\#0F172A\]
+  ):hover,
+  .group:hover :is(
+    .group-hover\:text-\[\#222222\],
+    .group-hover\:text-\[\#11161B\],
+    .group-hover\:text-black,
+    .group-hover\:text-\[\#0F172A\]
+  ) {
+    color: var(--text-primary) !important;
+  }
+
+  :is(
+    .hover\:text-\[\#374151\],
+    .hover\:text-\[\#4B5563\],
+    .hover\:text-\[\#6B7280\],
+    .hover\:text-\[\#64748B\],
+    .hover\:text-\[\#94A3B8\]
+  ):hover,
+  .group:hover :is(
+    .group-hover\:text-\[\#374151\],
+    .group-hover\:text-\[\#4B5563\],
+    .group-hover\:text-\[\#6B7280\]
+  ) {
+    color: var(--text-secondary) !important;
+  }
+
+  .group:hover .group-hover\:text-\[\#CDFF00\] {
+    color: var(--accent-neon) !important;
+  }
+
+  /* Interactive Hover & Group-Hover Border Overrides */
+  :is(
+    .hover\:border-\[\#CDFF00\],
+    .hover\:border-\[\#CDFF00\]\/50,
+    .hover\:border-\[\#CDFF00\]\/60,
+    .hover\:border-\[\#CDFF00\]\/80
+  ):hover,
+  .group:hover :is(
+    .group-hover\:border-\[\#CDFF00\],
+    .group-hover\:border-\[\#CDFF00\]\/60
+  ) {
+    border-color: var(--accent-neon) !important;
+  }
+
+  .hover\:border-\[\#222222\]:hover,
+  .group:hover .group-hover\:border-\[\#222222\] {
+    border-color: var(--accent-neon) !important;
+  }
+
+  :is(
+    .hover\:border-\[\#E5EAED\],
+    .hover\:border-\[\#CBD5E1\]
+  ):hover,
+  .group:hover .group-hover\:border-\[\#E5EAED\] {
+    border-color: var(--border-strong) !important;
+  }
+
+  /* Rich Card Hover Box-Shadows in Dark Mode */
+  [class*="hover:shadow-"][class*="#CDFF00"]:hover,
+  .group:hover [class*="group-hover:shadow-"][class*="#CDFF00"] {
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--accent-neon), 0 0 16px rgba(205, 255, 0, 0.14) !important;
+  }
+
+  /* Focus & Focus-Visible Interactive Overrides */
+  :is(
+    .focus\:ring-\[\#222222\]:focus,
+    .focus-visible\:ring-\[\#222222\]:focus-visible
+  ) {
+    --tw-ring-color: var(--accent-neon) !important;
+  }
+
+  .focus\:border-\[\#222222\]:focus {
+    border-color: var(--accent-neon) !important;
+  }
+
+  .focus\:bg-white:focus {
+    background-color: var(--bg-surface) !important;
+  }
+
+  .bg-\[\#E2E8F0\] {
+    background-color: var(--border-default) !important;
+  }
+
+  select option {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* SVG Diagram subtle connector strokes in dark theme */
+  svg line[stroke="#D1D5DB"] {
+    stroke: var(--border-default) !important;
+  }
+
+  /* Sticky Navigation Header */
+  .bg-white\/95 {
+    background-color: rgba(22, 27, 34, 0.95) !important;
+  }
+
+  /* Borders & Dividers */
+  .border-\[\#E5EAED\],
+  .border-\[\#E2E8F0\],
+  .border-\[\#E2E6EA\],
+  .border-neutral-200,
+  .border-gray-200 {
+    border-color: var(--border-default) !important;
+  }
+
+  .divide-\[\#E5EAED\] > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--border-default) !important;
+  }
+
+  /* Secondary & Muted Typography */
+  .text-\[\#4B5563\],
+  .text-\[\#374151\],
+  .text-neutral-700,
+  .text-gray-700 {
+    color: var(--text-secondary) !important;
+  }
+
+  .text-\[\#6B7280\],
+  .text-\[\#64748B\],
+  .text-\[\#94A3B8\],
+  .text-neutral-500,
+  .text-gray-500 {
+    color: var(--text-muted) !important;
+  }
+
+  /* Primary Headings & Body text on light surfaces (excluding buttons with neon lime background) */
+  .text-\[\#222222\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#11161B\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-black:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]) {
+    color: var(--text-primary) !important;
+  }
+
+  /* Neon Lime Tints & Badges */
+  .bg-\[\#F8FFD9\] {
+    background-color: var(--accent-subtle) !important;
+    color: var(--accent-text) !important;
+  }
+
+  /* Form Controls */
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-default) !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--accent-neon) !important;
+    outline: none !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-muted) !important;
+  }
+
+  /* Table Components */
+  table th {
+    background-color: var(--bg-elevated) !important;
+    color: var(--text-secondary) !important;
+    border-color: var(--border-default) !important;
+  }
+
+  table td {
+    border-color: var(--border-default) !important;
+    color: var(--text-primary) !important;
+  }
+
+  table tr:hover td {
+    background-color: var(--bg-elevated) !important;
+  }
+
+  /* Drawer / Modal Backdrops */
+  .bg-black\/60,
+  .bg-black\/50,
+  .bg-black\/40 {
+    background-color: var(--bg-overlay) !important;
+  }
 }

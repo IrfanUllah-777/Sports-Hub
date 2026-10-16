@@ -1,5 +1,39 @@
 :root {
-  /* Sports Hub Brand Design Tokens (HSL) */
+  /* Sports Hub Brand Design Tokens (Light Theme - Source of Truth) */
+  --bg-primary: #F2F3F7;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F2F3F7;
+  --bg-input: #FFFFFF;
+  --bg-overlay: rgba(10, 13, 20, 0.75);
+
+  --text-primary: #222222;
+  --text-secondary: #4B5563;
+  --text-muted: #596372;
+  --text-tertiary: #5E6877;
+  --text-inverse: #FFFFFF;
+
+  --border-default: #E5EAED;
+  --border-subtle: #F2F3F7;
+  --border-strong: #64748B;
+
+  --accent-neon: #CDFF00;
+  --accent-neon-hover: #B8E600;
+  --accent-dark: #9ECC00;
+  --accent-subtle: #F8FFD9;
+  --accent-text: #222222;
+
+  --danger: #DC2626;
+  --danger-subtle: #FEE2E2;
+  --danger-text: #B91C1C;
+  --success: #16A34A;
+  --success-subtle: #DCFCE7;
+  --success-text: #136E34;
+
+  --shadow-color: rgba(0, 0, 0, 0.08);
+
+  /* Tailwind / Shadcn Compatible HSL Mappings */
   --background: 228 24% 96%;
   --foreground: 0 0% 13%;
 
@@ -9,7 +43,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 13%;
 
-  /* Primary Neon Lime (#CDFF00) with dark text on top */
+  /* Primary Neon Lime (#CDFF00) with dark text */
   --primary: 72 100% 50%;
   --primary-foreground: 0 0% 13%;
 
@@ -24,16 +58,82 @@
   --accent-foreground: 0 0% 13%;
 
   --muted: 228 24% 96%;
-  --muted-foreground: 220 9% 46%;
+  --muted-foreground: 220 10% 42%;
 
   --border: 203 18% 91%;
   --input: 203 18% 91%;
-  --ring: 74 100% 40%;
+  --ring: 74 100% 28%;
 
-  --success: 72 100% 50%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
 
   --radius: 0.75rem;
+}
+
+[data-theme="dark"], .dark {
+  /* Sports Hub Brand Design Tokens (Dark Theme - Layered Slate/Charcoal) */
+  --bg-primary: #0E1217;
+  --bg-surface: #161B22;
+  --bg-elevated: #1F2530;
+  --bg-card: #161B22;
+  --bg-card-subtle: #1C222C;
+  --bg-input: #12161E;
+  --bg-overlay: rgba(5, 7, 10, 0.85);
+
+  /* WCAG AA (>= 4.5:1) & AAA (>= 7.0:1) Contrast Verified Text Hierarchy */
+  --text-primary: #F3F4F6;    /* Contrast: 17.07:1 on --bg-primary, 15.72:1 on --bg-surface (Passes AAA) */
+  --text-secondary: #D1D5DB;  /* Contrast: 12.75:1 on --bg-primary, 11.74:1 on --bg-surface (Passes AAA) */
+  --text-muted: #9CA3AF;      /* Contrast: 7.40:1 on --bg-primary, 6.81:1 on --bg-surface (Passes AA & AAA on primary) */
+  --text-tertiary: #94A3B8;   /* Contrast: 7.33:1 on --bg-primary, 6.75:1 on --bg-surface (Passes AA) */
+  --text-inverse: #11161B;
+
+  --border-default: #2A313C;
+  --border-subtle: #1F252E;
+  --border-strong: #64748B;
+
+  --accent-neon: #CDFF00;
+  --accent-neon-hover: #D6FF33;
+  --accent-dark: #B8E600;
+  --accent-subtle: rgba(205, 255, 0, 0.12);
+  --accent-text: #CDFF00;
+
+  --danger: #EF4444;
+  --danger-subtle: rgba(239, 68, 68, 0.18);
+  --danger-text: #FCA5A5;
+  --success: #22C55E;
+  --success-subtle: rgba(34, 197, 94, 0.18);
+  --success-text: #86EFAC;
+
+  --shadow-color: rgba(0, 0, 0, 0.55);
+
+  /* Tailwind / Shadcn Compatible HSL Mappings */
+  --background: 216 24% 7%;
+  --foreground: 210 20% 96%;
+
+  --card: 215 21% 11%;
+  --card-foreground: 210 20% 96%;
+
+  --popover: 215 21% 11%;
+  --popover-foreground: 210 20% 96%;
+
+  --primary: 72 100% 50%;
+  --primary-foreground: 0 0% 13%;
+
+  --primary-dark: 74 100% 40%;
+
+  --secondary: 72 40% 16%;
+  --secondary-foreground: 72 100% 70%;
+
+  --accent: 72 40% 16%;
+  --accent-foreground: 72 100% 70%;
+
+  --muted: 215 20% 15%;
+  --muted-foreground: 218 11% 65%;
+
+  --border: 215 14% 20%;
+  --input: 215 14% 20%;
+  --ring: 72 100% 50%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
 }

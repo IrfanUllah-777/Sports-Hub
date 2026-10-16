@@ -300,26 +300,35 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
             {PHASES.map((p, idx) => {
               const isSelected = activePhaseIndex === idx;
               return (
-                <button
+                <motion.button
                   key={p.phase}
                   onClick={() => setActivePhaseIndex(idx)}
-                  className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
+                  whileHover={{
+                    y: -3,
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 350, damping: 20 },
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group relative text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                     isSelected
                       ? 'bg-white border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
-                      : 'bg-white/70 border-[#E5EAED] hover:bg-white hover:border-[#CBD5E1]'
+                      : 'bg-white/70 border-[#E5EAED] hover:border-[#CDFF00] hover:bg-white hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
                   }`}
                 >
+                  {/* Animated top lime highlight bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-mono font-bold text-[#6B7280]">
+                    <span className="text-[11px] font-mono font-bold text-[#6B7280] group-hover:text-[#222222] transition-colors">
                       {p.phase}
                     </span>
                     {isSelected && (
                       <span className="w-2.5 h-2.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]" />
                     )}
                   </div>
-                  <div className="font-black text-sm text-[#222222] tracking-tight">{p.name}</div>
-                  <div className="text-xs text-[#6B7280] truncate mt-0.5">{p.subtitle}</div>
-                </button>
+                  <div className="font-black text-sm text-[#222222] tracking-tight group-hover:text-black transition-colors">{p.name}</div>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] truncate mt-0.5 transition-colors">{p.subtitle}</div>
+                </motion.button>
               );
             })}
           </FadeIn>
@@ -427,32 +436,41 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
           </FadeIn>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {IMPACT_BLOCKS.map((block) => {
+            {IMPACT_BLOCKS.map((block, idx) => {
               const Icon = block.icon;
               return (
                 <StaggerItem key={block.title}>
-                  <div
-                    className="bg-white border border-[#E5EAED] rounded-xl p-6 hover:border-[#CDFF00] hover:shadow-xs transition-all flex flex-col justify-between h-full"
+                  <motion.div
+                    whileHover={{
+                      y: -6,
+                      scale: 1.02,
+                      transition: { type: 'spring', stiffness: 350, damping: 20 },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                   >
+                    {/* Animated top lime highlight bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                     <div className="space-y-4">
-                      <div className="w-11 h-11 rounded-lg bg-[#F8FFD9] border border-[#CDFF00]/50 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-[#222222]" />
+                      <div className="w-11 h-11 rounded-lg bg-[#F8FFD9] group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 group-hover:border-[#CDFF00] flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 shadow-2xs">
+                        <Icon className="w-5 h-5 text-[#222222] transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-[#222222] font-display mb-1.5">
+                        <h3 className="text-lg font-bold text-[#222222] group-hover:text-black font-display mb-1.5 transition-colors">
                           {block.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#6B7280] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#6B7280] group-hover:text-[#4B5563] leading-relaxed transition-colors">
                           {block.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-3 border-t border-[#E5EAED] flex items-center justify-between text-xs">
-                      <span className="text-[#6B7280]">Focus Indicator</span>
-                      <span className="font-bold text-[#222222]">{block.metric}</span>
+                    <div className="mt-6 pt-3 border-t border-[#E5EAED] group-hover:border-[#E5EAED] flex items-center justify-between text-xs transition-colors">
+                      <span className="text-[#6B7280] group-hover:text-[#222222] transition-colors">Focus Indicator</span>
+                      <span className="font-bold text-[#222222] bg-neutral-100 group-hover:bg-[#F8FFD9] px-2 py-0.5 rounded transition-colors">{block.metric}</span>
                     </div>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
               );
             })}

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageId, NavItem, StakeholderRole } from '../types';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -24,13 +26,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Lock body scroll on small screens when mobile drawer is open
+  useBodyScrollLock(mobileMenuOpen);
+
   const handleNavClick = (id: PageId) => {
     onNavigate(id);
     setMobileMenuOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-[#E5EAED] transition-all">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-[#E5EAED] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
         {/* Zone 1: Single text element wordmark */}
         <button
@@ -68,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Zone 3: Action */}
+        {/* Zone 3: Action & Theme Toggle in top right corner */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => onOpenGetInvolved('athlete')}
@@ -77,10 +82,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             Get Involved
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
+          <ThemeToggle />
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-[#222222] hover:bg-[#F2F3F7] rounded-lg focus:outline-none cursor-pointer"

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
   Building2, 
   Clock, 
-  DollarSign, 
+  Pencil, 
   CheckCircle2, 
   AlertTriangle, 
   Sliders, 
@@ -13,6 +13,7 @@ import {
   Users
 } from 'lucide-react';
 import { useSportsStore } from '../../lib/sportsStore';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface GroundOwnerDrawerProps {
   isOpen: boolean;
@@ -23,28 +24,45 @@ export const GroundOwnerDrawer: React.FC<GroundOwnerDrawerProps> = ({ isOpen, on
   const { facilities, toggleSlotStatus, updateSlotPrice, bookings } = useSportsStore();
   const [selectedFacilityId, setSelectedFacilityId] = useState(facilities[0]?.id || 'fac-1');
   const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
-  const [tempPrice, setTempPrice] = useState<number>(45);
+  const [tempPrice, setTempPrice] = useState<number>(4500);
 
-  if (!isOpen) return null;
+  useBodyScrollLock(isOpen);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   const currentFacility = facilities.find((f) => f.id === selectedFacilityId) || facilities[0];
   const facilityBookings = bookings.filter((b) => b.facilityId === currentFacility?.id);
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-xs"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="owner-drawer-title"
-      >
-        <motion.div
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="relative w-full max-w-xl h-full bg-white text-[#222222] shadow-2xl flex flex-col border-l border-[#E5EAED]"
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="owner-drawer-title"
+          onClick={onClose}
         >
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="relative w-full max-w-xl h-full bg-white text-[#222222] shadow-2xl flex flex-col border-l border-[#E5EAED]"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Top Bar */}
           <div className="bg-[#0A0D14] text-white p-5 flex items-center justify-between border-b border-neutral-800">
             <div className="flex items-center gap-2">
@@ -143,13 +161,15 @@ export const GroundOwnerDrawer: React.FC<GroundOwnerDrawerProps> = ({ isOpen, on
                       <div className="flex items-center gap-3">
                         {/* Price editor */}
                         {isEditingThis ? (
-                          <div className="flex items-center gap-1">
-                            <span className="text-xs font-bold">$</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-bold text-[#6B7280]">PKR</span>
                             <input
                               type="number"
+                              step="100"
+                              min="500"
                               value={tempPrice}
                               onChange={(e) => setTempPrice(Number(e.target.value))}
-                              className="w-14 px-1.5 py-0.5 border border-[#222222] rounded text-xs font-bold text-center"
+                              className="w-20 px-2 py-0.5 border border-[#222222] rounded text-xs font-bold text-center"
                             />
                             <button
                               type="button"
@@ -157,7 +177,7 @@ export const GroundOwnerDrawer: React.FC<GroundOwnerDrawerProps> = ({ isOpen, on
                                 updateSlotPrice(currentFacility.id, slot.id, tempPrice);
                                 setEditingSlotId(null);
                               }}
-                              className="px-2 py-0.5 bg-[#222222] text-[#CDFF00] rounded text-[10px] font-bold"
+                              className="px-2 py-0.5 bg-[#222222] text-[#CDFF00] rounded text-[10px] font-bold cursor-pointer"
                             >
                               Save
                             </button>
@@ -169,11 +189,11 @@ export const GroundOwnerDrawer: React.FC<GroundOwnerDrawerProps> = ({ isOpen, on
                               setEditingSlotId(slot.id);
                               setTempPrice(slot.price);
                             }}
-                            className="font-bold text-[#222222] hover:text-[#9ECC00] flex items-center gap-0.5 cursor-pointer"
+                            className="font-bold text-[#222222] hover:text-[#9ECC00] flex items-center gap-1 cursor-pointer"
                             title="Edit slot rate"
                           >
-                            <span>${slot.price}/hr</span>
-                            <DollarSign className="w-3 h-3 text-[#6B7280]" />
+                            <span>PKR {slot.price.toLocaleString()}/hr</span>
+                            <Pencil className="w-3 h-3 text-[#6B7280]" />
                           </button>
                         )}
 
@@ -229,7 +249,8 @@ export const GroundOwnerDrawer: React.FC<GroundOwnerDrawerProps> = ({ isOpen, on
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 };

@@ -185,30 +185,43 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
             {PROCESS_STEPS.map((item, index) => {
               const isActive = activeStep === index;
               return (
-                <button
+                <motion.button
                   key={item.step}
                   onClick={() => setActiveStep(index)}
-                  className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
+                  whileHover={{
+                    y: -3,
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 350, damping: 20 },
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group relative text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                     isActive
-                      ? 'bg-[#F8FFD9] border-[#222222] ring-2 ring-[#CDFF00]'
-                      : 'bg-[#F2F3F7] border-[#E5EAED] hover:bg-white hover:border-[#CBD5E1]'
+                      ? 'bg-[#F8FFD9] border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
+                      : 'bg-[#F2F3F7] border-[#E5EAED] hover:bg-white hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
                   }`}
                 >
+                  {/* Animated top lime highlight bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
                   <div className="flex items-center justify-between mb-2">
                     <span
-                      className={`text-xs font-black font-mono px-2 py-0.5 rounded ${
-                        isActive ? 'bg-[#222222] text-[#CDFF00]' : 'bg-white text-[#6B7280]'
+                      className={`text-xs font-black font-mono px-2 py-0.5 rounded transition-colors ${
+                        isActive ? 'bg-[#222222] text-[#CDFF00]' : 'bg-white text-[#6B7280] group-hover:bg-[#222222] group-hover:text-[#CDFF00]'
                       }`}
                     >
                       {item.step}
                     </span>
-                    {isActive && <Sparkles className="w-3.5 h-3.5 text-[#9ECC00]" />}
+                    {isActive ? (
+                      <Sparkles className="w-3.5 h-3.5 text-[#9ECC00]" />
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 group-hover:bg-[#CDFF00] transition-colors" />
+                    )}
                   </div>
-                  <div className="font-extrabold text-sm text-[#222222] tracking-wide">
+                  <div className="font-extrabold text-sm text-[#222222] tracking-wide group-hover:text-black transition-colors">
                     {item.title}
                   </div>
-                  <div className="text-xs text-[#6B7280] mt-1 line-clamp-1">{item.headline}</div>
-                </button>
+                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-1 line-clamp-1 transition-colors">{item.headline}</div>
+                </motion.button>
               );
             })}
           </FadeIn>

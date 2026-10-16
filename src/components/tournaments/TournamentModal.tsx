@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { Tournament } from '../../types';
 import { useSportsStore } from '../../lib/sportsStore';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface TournamentModalProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
   tournament,
 }) => {
   const { registerTeamForTournament, currentUser } = useSportsStore();
+  useBodyScrollLock(isOpen);
 
   const [activeTab, setActiveTab] = useState<'fixtures' | 'register'>('fixtures');
   const [teamName, setTeamName] = useState('');
@@ -59,12 +61,11 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, isSubmitting, onClose]);
 
-  if (!isOpen || !tournament) return null;
-
-  const isFull = tournament.registeredTeams.length >= tournament.squadCapacity;
+  const isFull = tournament ? tournament.registeredTeams.length >= tournament.squadCapacity : false;
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!tournament) return;
     if (!teamName.trim() || !captainName.trim() || !contact.trim()) {
       setFormError('Please enter team name, captain name, and valid phone number.');
       return;
@@ -91,19 +92,26 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="tournament-modal-title"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 12 }}
-          transition={{ duration: 0.2 }}
-          className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+      {isOpen && tournament && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tournament-modal-title"
+          onClick={onClose}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Header */}
           <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
             <div className="space-y-1 pr-6">
@@ -270,7 +278,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                   <form onSubmit={handleRegister} className="space-y-4">
                     {/* Capacity Indicator */}
                     <div className="p-3 bg-[#F2F3F7] rounded-xl flex items-center justify-between text-xs">
-                      <span className="font-semibold text-[#4B5563]">Registration Fee: ${tournament.entryFee} per squad</span>
+                      <span className="font-semibold text-[#4B5563]">Registration Fee: PKR {tournament.entryFee.toLocaleString()} per squad</span>
                       <span className="font-bold text-[#222222]">
                         {tournament.squadCapacity - tournament.registeredTeams.length} Spots Remaining
                       </span>
@@ -352,7 +360,8 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             )}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 };

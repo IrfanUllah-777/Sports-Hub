@@ -50,14 +50,14 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
   const [activeTournament, setActiveTournament] = useState<Tournament | null>(null);
   const [activeScheme, setActiveScheme] = useState<GovernmentScheme | null>(null);
 
-  const filterTabs: { id: OpportunityCategory; label: string; count: string }[] = [
-    { id: 'all', label: 'All Pathways', count: '6' },
-    { id: 'facilities', label: 'Facilities', count: '01' },
-    { id: 'tournaments', label: 'Tournaments', count: '02' },
-    { id: 'events', label: 'Sports Events', count: '03' },
-    { id: 'academies', label: 'Academies', count: '04' },
-    { id: 'development', label: 'Athlete Growth', count: '05' },
-    { id: 'communities', label: 'Communities', count: '06' },
+  const filterTabs: { id: OpportunityCategory; label: string; count: string; icon: React.ElementType }[] = [
+    { id: 'all', label: 'All Pathways', count: '6', icon: Layers },
+    { id: 'facilities', label: 'Facilities', count: '01', icon: Building2 },
+    { id: 'tournaments', label: 'Tournaments', count: '02', icon: Trophy },
+    { id: 'events', label: 'Sports Events', count: '03', icon: CalendarDays },
+    { id: 'academies', label: 'Academies', count: '04', icon: GraduationCap },
+    { id: 'development', label: 'Athlete Growth', count: '05', icon: TrendingUp },
+    { id: 'communities', label: 'Communities', count: '06', icon: Users2 },
   ];
 
   return (
@@ -139,32 +139,63 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* Category Filter Bar — Clean Segmented Navigation (no awkward wrapping) */}
             <FadeIn delay={0.1} className="w-full">
-              <div className="bg-white border border-[#E5EAED] p-1.5 rounded-2xl shadow-xs overflow-x-auto">
-                <div className="flex items-center gap-1.5 min-w-max">
+              <div className="bg-white/95 backdrop-blur-md border border-[#E2E8F0] p-1.5 sm:p-2 rounded-2xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.03)] overflow-x-auto no-scrollbar scroll-smooth">
+                <div className="flex items-center gap-1.5 sm:gap-2 min-w-max" role="tablist" aria-label="Opportunity categories">
                   {filterTabs.map((tab) => {
+                    const Icon = tab.icon;
                     const isActive = selectedCategory === tab.id;
                     return (
-                      <button
+                      <motion.button
                         key={tab.id}
                         type="button"
+                        role="tab"
+                        aria-selected={isActive}
                         onClick={() => setSelectedCategory(tab.id)}
-                        className={`group flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap cursor-pointer ${
+                        whileHover={{ y: -1.5, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+                        whileTap={{ scale: 0.97 }}
+                        className={`relative group flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold rounded-xl transition-colors duration-200 whitespace-nowrap cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] ${
                           isActive
-                            ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-xs'
-                            : 'text-[#6B7280] hover:text-[#222222] hover:bg-[#F2F3F7]'
+                            ? 'text-[#CDFF00]'
+                            : 'text-[#64748B] hover:text-[#0F172A] hover:bg-[#F8FAFC]'
                         }`}
                       >
-                        <span>{tab.label}</span>
+                        {/* Sliding Active Background Pill with subtle neon glow & top lime accent */}
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeCategoryPill"
+                            transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                            className="absolute inset-0 bg-[#1E232B] rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.22),0_0_0_1px_rgba(205,255,0,0.35)] overflow-hidden z-0"
+                          >
+                            {/* Subtle top lime indicator line */}
+                            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
+                          </motion.div>
+                        )}
+
+                        {/* Tab Icon */}
+                        <span className="relative z-10 flex items-center justify-center">
+                          <Icon
+                            className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:scale-110 ${
+                              isActive ? 'text-[#CDFF00]' : 'text-[#94A3B8] group-hover:text-[#0F172A]'
+                            }`}
+                          />
+                        </span>
+
+                        {/* Tab Label */}
+                        <span className={`relative z-10 font-bold tracking-tight transition-colors ${isActive ? 'text-white' : ''}`}>
+                          {tab.label}
+                        </span>
+
+                        {/* Count / Index Badge */}
                         <span
-                          className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md transition-colors ${
+                          className={`relative z-10 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md transition-all duration-200 ${
                             isActive
-                              ? 'bg-neutral-800 text-[#CDFF00]'
-                              : 'bg-[#F2F3F7] text-[#9CA3AF] group-hover:text-[#222222] group-hover:bg-[#E5EAED]'
+                              ? 'bg-[#11161B] text-[#CDFF00] border border-[#CDFF00]/40 shadow-xs'
+                              : 'bg-[#F1F5F9] text-[#64748B] group-hover:bg-[#E2E8F0] group-hover:text-[#0F172A]'
                           }`}
                         >
                           {tab.count}
                         </span>
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
