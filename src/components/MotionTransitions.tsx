@@ -205,3 +205,56 @@ export const PageTransition: React.FC<{
     </div>
   );
 };
+
+/**
+ * Shared Spring Transition for Button Active / Tap States
+ * Provides an agile, responsive, tactile physics feel (scale: 0.98) across all pages.
+ */
+export const buttonSpringTransition = {
+  type: 'spring' as const,
+  stiffness: 500,
+  damping: 28,
+  mass: 0.5,
+};
+
+export const buttonTapMotion = {
+  scale: 0.98,
+  transition: buttonSpringTransition,
+};
+
+export const buttonTapVariants = {
+  idle: { scale: 1 },
+  tap: {
+    scale: 0.98,
+    transition: buttonSpringTransition,
+  },
+};
+
+export interface MotionButtonProps extends React.ComponentPropsWithoutRef<typeof motion.button> {
+  scaleOnTap?: number;
+}
+
+export const MotionButton = React.forwardRef<HTMLButtonElement, MotionButtonProps>(
+  ({ children, whileTap, scaleOnTap = 0.98, ...props }, ref) => {
+    const shouldReduceMotion = useReducedMotion();
+
+    const defaultTap = shouldReduceMotion
+      ? {}
+      : {
+          scale: scaleOnTap,
+          transition: buttonSpringTransition,
+        };
+
+    return (
+      <motion.button
+        ref={ref}
+        whileTap={whileTap !== undefined ? whileTap : defaultTap}
+        {...props}
+      >
+        {children}
+      </motion.button>
+    );
+  }
+);
+MotionButton.displayName = 'MotionButton';
+

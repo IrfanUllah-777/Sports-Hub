@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FadeIn } from './MotionTransitions';
 import { 
   ChevronLeft, 
@@ -14,9 +14,11 @@ import {
   GraduationCap, 
   Users, 
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Zap
 } from 'lucide-react';
 import { StakeholderRole } from '../types';
+import { JoinCommunityButton } from './ui/JoinCommunityButton';
 
 export interface TestimonialItem {
   id: string;
@@ -155,6 +157,71 @@ const TESTIMONIALS: TestimonialItem[] = [
     targetRole: 'community_leader',
   },
 ];
+
+interface ProofpointItem {
+  icon: React.ComponentType<{ className?: string }>;
+  value: string;
+  label: string;
+  caption: string;
+  badge: string;
+}
+
+const PROOFPOINTS: ProofpointItem[] = [
+  {
+    icon: Building2,
+    value: '3,500+',
+    label: 'Verified Venues',
+    caption: 'Active courts, turf & arenas',
+    badge: 'Live Network',
+  },
+  {
+    icon: Zap,
+    value: '48 hrs',
+    label: 'Avg. Roster Lock',
+    caption: 'Squad registration to bracket lock',
+    badge: '3.4x Faster',
+  },
+  {
+    icon: ShieldCheck,
+    value: '99.2%',
+    label: 'Booking Rate',
+    caption: 'Automated real-time slot sync',
+    badge: 'Zero Double-Book',
+  },
+  {
+    icon: Sparkles,
+    value: 'Zero',
+    label: 'Phone Tag',
+    caption: '100% upfront pricing & terms',
+    badge: 'Instant Access',
+  },
+];
+
+const PROOFPOINTS_CONTAINER_VARIANTS: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const PROOFPOINT_ITEM_VARIANTS: Variants = {
+  hidden: { opacity: 0, y: 14, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 320,
+      damping: 24,
+      mass: 0.8,
+    },
+  },
+};
 
 interface TestimonialsSectionProps {
   onOpenGetInvolved: (role?: StakeholderRole) => void;
@@ -361,7 +428,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 scale: 1.015,
                 transition: { type: 'spring', stiffness: 350, damping: 20 },
               }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{
+                scale: 0.98,
+                transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+              }}
               className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
@@ -436,56 +506,95 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           ))}
         </div>
 
-        {/* Quick Social Proof Proofpoints Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-4">
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
-              3,500+
+        {/* Quick Social Proof Proofpoints Bar - Animated Sculpted Pill Capsules */}
+        <motion.div
+          variants={PROOFPOINTS_CONTAINER_VARIANTS}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pt-5 sm:pt-6 border-t border-[#E5EAED]"
+        >
+          {PROOFPOINTS.map((proof) => {
+            const Icon = proof.icon;
+            return (
+              <motion.div
+                key={proof.label}
+                variants={PROOFPOINT_ITEM_VARIANTS}
+                whileHover={{
+                  y: -3,
+                  scale: 1.02,
+                  transition: { type: 'spring', stiffness: 450, damping: 20 },
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                }}
+                className="group relative bg-white hover:bg-[#FAFBFD] border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_24px_rgba(205,255,0,0.22)] rounded-2xl sm:rounded-full py-2 px-2.5 sm:py-2.5 sm:px-3.5 transition-all duration-300 flex items-center gap-2.5 sm:gap-3 cursor-default overflow-hidden"
+              >
+                {/* Dynamic Light Sweep Shimmer animation on hover */}
+                <div
+                  className="absolute inset-0 -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-[#CDFF00]/25 to-transparent pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {/* Micro Neon Accent Highlight on hover (Mobile) */}
+                <div className="absolute inset-y-0 left-0 w-1 bg-[#CDFF00] opacity-0 group-hover:opacity-100 transition-opacity duration-200 sm:hidden" />
+
+                {/* Left: Compact Circular Icon with Spring Tilt & Scale on hover */}
+                <div className="w-8 h-8 rounded-full bg-[#F2F3F7] group-hover:bg-[#CDFF00] text-[#222222] flex items-center justify-center shrink-0 transition-all duration-300 border border-[#E5EAED]/80 group-hover:border-[#CDFF00] shadow-2xs group-hover:rotate-6">
+                  <Icon className="w-3.5 h-3.5 text-[#222222] transition-transform duration-300 group-hover:scale-110" />
+                </div>
+
+                {/* Right: Compact Stat & Label */}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-1.5 leading-tight">
+                    <span className="text-sm sm:text-base font-black text-[#222222] font-display tracking-tight group-hover:text-black transition-colors">
+                      {proof.value}
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-bold text-[#222222] truncate">
+                      {proof.label}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[9.5px] font-medium text-[#6B7280] leading-none mt-0.5">
+                    {/* Live radar pulse beacon animation */}
+                    <span className="relative flex h-1.5 w-1.5 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CDFF00] opacity-75 group-hover:opacity-100 duration-1000" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#9ECC00] group-hover:bg-[#CDFF00] transition-colors" />
+                    </span>
+                    <span className="truncate">{proof.badge}</span>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Polished Join Community Action Bar */}
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFBFD] dark:bg-[#0A0D14] border border-[#E5EAED] dark:border-neutral-800 rounded-2xl p-4 sm:p-5 shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div className="space-y-1 text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
+              <h4 className="text-sm sm:text-base font-extrabold text-[#222222] dark:text-white font-['Space_Grotesk',sans-serif] tracking-[-0.015em]">
+                Be Part of the Connected Sports Movement
+              </h4>
             </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
-              Verified Sports Venues
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
-              48 hrs
-            </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
-              Avg. Tournament Roster Fill
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
-              99.2%
-            </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
-              Confirmed Booking Rate
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-            className="group relative bg-[#F2F3F7] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00] rounded-xl p-3.5 sm:p-4 text-center transition-all duration-300 overflow-hidden cursor-default"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            <div className="text-xl sm:text-2xl font-black text-[#222222] font-display">
-              Zero
-            </div>
-            <div className="text-xs text-[#6B7280] font-medium mt-0.5">
-              Manual Phone Tag &amp; Unlisted Pricing
-            </div>
-          </motion.div>
+            <p className="text-xs sm:text-[13px] text-[#6B7280] dark:text-neutral-400 max-w-xl font-['Space_Grotesk',sans-serif] tracking-[-0.005em]">
+              Connect with athletes, local clubs, certified academies, and venue directors shaping the next era of grassroots sports.
+            </p>
+          </div>
+
+          <div className="shrink-0 w-full sm:w-auto flex justify-center">
+            <JoinCommunityButton
+              onOpenGetInvolved={onOpenGetInvolved}
+              onNavigate={(page) => {
+                if (page === 'opportunities') {
+                  onNavigateToOpportunities();
+                }
+              }}
+              size="default"
+              label="Join Our Community"
+            />
+          </div>
         </div>
 
       </div>

@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { BackgroundPaths, BackgroundPathsLayer } from "@/components/ui/background-paths";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, CheckCircle2, ShieldAlert } from "lucide-react";
+import { JoinCommunityButton } from "@/components/ui/JoinCommunityButton";
+import { ArrowRight, Sparkles, CheckCircle2, ShieldAlert, Users } from "lucide-react";
 
 export function Demo() {
   const [clicked, setClicked] = useState(false);
+  const [communityStatus, setCommunityStatus] = useState<string | null>(null);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground flex flex-col items-center justify-between p-6 overflow-hidden">
@@ -88,6 +90,47 @@ export function Demo() {
             <div className="flex items-center gap-1.5">
               <ShieldAlert className="w-3.5 h-3.5 text-primary-dark" />
               <span>1px primary-dark borders guarantee edge definition on white surfaces.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Premium Animated "Join Our Community" Motion Showcase */}
+        <div className="mt-6 max-w-3xl w-full bg-card/90 border border-border rounded-2xl p-6 shadow-xs backdrop-blur-xs">
+          <div className="flex items-center justify-between border-b border-border pb-3 mb-5">
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-primary-dark" />
+              <h2 className="text-sm font-bold text-foreground">
+                Premium Motion Component: Join Our Community Button
+              </h2>
+            </div>
+            <span className="text-xs text-muted-foreground font-mono">
+              Framer Motion Verified
+            </span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-4 rounded-xl bg-background border border-border">
+            <div className="space-y-1 text-center sm:text-left">
+              <div className="text-sm font-extrabold text-foreground">
+                Interactive Live Preview
+              </div>
+              <p className="text-xs text-muted-foreground max-w-md">
+                Experience entrance fade-in, spring hover (1.025x, -2px), clipped gradient light sweep, tap scale-down (0.97x), and smooth arrow translation.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center sm:items-end gap-2 shrink-0">
+              <JoinCommunityButton
+                onClick={() => {
+                  setCommunityStatus("Action Verified: Connected to Sports Hub Community!");
+                  setTimeout(() => setCommunityStatus(null), 3000);
+                }}
+                size="default"
+              />
+              {communityStatus && (
+                <span className="text-[11px] font-bold text-primary-dark animate-pulse">
+                  {communityStatus}
+                </span>
+              )}
             </div>
           </div>
         </div>

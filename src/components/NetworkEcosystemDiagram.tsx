@@ -285,7 +285,10 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
                 onClick={() => setActiveNodeId(node.id)}
                 onMouseEnter={() => setActiveNodeId(node.id)}
                 whileHover={{ scale: 1.08, y: -3, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                whileTap={{ scale: 0.96 }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                }}
                 className={`group relative flex flex-col items-center justify-center rounded-2xl p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden ${
                   isActive
                     ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'

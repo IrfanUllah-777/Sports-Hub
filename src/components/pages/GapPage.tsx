@@ -23,39 +23,39 @@ interface GapPageProps {
 const JOURNEY_STEPS = [
   {
     step: '01',
-    title: 'Looking for a Sports Opportunity',
-    desc: 'An athlete, recreational group, or student wants to book a court, join a weekend football tournament, or find an accredited coach.',
-    friction: 'The intent is strong, but there is no singular directory to start.',
+    title: 'Seeking an Athletic Opportunity',
+    desc: 'An athlete, recreational squad, or parent seeks to reserve a quality pitch, enter a sanctioned tournament, or find certified coaching.',
+    friction: 'High motivation met with no unified, verified directory.',
   },
   {
     step: '02',
-    title: 'Scattered Information',
-    desc: 'Details are fragmented across multiple messaging threads, private social media groups, word-of-mouth recommendations, and outdated websites.',
-    friction: 'Uncertain schedules, unlisted phone numbers, and outdated fee sheets.',
+    title: 'Fragmented Information Channels',
+    desc: 'Critical schedules, pricing sheets, and rules are scattered across unstructured message threads, ephemeral social posts, and outdated blogs.',
+    friction: 'Inconsistent pricing, unverified venue details, and unlisted organizers.',
   },
   {
     step: '03',
-    title: 'Limited Visibility',
-    desc: 'High-quality community grounds, emerging coaches, and sanctioned competitions remain hidden unless you already know the right insider.',
-    friction: 'Underutilized facilities and players left on the sidelines.',
+    title: 'Restricted Facility & League Visibility',
+    desc: 'High-quality community venues, grassroots leagues, and certified academies remain concealed without direct insider relationships.',
+    friction: 'Underutilized grounds and eager participants sidelined.',
   },
   {
     step: '04',
-    title: 'Manual Communication',
-    desc: 'Booking a slot or confirming event entry requires back-and-forth phone calls, manual chat confirmations, and unstructured bank transfers.',
-    friction: 'High coordination friction, double-booking risks, and delayed answers.',
+    title: 'Manual Coordination Bottlenecks',
+    desc: 'Confirming a pitch slot or tournament berth requires back-and-forth phone calls, waiting on messaging replies, and manual banking receipts.',
+    friction: 'Administrative drag, double-booking disputes, and lost registrations.',
   },
   {
     step: '05',
-    title: 'Difficult Discovery',
-    desc: 'Comparing options by distance, surface type, pricing, or skill level requires exhaustive manual research across multiple disconnected sources.',
-    friction: 'Fatigue sets in before anyone touches a ball.',
+    title: 'Exhausting Comparison & Due Diligence',
+    desc: 'Comparing venues by turf quality, floodlighting, distance, and competitive tiers demands repetitive manual research across disparate sources.',
+    friction: 'Friction and fatigue mount before a single ball is struck.',
   },
   {
     step: '06',
-    title: 'Potentially Missed Opportunities',
-    desc: 'Players miss registration cutoffs, courts remain empty during off-peak slots, and academies struggle to reach the youth talent who need them most.',
-    friction: 'A fragmented ecosystem where demand and supply fail to synchronize.',
+    title: 'Lost Athletic Momentum & Vacant Slots',
+    desc: 'Squads miss registration cutoffs, courts sit unbooked in off-peak windows, and academies struggle to reach aspiring regional talent.',
+    friction: 'A fragmented ecosystem where demand and infrastructure fail to synchronize.',
   },
 ];
 
@@ -87,8 +87,9 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
           </h1>
 
           <p className="text-base sm:text-lg text-[#6B7280] max-w-3xl mx-auto leading-relaxed">
-            The challenge is not simply the absence of sports activities. The challenge is making
-            facilities, activities, events, and opportunities easier to discover and access.
+            The systemic issue is rarely a shortage of sporting desire. The core challenge is the
+            structural friction preventing grounds, tournament leagues, and coaching academies from
+            being easily discovered, verified, and booked.
           </p>
         </FadeIn>
       </motion.section>
@@ -104,14 +105,13 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
-              The Friction Funnel
+              Friction Funnel Analysis
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display mt-2">
-              The Current Frustrated Journey
+              The Current Fragmented Journey
             </h2>
             <p className="text-sm sm:text-base text-[#6B7280] mt-3">
-              Trace what happens today when someone seeks a place to play or an event to compete in.
-              Notice how friction compounds at every step.
+              Follow the friction path athletes and organizers experience today when attempting to arrange a match or enter a competition. Notice how administrative drag compounds at every milestone.
             </p>
           </FadeIn>
 
@@ -138,7 +138,10 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                           scale: 1.015,
                           transition: { type: 'spring', stiffness: 350, damping: 20 },
                         }}
-                        whileTap={{ scale: 0.98 }}
+                        whileTap={{
+                          scale: 0.98,
+                          transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                        }}
                         className={`group relative z-10 flex items-start gap-4 p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                           isSelected
                             ? 'bg-[#F8FFD9] border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
@@ -258,7 +261,10 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 1.015,
                 transition: { type: 'spring', stiffness: 350, damping: 20 },
               }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{
+                scale: 0.98,
+                transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+              }}
               className="lg:col-span-4 bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
@@ -269,7 +275,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                   <Users className="w-4.5 h-4.5 text-[#222222] transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] group-hover:text-black font-display transition-colors">
-                  People Looking for Opportunities
+                  Athletes &amp; Active Communities
                 </h3>
               </div>
 
@@ -279,11 +285,11 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                   className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
                   <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
-                    <span>Athletes</span>
+                    <span>Competitive Athletes</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
                   <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
-                    Seeking open tryouts, tournaments, and competitive benchmarks.
+                    Seeking verified open tryouts, sanctioned tournaments, and skill benchmarks.
                   </div>
                 </motion.div>
 
@@ -292,11 +298,11 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                   className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
                   <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
-                    <span>Players &amp; Recreationalists</span>
+                    <span>Recreational Players</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
                   <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
-                    Searching for available courts, reliable surfaces, and match partners.
+                    Searching for available courts, premium floodlit turfs, and reliable match partners.
                   </div>
                 </motion.div>
 
@@ -305,11 +311,11 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                   className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
                   <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
-                    <span>Sports Enthusiasts</span>
+                    <span>Fitness Enthusiasts</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
                   <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
-                    Wanting to spectate or join community fun runs and local sporting events.
+                    Looking to participate in community 5Ks, cycling rides, and casual drop-in sessions.
                   </div>
                 </motion.div>
 
@@ -322,7 +328,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                     <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
                   <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
-                    Needing regular training grounds, friendly fixtures, and league entry.
+                    Requiring consistent training pitches, friendly sparring fixtures, and league entry.
                   </div>
                 </motion.div>
               </div>
@@ -361,7 +367,10 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 1.015,
                 transition: { type: 'spring', stiffness: 350, damping: 20 },
               }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{
+                scale: 0.98,
+                transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+              }}
               className="lg:col-span-4 bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
@@ -372,7 +381,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                   <Building2 className="w-4.5 h-4.5 text-[#222222] transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] group-hover:text-black font-display transition-colors">
-                  People Providing Opportunities
+                  Venues, Academies &amp; Organizers
                 </h3>
               </div>
 

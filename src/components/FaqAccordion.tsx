@@ -53,7 +53,10 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, onOpenGetInvo
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 whileHover={{ scale: 1.03, y: -1, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                }}
                 className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-xs'

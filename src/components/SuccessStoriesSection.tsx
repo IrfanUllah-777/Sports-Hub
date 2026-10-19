@@ -406,7 +406,10 @@ export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({
                 type="button"
                 onClick={() => setCurrentIndex(idx)}
                 whileHover={{ scale: 1.03, y: -1, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
                   idx === currentIndex
                     ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'

@@ -31,7 +31,7 @@ const ROLES: { id: StakeholderRole; label: string; description: string; detailLa
   },
   {
     id: 'organizer',
-    label: 'Tournament Organiser',
+    label: 'Tournament Organizer',
     description: 'Promote competitions, manage team registrations, and schedule events.',
     detailLabel: 'Tournament Name & Typical Squads Count',
   },

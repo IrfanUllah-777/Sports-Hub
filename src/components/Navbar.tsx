@@ -75,13 +75,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 3: Action & Theme Toggle in top right corner */}
         <div className="hidden md:flex items-center gap-3">
-          <button
+          <motion.button
+            type="button"
             onClick={() => onOpenGetInvolved('athlete')}
-            className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#222222] bg-[#CDFF00] hover:bg-[#9ECC00] rounded-lg transition-all border border-[#9ECC00] shadow-xs cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222]"
+            whileHover={{ scale: 1.025, y: -1, transition: { type: 'spring', stiffness: 400, damping: 22 } }}
+            whileTap={{
+              scale: 0.98,
+              transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+            }}
+            className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#222222] bg-[#CDFF00] hover:bg-[#9ECC00] rounded-lg transition-colors border border-[#9ECC00] shadow-xs cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222]"
           >
             Get Involved
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
+          </motion.button>
           <ThemeToggle />
         </div>
 
@@ -130,16 +136,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </div>
             <div className="pt-3 border-t border-[#E5EAED]">
-              <button
+              <motion.button
+                type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenGetInvolved('athlete');
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                 }}
                 className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-[#222222] bg-[#CDFF00] hover:bg-[#9ECC00] rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
               >
                 Get Involved with Sports Hub
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         )}

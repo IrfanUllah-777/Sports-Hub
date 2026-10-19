@@ -16,6 +16,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { MyPassesModal } from './components/booking/MyPassesModal';
 import { GroundOwnerDrawer } from './components/portals/GroundOwnerDrawer';
 import { ToastContainer } from './components/ToastContainer';
+import { BackToTop } from './components/BackToTop';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -155,6 +156,9 @@ export default function App() {
 
           {/* Global Toast Feedback Container */}
           <ToastContainer />
+
+          {/* Floating Action / Back-to-Top Button */}
+          <BackToTop />
         </div>
       </SportsStoreProvider>
     </ErrorBoundary>

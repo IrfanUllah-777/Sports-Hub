@@ -3,6 +3,7 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Semantic Theme Color Mappings to CSS variables */
   --color-background: hsl(var(--background));
@@ -93,30 +94,76 @@
    ========================================================================== */
 
 /* Universal baseline transition for complex UI elements (cards, buttons, inputs, interactive rows).
-   Guarantees smooth, continuous color interpolation during user interaction AND theme switching.
-   Uses :where() with zero specificity to preserve custom utility durations. */
-:where(
-  button,
-  a,
-  input,
-  select,
-  textarea,
-  summary,
-  [role="button"],
-  [role="tab"],
-  [role="link"],
-  [role="menuitem"],
-  [class*="card"],
-  [class*="Card"],
-  [class*="btn"],
-  [class*="badge"],
-  [class*="chip"],
-  [class*="tab"],
-  [class*="hover:"],
-  [class*="group-hover:"],
-  .group,
-  .group *
-):not([class*="transition-all"]):not([class*="transition-transform"]) {
+   Guarantees smooth, continuous color interpolation during user interaction AND theme switching. */
+button,
+a,
+input,
+select,
+textarea,
+summary,
+label,
+[role="button"],
+[role="tab"],
+[role="link"],
+[role="menuitem"],
+[tabindex],
+[class*="card"],
+[class*="Card"],
+[class*="btn"],
+[class*="badge"],
+[class*="chip"],
+[class*="tab"],
+[class*="hover:"],
+[class*="border"],
+[class*="bg-"],
+[class*="group"],
+[class*="group-hover:"],
+.group,
+.group *,
+.group::before,
+.group::after,
+svg,
+svg path,
+svg circle,
+svg rect,
+svg line,
+svg polyline {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Explicit interactive states transition rule:
+   Ensures resting, hover, focus, focus-visible, and active states continuously interpolate
+   background-color, border-color, and color together without flickering or snapping during theme transitions */
+button:is(:hover, :focus, :focus-visible, :active),
+a:is(:hover, :focus, :focus-visible, :active),
+input:is(:hover, :focus, :focus-visible, :active),
+select:is(:hover, :focus, :focus-visible, :active),
+textarea:is(:hover, :focus, :focus-visible, :active),
+summary:is(:hover, :focus, :focus-visible, :active),
+label:is(:hover, :focus, :focus-visible, :active),
+[role="button"]:is(:hover, :focus, :focus-visible, :active),
+[role="tab"]:is(:hover, :focus, :focus-visible, :active),
+[role="link"]:is(:hover, :focus, :focus-visible, :active),
+[role="menuitem"]:is(:hover, :focus, :focus-visible, :active),
+[tabindex]:is(:hover, :focus, :focus-visible, :active),
+[class*="card"]:is(:hover, :focus, :focus-visible, :active),
+[class*="Card"]:is(:hover, :focus, :focus-visible, :active),
+[class*="btn"]:is(:hover, :focus, :focus-visible, :active),
+[class*="badge"]:is(:hover, :focus, :focus-visible, :active),
+[class*="chip"]:is(:hover, :focus, :focus-visible, :active),
+[class*="tab"]:is(:hover, :focus, :focus-visible, :active),
+[class*="hover:"]:is(:hover, :focus, :focus-visible, :active),
+[class*="group-hover:"]:is(:hover, :focus, :focus-visible, :active),
+.group:is(:hover, :focus-within, :active),
+.group:is(:hover, :focus-within, :active) *,
+.group:is(:hover, :focus-within, :active)::before,
+.group:is(:hover, :focus-within, :active)::after,
+.group:is(:hover, :focus-within, :active) [class*="group-hover:"],
+[class*="group"]:is(:hover, :focus-within, :active),
+[class*="group"]:is(:hover, :focus-within, :active) *,
+[class*="group"]:is(:hover, :focus-within, :active) [class*="group-hover:"] {
   transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -163,9 +210,24 @@ html.theme-transitioning :is(
   *:focus-within,
   *:active,
   *:active *,
+  .group,
+  .group:hover,
+  .group:hover *,
+  .group:hover [class*="group-hover:"],
+  .group:active,
+  .group:active *,
+  .group:active [class*="group-hover:"],
   [class*="group"]:hover,
   [class*="group"]:hover *,
-  [class*="peer"]:hover ~ *
+  [class*="group"]:hover [class*="group-hover:"],
+  [class*="group"]:active,
+  [class*="group"]:active *,
+  [class*="group"]:active [class*="group-hover:"],
+  [class*="hover:"],
+  [class*="hover:"]:hover,
+  [class*="hover:"]:active,
+  [class*="peer"]:hover ~ *,
+  [class*="peer"]:active ~ *
 ) {
   transition-property: 
     background-color,
@@ -183,6 +245,99 @@ html.theme-transitioning :is(
   transition-duration: 220ms !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
   transition-delay: 0s !important;
+}
+
+/* ==========================================================================
+   Selective 'will-change' GPU Optimizations
+   Carefully scoped to avoid memory bloat and layout shifts:
+   1. Theme toggle button & icon components (transform, opacity)
+   2. Primary surfaces & controls strictly during active theme transitions (color/shadow only)
+   3. Micro-interaction scaling elements strictly when active/hovered
+   ========================================================================== */
+
+/* Theme Toggle Component GPU Acceleration */
+.theme-toggle-btn {
+  will-change: transform;
+}
+
+.theme-toggle-icon {
+  will-change: transform, opacity;
+}
+
+/* Scoped GPU hints active exclusively during the 220ms theme-transitioning window */
+html.theme-transitioning {
+  will-change: background-color, color;
+}
+
+html.theme-transitioning :is(
+  body,
+  header,
+  nav,
+  main,
+  footer,
+  .theme-toggle-btn,
+  button,
+  [role="button"],
+  [class*="card"],
+  [class*="Card"],
+  input,
+  select,
+  textarea
+) {
+  will-change: background-color, border-color, color;
+}
+
+/* Primary interactive elements: hint transform strictly when hovered or active to prevent layer thrashing */
+:where(
+  button,
+  a,
+  [role="button"],
+  [class*="card"],
+  [class*="Card"]
+):is(:hover, :active):is([class*="scale-"], [class*="hover:scale-"], [class*="active:scale-"]) {
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Floating Action Button (FAB) Micro-Interaction System
+   ========================================================================== */
+
+.floating-btn,
+.floating-button,
+.floating-action-button,
+.btn-floating,
+[data-floating-button],
+.fab {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 180ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.floating-btn:hover,
+.floating-button:hover,
+.floating-action-button:hover,
+.btn-floating:hover,
+[data-floating-button]:hover,
+.fab:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Specific :active state class scaling the floating button to 0.98
+   Maintains a smooth transition curve and consistent feel during rapid clicks */
+.floating-btn:active,
+.floating-button:active,
+.floating-action-button:active,
+.btn-floating:active,
+[data-floating-button]:active,
+.fab:active,
+button.floating-btn:active,
+button.floating-button:active {
+  transform: scale(0.98) !important;
+  transition: transform 100ms cubic-bezier(0.2, 0, 0, 1) !important;
 }
 
 /* Professional Architectural Sports Tech Backgrounds */
@@ -245,20 +400,20 @@ html.theme-transitioning :is(
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: var(--border-default);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: var(--border-strong);
 }
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb,
 .dark ::-webkit-scrollbar-thumb {
-  background: #2A313C;
+  background: var(--border-default);
 }
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #3E4756;
+  background: var(--border-strong);
 }
 
 /* ==========================================================================
@@ -268,10 +423,16 @@ html.theme-transitioning :is(
 
 [data-theme="dark"],
 .dark {
+  color: var(--text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   /* Surfaces & Cards */
   .bg-white,
   .bg-\[\#FFFFFF\],
-  .bg-\[\#FBFBFC\] {
+  .bg-\[\#FBFBFC\],
+  .bg-\[\#FAFBFD\] {
     background-color: var(--bg-surface) !important;
   }
 
@@ -286,9 +447,29 @@ html.theme-transitioning :is(
     background-color: var(--bg-primary) !important;
   }
 
-  /* Smooth Surface & Card Hover Background Overrides in Dark Mode */
-  .hover\:bg-white:hover {
+  .bg-\[\#1E2023\],
+  .bg-\[\#1E232B\],
+  .bg-\[\#0A0D14\],
+  .bg-\[\#11161B\] {
+    background-color: var(--bg-elevated) !important;
+  }
+
+  .bg-\[\#6B7280\],
+  .bg-\[\#CBD5E1\] {
+    background-color: var(--border-strong) !important;
+  }
+
+  .bg-\[\#DC2626\] {
+    background-color: var(--danger) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Smooth Surface & Card Hover, Focus & Active Background Overrides in Dark Mode */
+  .hover\:bg-white:is(:hover, :focus, :focus-visible, :active) {
     background-color: var(--bg-surface) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   :is(
@@ -300,57 +481,98 @@ html.theme-transitioning :is(
     .hover\:bg-\[\#E2E8F0\],
     .hover\:bg-\[\#E5EAED\],
     .hover\:bg-neutral-100,
-    .hover\:bg-neutral-200
-  ):hover {
+    .hover\:bg-neutral-200,
+    .hover\:bg-\[\#9CA3AF\],
+    .hover\:bg-\[\#27303E\]
+  ):is(:hover, :focus, :focus-visible, :active) {
     background-color: var(--bg-elevated) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .group:hover :is(
+  .group:is(:hover, :active) :is(
     .group-hover\:bg-\[\#F2F3F7\],
     .group-hover\:bg-\[\#F4F5F7\],
     .group-hover\:bg-\[\#E2E8F0\],
     .group-hover\:bg-\[\#E5EAED\]
   ) {
     background-color: var(--bg-elevated) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hover\:bg-white\/60:hover {
-    background-color: rgba(255, 255, 255, 0.08) !important;
+  .hover\:bg-white\/60:is(:hover, :focus, :focus-visible, :active) {
+    background-color: var(--accent-subtle) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   :is(
     .hover\:bg-\[\#F8FFD9\],
     .hover\:bg-\[\#F8FFD9\]\/40,
     .hover\:bg-\[\#F8FFD9\]\/60
-  ):hover,
-  .group:hover .group-hover\:bg-\[\#F8FFD9\] {
-    background-color: rgba(205, 255, 0, 0.14) !important;
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) .group-hover\:bg-\[\#F8FFD9\] {
+    background-color: var(--accent-subtle) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  :is(.hover\:bg-neutral-800, .hover\:bg-neutral-700):hover,
-  .hover\:bg-\[\#222222\]:hover,
-  .group:hover .group-hover\:bg-\[\#222222\] {
+  :is(.hover\:bg-neutral-800, .hover\:bg-neutral-700):is(:hover, :focus, :focus-visible, :active),
+  .hover\:bg-\[\#222222\]:is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) .group-hover\:bg-\[\#222222\] {
     background-color: var(--bg-elevated) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .group:hover .group-hover\:bg-\[\#CDFF00\] {
-    background-color: var(--accent-neon) !important;
+  :is(
+    .hover\:bg-\[\#b8e600\],
+    .hover\:bg-\[\#9ECC00\],
+    .hover\:bg-\[\#CDFF00\],
+    .hover\:bg-\[\#D6FF33\]
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) .group-hover\:bg-\[\#CDFF00\] {
+    background-color: var(--accent-neon-hover) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Interactive Hover & Group-Hover Text Overrides */
+  .active\:bg-\[\#B8E600\]:active {
+    background-color: var(--accent-dark) !important;
+  }
+
+  .hover\:bg-emerald-200:hover {
+    background-color: var(--success-subtle) !important;
+  }
+
+  .hover\:bg-amber-200:hover {
+    background-color: var(--warning-subtle) !important;
+  }
+
+  /* Interactive Hover, Focus & Active Text Overrides */
   :is(
     .hover\:text-\[\#222222\],
     .hover\:text-\[\#11161B\],
     .hover\:text-black,
     .hover\:text-\[\#0F172A\]
-  ):hover,
-  .group:hover :is(
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) :is(
     .group-hover\:text-\[\#222222\],
     .group-hover\:text-\[\#11161B\],
     .group-hover\:text-black,
     .group-hover\:text-\[\#0F172A\]
   ) {
     color: var(--text-primary) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   :is(
@@ -358,51 +580,79 @@ html.theme-transitioning :is(
     .hover\:text-\[\#4B5563\],
     .hover\:text-\[\#6B7280\],
     .hover\:text-\[\#64748B\],
-    .hover\:text-\[\#94A3B8\]
-  ):hover,
-  .group:hover :is(
+    .hover\:text-\[\#94A3B8\],
+    .hover\:text-neutral-300
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) :is(
     .group-hover\:text-\[\#374151\],
     .group-hover\:text-\[\#4B5563\],
-    .group-hover\:text-\[\#6B7280\]
+    .group-hover\:text-\[\#6B7280\],
+    .group-hover\:text-neutral-300
   ) {
     color: var(--text-secondary) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .group:hover .group-hover\:text-\[\#CDFF00\] {
+  :is(
+    .hover\:text-\[\#CDFF00\],
+    .hover\:text-\[\#7EA600\],
+    .hover\:text-\[\#9ECC00\]
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) :is(
+    .group-hover\:text-\[\#CDFF00\],
+    .group-hover\:text-\[\#7EA600\]
+  ) {
     color: var(--accent-neon) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Interactive Hover & Group-Hover Border Overrides */
+  /* Interactive Hover, Focus & Active Border Overrides */
   :is(
     .hover\:border-\[\#CDFF00\],
     .hover\:border-\[\#CDFF00\]\/50,
     .hover\:border-\[\#CDFF00\]\/60,
     .hover\:border-\[\#CDFF00\]\/80
-  ):hover,
-  .group:hover :is(
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) :is(
     .group-hover\:border-\[\#CDFF00\],
     .group-hover\:border-\[\#CDFF00\]\/60
   ) {
     border-color: var(--accent-neon) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hover\:border-\[\#222222\]:hover,
-  .group:hover .group-hover\:border-\[\#222222\] {
+  .hover\:border-\[\#222222\]:is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) .group-hover\:border-\[\#222222\] {
     border-color: var(--accent-neon) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   :is(
     .hover\:border-\[\#E5EAED\],
     .hover\:border-\[\#CBD5E1\]
-  ):hover,
-  .group:hover .group-hover\:border-\[\#E5EAED\] {
+  ):is(:hover, :focus, :focus-visible, :active),
+  .group:is(:hover, :active) .group-hover\:border-\[\#E5EAED\] {
     border-color: var(--border-strong) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Rich Card Hover Box-Shadows in Dark Mode */
-  [class*="hover:shadow-"][class*="#CDFF00"]:hover,
-  .group:hover [class*="group-hover:shadow-"][class*="#CDFF00"] {
-    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--accent-neon), 0 0 16px rgba(205, 255, 0, 0.14) !important;
+  /* Rich Card Hover & Active Box-Shadows in Dark Mode */
+  [class*="hover:shadow-"][class*="#CDFF00"]:is(:hover, :active),
+  .group:is(:hover, :active) [class*="group-hover:shadow-"][class*="#CDFF00"] {
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--accent-neon), 0 0 16px var(--accent-subtle) !important;
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Focus & Focus-Visible Interactive Overrides */
@@ -411,14 +661,23 @@ html.theme-transitioning :is(
     .focus-visible\:ring-\[\#222222\]:focus-visible
   ) {
     --tw-ring-color: var(--accent-neon) !important;
+    transition-property: background-color, border-color, --tw-ring-color, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .focus\:border-\[\#222222\]:focus {
     border-color: var(--accent-neon) !important;
+    transition-property: background-color, border-color, color, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .focus\:bg-white:focus {
     background-color: var(--bg-surface) !important;
+    transition-property: background-color, border-color, color, box-shadow, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .bg-\[\#E2E8F0\] {
@@ -444,36 +703,188 @@ html.theme-transitioning :is(
   .border-\[\#E5EAED\],
   .border-\[\#E2E8F0\],
   .border-\[\#E2E6EA\],
+  .border-\[\#CBD5E1\],
+  .border-\[\#D1D5DB\],
   .border-neutral-200,
   .border-gray-200 {
     border-color: var(--border-default) !important;
+  }
+
+  .border-\[\#F4F5F7\],
+  .border-\[\#F2F3F7\] {
+    border-color: var(--border-subtle) !important;
+  }
+
+  .border-\[\#FEE2E2\] {
+    border-color: var(--danger-subtle) !important;
+  }
+
+  .border-\[\#DCFCE7\] {
+    border-color: var(--success-subtle) !important;
+  }
+
+  .border-\[\#9ECC00\] {
+    border-color: var(--accent-dark) !important;
+  }
+
+  .border-\[\#0A0D14\],
+  .ring-\[\#0A0D14\] {
+    border-color: var(--border-strong) !important;
   }
 
   .divide-\[\#E5EAED\] > :not([hidden]) ~ :not([hidden]) {
     border-color: var(--border-default) !important;
   }
 
-  /* Secondary & Muted Typography */
+  /* ========================================================================
+     Professional Dark Mode Typographic Hierarchy (WCAG AAA & AA Certified)
+     ======================================================================== */
+
+  /* 1. Primary Headings, Titles & Strong Body Text (Strictly mapped to --text-primary)
+     Covers all gray-800, neutral-800, slate-800, zinc-800, and equivalent dark values */
+  .text-gray-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-neutral-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-slate-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-zinc-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-stone-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  [class*="text-gray-800"]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  [class*="text-neutral-800"]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-gray-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-neutral-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-slate-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-zinc-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-stone-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#1F2937\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#111827\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#0F172A\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#0A0D14\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#11161B\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-\[\#222222\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-black:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .dark-text-primary {
+    color: var(--text-primary) !important;
+  }
+
+  /* 2. Secondary Descriptive Body Text (Strictly mapped to --text-secondary)
+     Covers all gray-700, neutral-700, slate-700, zinc-700, and equivalent mid-dark values */
+  .text-gray-700,
+  .text-neutral-700,
+  .text-slate-700,
+  .text-zinc-700,
+  .text-stone-700,
+  [class*="text-gray-700"],
+  [class*="text-neutral-700"],
   .text-\[\#4B5563\],
   .text-\[\#374151\],
-  .text-neutral-700,
-  .text-gray-700 {
+  .text-\[\#334155\],
+  .text-\[\#475569\],
+  .dark-text-secondary {
     color: var(--text-secondary) !important;
   }
 
+  /* 3. Muted Labels, Meta Details, Captions & Subtitles (Slate-400 with 6.5:1+ contrast) */
   .text-\[\#6B7280\],
   .text-\[\#64748B\],
   .text-\[\#94A3B8\],
+  .text-\[\#9CA3AF\],
   .text-neutral-500,
-  .text-gray-500 {
+  .text-gray-500,
+  .text-slate-500,
+  .text-neutral-400,
+  .text-gray-400,
+  .text-slate-400 {
     color: var(--text-muted) !important;
   }
 
-  /* Primary Headings & Body text on light surfaces (excluding buttons with neon lime background) */
-  .text-\[\#222222\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#11161B\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-black:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]) {
+  /* 4. Brand Electric Lime Accent Typography */
+  /* Elevates murky olive (#9ECC00, #8DBF00, #7EA600) to vivid electric neon (#CDFF00) in dark mode */
+  .text-\[\#9ECC00\],
+  .text-\[\#8DBF00\],
+  .text-\[\#7EA600\],
+  .text-lime-600,
+  .text-lime-700,
+  .text-lime-800 {
+    color: var(--accent-neon) !important;
+  }
+
+  /* Active Navbar indicator line */
+  nav .bg-\[\#222222\] {
+    background-color: var(--accent-neon) !important;
+  }
+
+  /* 5. Strict Contrast Guard for Elements with Neon Lime Backgrounds */
+  /* Whenever a button/badge has a neon lime background, all internal text & icons MUST stay deep carbon */
+  :is(.bg-\[\#CDFF00\], [class*="bg-[#CDFF00]"], .bg-primary) {
+    color: var(--text-inverse, #0B0E14) !important;
+  }
+  :is(.bg-\[\#CDFF00\], [class*="bg-[#CDFF00]"], .bg-primary) :is(
+    span, p, h1, h2, h3, h4, h5, h6, div, svg,
+    .text-\[\#222222\],
+    .text-\[\#11161B\],
+    .text-\[\#0A0D14\],
+    .text-black
+  ) {
+    color: var(--text-inverse, #0B0E14) !important;
+  }
+
+  /* 6. Hover & Interactive Text States */
+  /* Prevent dark text on hover in dark mode; cleanly elevate to primary or vibrant neon */
+  .hover\:text-\[\#222222\]:hover,
+  .hover\:text-\[\#11161B\]:hover,
+  .hover\:text-\[\#0F172A\]:hover,
+  .hover\:text-black:hover,
+  .group:hover .group-hover\:text-\[\#222222\],
+  .group:hover .group-hover\:text-\[\#0F172A\] {
     color: var(--text-primary) !important;
+  }
+
+  .hover\:text-\[\#9ECC00\]:hover,
+  .hover\:text-\[\#7EA600\]:hover,
+  .group:hover .group-hover\:text-\[\#9ECC00\],
+  .group:hover .group-hover\:text-\[\#7EA600\] {
+    color: var(--accent-neon-hover, #D6FF33) !important;
+  }
+
+  /* 7. Semantic Status & Feedback Typography (High-contrast, vibrant tints) */
+  /* Success: Fresh mint/emerald (>= 12:1 contrast on dark surface) */
+  .text-emerald-600,
+  .text-emerald-700,
+  .text-emerald-800,
+  .text-emerald-950,
+  .text-\[\#16A34A\] {
+    color: var(--success-text, #86EFAC) !important;
+  }
+  .bg-emerald-50,
+  .bg-emerald-100 {
+    background-color: var(--success-subtle, rgba(34, 197, 94, 0.18)) !important;
+    border-color: rgba(34, 197, 94, 0.35) !important;
+  }
+
+  /* Warning / Alert: Warm radiant amber/yellow (>= 13:1 contrast on dark surface) */
+  .text-amber-600,
+  .text-amber-700,
+  .text-amber-800,
+  .text-amber-900 {
+    color: var(--warning-text, #FDE047) !important;
+  }
+  .bg-amber-50,
+  .bg-amber-100 {
+    background-color: var(--warning-subtle, rgba(245, 158, 11, 0.18)) !important;
+    border-color: rgba(245, 158, 11, 0.35) !important;
+  }
+
+  /* Danger / Error: Soft high-contrast coral/rose (>= 9:1 contrast on dark surface) */
+  .text-red-600,
+  .text-red-700,
+  .text-red-800,
+  .text-red-900,
+  .text-\[\#DC2626\] {
+    color: var(--danger-text, #FCA5A5) !important;
+  }
+  .bg-red-50,
+  .bg-red-100 {
+    background-color: var(--danger-subtle, rgba(239, 68, 68, 0.18)) !important;
+    border-color: rgba(239, 68, 68, 0.35) !important;
   }
 
   /* Neon Lime Tints & Badges */
@@ -491,9 +902,9 @@ html.theme-transitioning :is(
     border-color: var(--border-default) !important;
   }
 
-  input:not([type="checkbox"]):not([type="radio"]):focus,
-  textarea:focus,
-  select:focus {
+  input:not([type="checkbox"]):not([type="radio"]):is(:focus, :focus-visible, :active),
+  textarea:is(:focus, :focus-visible, :active),
+  select:is(:focus, :focus-visible, :active) {
     border-color: var(--accent-neon) !important;
     outline: none !important;
   }
@@ -524,5 +935,15 @@ html.theme-transitioning :is(
   .bg-black\/50,
   .bg-black\/40 {
     background-color: var(--bg-overlay) !important;
+  }
+
+  /* Accent Underline & Text Decorators */
+  .decoration-\[\#9ECC00\],
+  .decoration-\[\#CDFF00\] {
+    text-decoration-color: var(--accent-neon) !important;
+  }
+
+  .text-\[\#FFFFFF\] {
+    color: var(--text-inverse, #FFFFFF) !important;
   }
 }

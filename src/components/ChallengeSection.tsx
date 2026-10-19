@@ -38,10 +38,10 @@ const CHALLENGES: ChallengeCardData[] = [
     number: '01',
     problemLabel: 'Problem 01',
     category: 'Discovery & Search',
-    title: 'Scattered Across Apps',
+    title: 'Scattered Across Channels',
     description:
-      'Match schedules, venue rates, and team tryouts are scattered across private WhatsApp chats, Instagram stories, and outdated websites.',
-    impact: 'No single unified place to search or compare options',
+      'Match schedules, venue rates, and team tryouts remain fragmented across private messaging groups, ephemeral social stories, and unindexed websites.',
+    impact: 'No centralized directory to compare verified options',
     solutionLink: 'Unified Discovery & Search',
     icon: Search,
   },
@@ -50,10 +50,10 @@ const CHALLENGES: ChallengeCardData[] = [
     number: '02',
     problemLabel: 'Problem 02',
     category: 'Grounds & Access',
-    title: 'Hidden Grounds & Teams',
+    title: 'Hidden Grounds & Leagues',
     description:
-      'Great local grounds, weekend leagues, and coaching academies stay hidden unless you already know someone on the inside.',
-    impact: 'Courts sit empty while eager players miss out',
+      'High-grade local grounds, weekend tournaments, and certified coaching academies stay hidden without direct personal insider connections.',
+    impact: 'Facilities sit underutilized while eager athletes miss competition',
     solutionLink: 'Verified Venue Directory',
     icon: EyeOff,
   },
@@ -62,11 +62,11 @@ const CHALLENGES: ChallengeCardData[] = [
     number: '03',
     problemLabel: 'Problem 03',
     category: 'Booking & Operations',
-    title: 'Endless Phone Tag',
+    title: 'High-Friction Coordination',
     description:
-      'Reserving a pitch or entering a tournament requires calling venue managers, waiting on chat replies, and manual bank transfers.',
-    impact: 'Slow replies, missed slots & double-bookings',
-    solutionLink: 'Real-Time Direct Reservation',
+      'Reserving a pitch or entering a tournament requires unconfirmed phone calls, delayed chat responses, and unstructured manual wire transfers.',
+    impact: 'Delayed confirmations, lost slots & double-booking risks',
+    solutionLink: 'Real-Time Direct Reservations',
     icon: PhoneCall,
   },
   {
@@ -74,10 +74,10 @@ const CHALLENGES: ChallengeCardData[] = [
     number: '04',
     problemLabel: 'Problem 04',
     category: 'Ecosystem Architecture',
-    title: 'Everything Disconnected',
+    title: 'Isolated Sporting Silos',
     description:
-      'Turf bookings, leagues, youth academies, and local clubs all run in separate silos with zero connection between them.',
-    impact: 'No single connected home for local sports',
+      'Facility bookings, competitive leagues, coaching academies, and community clubs operate in disjointed silos with zero shared digital infrastructure.',
+    impact: 'Absence of an integrated foundation for local sports',
     solutionLink: 'Interlinked Digital Substrate',
     icon: Network,
   },
@@ -146,16 +146,17 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
             </FadeIn>
           </div>
 
-          {/* Quick link button to solution */}
-          <FadeIn delay={0.12} className="shrink-0">
+          {/* Quick link button to solution - Prominently visible and styled */}
+          <div className="shrink-0 flex items-center">
             <button
               onClick={onNavigateToSolution}
-              className="group inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold text-[#222222] bg-[#F4F5F7] hover:bg-[#CDFF00] border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl transition-all duration-200 cursor-pointer shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222]"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-extrabold uppercase tracking-wide text-[#11161B] bg-[#CDFF00] hover:bg-[#D6FF33] active:bg-[#B8E600] border-2 border-[#9ECC00] hover:border-[#CDFF00] rounded-xl shadow-[0_2px_12px_rgba(205,255,0,0.30)] hover:shadow-[0_4px_20px_rgba(205,255,0,0.45)] transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222] dark:focus-visible:ring-[#CDFF00] active:scale-[0.98] select-none z-10"
+              style={{ display: 'inline-flex', opacity: 1, visibility: 'visible' }}
             >
               <span>Explore Our Solution</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 shrink-0 text-[#11161B]" />
             </button>
-          </FadeIn>
+          </div>
         </div>
 
         {/* Enhanced Interactive Filter Menu / Segmented Pills Bar (Request 9) */}
@@ -241,7 +242,10 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
                     scale: 1.015,
                     transition: { type: 'spring', stiffness: 400, damping: 22 },
                   }}
-                  whileTap={{ scale: 0.985 }}
+                  whileTap={{
+                    scale: 0.98,
+                    transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                  }}
                   onMouseEnter={() => setHoveredCardId(item.id)}
                   onMouseLeave={() => setHoveredCardId(null)}
                   onClick={onNavigateToSolution}

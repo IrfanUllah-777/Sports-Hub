@@ -25,55 +25,55 @@ const PHASES = [
   {
     phase: 'PHASE 01',
     name: 'DISCOVER',
-    subtitle: 'Digital Sports Discovery',
-    description: 'Establish unified, verified directories of sports grounds, courts, academies, and open tournaments across initial pilot cities.',
+    subtitle: 'Unified Sports Directory',
+    description: 'Establish comprehensive, verified directories of sports grounds, floodlit courts, coaching academies, and sanctioned competitions across target pilot metro areas.',
     milestones: [
       'Comprehensive ground & facility indexing',
-      'Accurate geo-mapping & verified amenity lists',
+      'Accurate geo-mapping & verified amenity dossiers',
       'Centralized tournament calendar listings',
     ],
   },
   {
     phase: 'PHASE 02',
     name: 'CONNECT',
-    subtitle: 'Stakeholder Linkage',
-    description: 'Build direct, transparent communication channels linking athletes, facility managers, coaching academies, and community organizers.',
+    subtitle: 'Direct Stakeholder Linkage',
+    description: 'Deploy direct, authenticated communication channels linking athletes, facility managers, coaching academies, and community league directors.',
     milestones: [
-      'Direct inquiries and slot notifications',
-      'Team & pickup player recruitment tools',
-      'Coach credentials and parent consultations',
+      'Direct inquiries & live slot notifications',
+      'Team captain & pickup player recruitment tools',
+      'Verified coach credentials & parent consultations',
     ],
   },
   {
     phase: 'PHASE 03',
     name: 'PARTICIPATE',
-    subtitle: 'Operational Access',
-    description: 'Support real-time digital booking, streamlined team registration, secure payment handling, and attendance check-in.',
+    subtitle: 'Operational Booking & Entry',
+    description: 'Support real-time digital court reservations, automated squad roster submissions, upfront secure transactions, and attendance verification.',
     milestones: [
       'Live facility slot booking & availability syncing',
-      'Instant squad roster submissions for cups',
-      'Cancellation and automated reschedule flows',
+      'Instant squad roster submissions for championship cups',
+      'Automated cancellation & reschedule workflows',
     ],
   },
   {
     phase: 'PHASE 04',
     name: 'DEVELOP',
-    subtitle: 'Athletic Ecosystem Growth',
-    description: 'Support athlete development pathways, verified skills training, grassroots community cups, and performance benchmarks.',
+    subtitle: 'Athletic Ecosystem Progression',
+    description: 'Structure long-term athlete development pathways, verified skills benchmarking, grassroots cups, and regional talent progression.',
     milestones: [
-      'Structured clinic and camp listings',
-      'Team fixture tables and verified statistics',
-      'Community sports leagues and seasonal rankings',
+      'Structured clinic curricula & camp listings',
+      'Official team fixture tables & verified statistics',
+      'Community sports leagues & seasonal standings',
     ],
   },
   {
     phase: 'PHASE 05',
     name: 'SCALE',
     subtitle: 'Regional & Multi-City Expansion',
-    description: 'Expand the open digital sports ecosystem across additional metro hubs, regional areas, and diverse multi-sport disciplines.',
+    description: 'Expand the open digital sports infrastructure across multi-city metro hubs, inter-state tournaments, and diverse athletic codes.',
     milestones: [
       'Inter-city tournament brackets & showcases',
-      'Institutional & municipal facility integrations',
+      'Municipal & institutional sports facility integrations',
       'Standardized open sports data infrastructure',
     ],
   },
@@ -81,38 +81,38 @@ const PHASES = [
 
 const IMPACT_BLOCKS = [
   {
-    title: 'Greater Visibility',
-    description: 'Make sports facilities, emerging academies, and grassroots tournaments easier to discover for everyday players.',
+    title: 'Elevated Visibility',
+    description: 'Make independent sports grounds, emerging youth academies, and grassroots tournaments discoverable to all players.',
     icon: Eye,
-    metric: 'Zero Hidden Gems',
+    metric: 'Zero Hidden Venues',
   },
   {
-    title: 'Better Accessibility',
-    description: 'Reduce the excessive friction and time required to locate open courts, compatible match partners, or verified coaches.',
+    title: 'Streamlined Accessibility',
+    description: 'Eradicate phone tag and uncertainty when locating open courts, matching with sparring squads, or booking accredited coaches.',
     icon: Unlock,
-    metric: 'Instant Clear Data',
+    metric: 'Instant Verified Data',
   },
   {
-    title: 'Digital Organization',
-    description: 'Move fragmented information from forgotten chat groups and paper schedules toward a structured, modern digital environment.',
+    title: 'Structured Digital Governance',
+    description: 'Transition fragmented coordination from private chat groups and paper ledgers into a modern, centralized digital substrate.',
     icon: FolderGit2,
-    metric: 'Structured Records',
+    metric: 'Standardized Records',
   },
   {
-    title: 'Increased Participation',
-    description: 'Create easier, predictable pathways that turn sports interest into active, recurring physical participation.',
+    title: 'Sustained Athletic Participation',
+    description: 'Provide frictionless pathways that convert casual sports interest into active, recurring physical competition and practice.',
     icon: TrendingUp,
-    metric: 'Frictionless Play',
+    metric: 'Continuous Play',
   },
   {
-    title: 'Better Facility Utilization',
-    description: 'Help participating facilities improve visibility, fill idle daylight or late-evening slots, and manage reservations efficiently.',
+    title: 'Optimized Facility Utilization',
+    description: 'Enable venue operators to improve visibility, monetize off-peak daylight or late-evening hours, and eliminate double-bookings.',
     icon: Building,
-    metric: 'Optimized Slots',
+    metric: '+40% Off-Peak Slots',
   },
   {
-    title: 'Connected Communities',
-    description: 'Create stronger, enduring connections between players, local clubs, facilities, and regional sporting organizations.',
+    title: 'Connected Community Fabric',
+    description: 'Forge lasting bonds between athletes, grassroots clubs, training academies, and regional sporting associations.',
     icon: Users,
     metric: 'Unified Grassroots',
   },
@@ -308,7 +308,10 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                     scale: 1.02,
                     transition: { type: 'spring', stiffness: 350, damping: 20 },
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{
+                    scale: 0.98,
+                    transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                  }}
                   className={`group relative text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                     isSelected
                       ? 'bg-white border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
@@ -446,7 +449,10 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                       scale: 1.02,
                       transition: { type: 'spring', stiffness: 350, damping: 20 },
                     }}
-                    whileTap={{ scale: 0.98 }}
+                    whileTap={{
+                      scale: 0.98,
+                      transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                    }}
                     className="group relative bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                   >
                     {/* Animated top lime highlight bar */}

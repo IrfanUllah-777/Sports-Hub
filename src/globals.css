@@ -27,6 +27,9 @@
   --danger: #DC2626;
   --danger-subtle: #FEE2E2;
   --danger-text: #B91C1C;
+  --warning: #D97706;
+  --warning-subtle: #FEF3C7;
+  --warning-text: #B45309;
   --success: #16A34A;
   --success-subtle: #DCFCE7;
   --success-text: #136E34;
@@ -80,12 +83,19 @@
   --bg-input: #12161E;
   --bg-overlay: rgba(5, 7, 10, 0.85);
 
-  /* WCAG AA (>= 4.5:1) & AAA (>= 7.0:1) Contrast Verified Text Hierarchy */
-  --text-primary: #F3F4F6;    /* Contrast: 17.07:1 on --bg-primary, 15.72:1 on --bg-surface (Passes AAA) */
-  --text-secondary: #D1D5DB;  /* Contrast: 12.75:1 on --bg-primary, 11.74:1 on --bg-surface (Passes AAA) */
-  --text-muted: #9CA3AF;      /* Contrast: 7.40:1 on --bg-primary, 6.81:1 on --bg-surface (Passes AA & AAA on primary) */
-  --text-tertiary: #94A3B8;   /* Contrast: 7.33:1 on --bg-primary, 6.75:1 on --bg-surface (Passes AA) */
-  --text-inverse: #11161B;
+  /* WCAG AA (>= 4.5:1) & AAA (>= 7.0:1) Contrast Verified Text Hierarchy (Adjusted HSL Values)
+     Calculated against --bg-primary (#0E1217, L=0.0059) and --bg-surface (#161B22, L=0.0107) */
+  --text-primary: hsl(210 20% 96%);      /* #F3F4F6 - Contrast: 17.19:1 on --bg-primary, 15.83:1 on --bg-surface (Passes AAA) */
+  --text-secondary: hsl(218 11% 85%);    /* #D5D8DD - Contrast: 13.15:1 on --bg-primary, 12.11:1 on --bg-surface (Passes AAA >= 7.0:1 & AA >= 4.5:1) */
+  --text-muted: hsl(218 11% 68%);        /* #A4ABB6 - Contrast: 8.12:1 on --bg-primary, 7.48:1 on --bg-surface (Passes AAA >= 7.0:1 & AA >= 4.5:1) */
+  --text-tertiary: hsl(215 16% 65%);     /* #94A3B8 - Contrast: 7.33:1 on --bg-primary, 6.75:1 on --bg-surface (Passes AA >= 4.5:1) */
+  --text-inverse: hsl(213 24% 9%);       /* #11161B - Dark contrast for light badges & neon fills */
+
+  /* Raw HSL Channel Tokens for Alpha Transparency / Tailwind Utilities */
+  --text-primary-hsl: 210 20% 96%;
+  --text-secondary-hsl: 218 11% 85%;
+  --text-muted-hsl: 218 11% 68%;
+  --text-tertiary-hsl: 215 16% 65%;
 
   --border-default: #2A313C;
   --border-subtle: #1F252E;
@@ -100,6 +110,9 @@
   --danger: #EF4444;
   --danger-subtle: rgba(239, 68, 68, 0.18);
   --danger-text: #FCA5A5;
+  --warning: #F59E0B;
+  --warning-subtle: rgba(245, 158, 11, 0.18);
+  --warning-text: #FDE047;
   --success: #22C55E;
   --success-subtle: rgba(34, 197, 94, 0.18);
   --success-text: #86EFAC;
@@ -128,7 +141,7 @@
   --accent-foreground: 72 100% 70%;
 
   --muted: 215 20% 15%;
-  --muted-foreground: 218 11% 65%;
+  --muted-foreground: 218 11% 68%;
 
   --border: 215 14% 20%;
   --input: 215 14% 20%;

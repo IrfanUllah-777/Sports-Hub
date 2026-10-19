@@ -36,9 +36,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGetInvolved })
               Connecting People, Places &amp; Opportunities in Sports.
             </p>
             <p className="text-sm text-[#9CA3AF] max-w-md leading-relaxed">
-              Sports Hub is an emerging digital sports ecosystem concept designed to bring athletes,
-              facilities, academies, tournament organizers, and local sports communities into one
-              connected, accessible environment.
+              Sports Hub is a unified digital sports infrastructure engineered to connect athletes,
+              facilities, academies, tournament organizers, and active communities into one
+              accessible, high-performance ecosystem.
             </p>
             <div className="pt-2 flex items-center gap-6 text-xs text-[#9CA3AF]">
               <span className="flex items-center gap-1.5">

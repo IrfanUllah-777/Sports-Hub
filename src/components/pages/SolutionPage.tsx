@@ -29,36 +29,36 @@ const PROCESS_STEPS = [
     step: '01',
     title: 'DISCOVER',
     headline: 'Unified Directory & Search',
-    description: 'Find sports facilities, activities, events, competitions, academies, and opportunities in your area without jumping through disparate channels.',
-    bullets: ['Filter by sport, location & turf type', 'Real-time search across venues & events', 'Verified venue & organizer tags'],
+    description: 'Find verified sports facilities, competitive tournaments, training clinics, and active athletic clubs within your area without navigating disparate channels.',
+    bullets: ['Filter by sport, geo-radius & surface specification', 'Real-time search across venues & upcoming events', 'Verified venue ratings & organizer credentials'],
   },
   {
     step: '02',
     title: 'EXPLORE',
     headline: 'Transparent Information',
-    description: 'Review locations, verified photos, amenities, pricing, real-time availability slots, tournament rules, and coach credentials.',
-    bullets: ['High-res photography & lighting specs', 'Accurate slot timetables & pricing tiers', 'Tournament bracket & rulebook visibility'],
+    description: 'Inspect verified ground specifications, high-resolution photography, floodlighting standards, live slot timetables, and coach certifications.',
+    bullets: ['High-res photography & court lighting specs', 'Accurate slot timetables & upfront pricing tiers', 'Tournament bracket formats & rulebook visibility'],
   },
   {
     step: '03',
     title: 'CONNECT',
     headline: 'Direct Communication',
-    description: 'Connect users with facility owners, event organizers, accredited academies, coaches, and local grassroots sports communities directly.',
-    bullets: ['Direct stakeholder messaging', 'Team captain & squad recruitment', 'Academy consultations & trial requests'],
+    description: 'Communicate directly with venue managers, tournament directors, accredited coaches, and local grassroots clubs without intermediaries.',
+    bullets: ['Direct stakeholder inquiries & slot notifications', 'Team captain recruitment & squad roster formation', 'Academy consultations & trial assessment requests'],
   },
   {
     step: '04',
     title: 'PARTICIPATE',
     headline: 'Frictionless Action',
-    description: 'Make it easier to book slots, register tournament squads, attend training clinics, and participate in recreational or competitive fixtures.',
-    bullets: ['Digital booking & reservation management', 'One-click tournament squad registration', 'Attendance confirmation & reminders'],
+    description: 'Streamline pitch reservations, submit verified squad rosters for championship cups, and confirm clinic attendance without phone tag or manual bank transfers.',
+    bullets: ['Digital slot reservation & confirmation engine', 'One-click tournament roster submission', 'Automated reminders & calendar sync'],
   },
   {
     step: '05',
     title: 'GROW',
     headline: 'Ecosystem Continuity',
-    description: 'Create lasting pathways toward consistent participation, profile visibility, athletic development, and long-term community engagement.',
-    bullets: ['Track personal & team match history', 'Progress into advanced academy cohorts', 'Foster sustainable community leagues'],
+    description: 'Build enduring athletic momentum with verifiable match histories, skills development progression, and sustainable community sports leagues.',
+    bullets: ['Track individual & club competition history', 'Advance through accredited academy tiers', 'Foster thriving grassroots leagues & club fixtures'],
   },
 ];
 
@@ -66,58 +66,58 @@ const CAPABILITIES = [
   {
     id: 'facility-discovery',
     title: 'Sports Facility Discovery',
-    description: 'Find sports grounds, courts, complexes, and recreational facilities tailored to your sport, radius, and timing.',
+    description: 'Locate premier sports grounds, indoor courts, and floodlit complexes matched precisely to your sport, radius, and schedule.',
     icon: Compass,
-    details: 'Multi-criteria filtering including indoor/outdoor, natural grass, synthetic turf, lighting conditions, and locker availability.',
+    details: 'Multi-criteria filtering including indoor/outdoor, natural turf, FIFA-grade synthetic turf, lighting lux levels, and locker facilities.',
   },
   {
     id: 'facility-profiles',
-    title: 'Facility Profiles',
-    description: 'View locations, photos, facilities, amenities, policies, and slot availability with transparent information.',
+    title: 'Verified Venue Portfolios',
+    description: 'Explore comprehensive venue profiles with geo-coordinates, high-res photography, surface specifications, and booking policies.',
     icon: MapPin,
-    details: 'Comprehensive venue portfolios with geo-coordinates, parking guidance, surface specifications, and booking policies.',
+    details: 'Full facility dossiers including pitch dimensions, parking capacity, changeroom amenities, and transparent cancellation terms.',
   },
   {
     id: 'digital-booking',
-    title: 'Digital Booking',
-    description: 'Provide a structured, predictable way to access and reserve participating sports facilities without telephone tag.',
+    title: 'Digital Booking Engine',
+    description: 'Reserve participating sports facilities with live availability calendars, upfront rates, and instant digital confirmations.',
     icon: CalendarCheck,
-    details: 'Live slot calendar with instant slot confirmation, split payment coordination, and automated cancellation protocols.',
+    details: 'Dynamic slot scheduling that eliminates double-bookings, supports split fee coordination, and automates slot confirmations.',
   },
   {
     id: 'events-competitions',
-    title: 'Events & Competitions',
-    description: 'Discover tournaments, knockout cups, weekend leagues, and sporting events tailored to all skill brackets.',
+    title: 'Tournaments & Leagues',
+    description: 'Discover sanctioned cups, weekend knockout tournaments, and multi-week leagues tailored to your team’s competitive tier.',
     icon: Trophy,
-    details: 'Browse active brackets, entry fees, eligibility rules, fixture tables, and live standings in one centralized portal.',
+    details: 'Browse active brackets, entry fees, eligibility guidelines, fixture schedules, and verified standings in one central hub.',
   },
   {
     id: 'academies-training',
-    title: 'Academies & Training',
-    description: 'Discover certified sports academies, personal coaches, and structured training programs for all age cohorts.',
+    title: 'Academies & Coaching',
+    description: 'Access accredited sports academies, certified personal coaches, and developmental clinics across all age cohorts.',
     icon: GraduationCap,
-    details: 'Curriculum breakdowns, coach credentials, seasonal bootcamps, and open assessment trial days.',
+    details: 'Structured curriculum syllabi, coach credentials, seasonal bootcamps, and open talent assessment days.',
   },
   {
     id: 'sports-communities',
-    title: 'Sports Communities',
-    description: 'Connect players, teams, and local sports clubs seeking spare players, friendly fixtures, or regular training squads.',
+    title: 'Sports Communities & Clubs',
+    description: 'Connect with local clubs and squads seeking substitute players, friendly sparring matches, or regular weekly pickups.',
     icon: Users2,
-    details: 'Community squad boards, substitute player callouts, friendly fixture matchmaking, and local social sports leagues.',
+    details: 'Community squad boards, substitute callouts, friendly match matchmaking, and social sporting leagues.',
   },
   {
     id: 'facility-management',
-    title: 'Facility Management',
-    description: 'Give participating facility owners intuitive tools to manage bookings, track schedules, and maintain facility information.',
+    title: 'Facility Management Suite',
+    description: 'Empower venue owners with intuitive digital tooling to manage bookings, optimize off-peak occupancy, and track schedules.',
     icon: LayoutDashboard,
-    details: 'Central operator dashboard to eliminate double-bookings, adjust dynamic pricing, and publish maintenance blackouts.',
+    details: 'Central operator dashboard to eradicate double-bookings, publish maintenance closures, and analyze revenue trends.',
   },
   {
     id: 'sports-announcements',
-    title: 'Sports Announcements',
-    description: 'Create a centralized place for relevant sports updates, trial dates, seasonal registrations, and community notices.',
+    title: 'Sports Announcements Feed',
+    description: 'A verified broadcast channel for league updates, open trial schedules, registration deadlines, and weather delay notices.',
     icon: Megaphone,
-    details: 'Targeted broadcast feed for local league updates, venue weather delays, and championship announcements.',
+    details: 'Targeted broadcast feed delivering timely notifications for local tournament announcements and community fixtures.',
   },
 ];
 
@@ -193,7 +193,10 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
                     scale: 1.02,
                     transition: { type: 'spring', stiffness: 350, damping: 20 },
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{
+                    scale: 0.98,
+                    transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                  }}
                   className={`group relative text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                     isActive
                       ? 'bg-[#F8FFD9] border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
@@ -345,7 +348,10 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
                       scale: 1.02,
                       transition: { type: 'spring', stiffness: 350, damping: 20 },
                     }}
-                    whileTap={{ scale: 0.98 }}
+                    whileTap={{
+                      scale: 0.98,
+                      transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
+                    }}
                     className={`group relative bg-white border rounded-xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full overflow-hidden ${
                       isSelected
                         ? 'border-[#222222] ring-2 ring-[#CDFF00] shadow-md -translate-y-1'
