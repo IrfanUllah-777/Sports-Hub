@@ -50,11 +50,41 @@ export function applyTheme(theme: Theme, withTransition: boolean = false) {
   }
 
   if (withTransition) {
+    // Fast, crisp transition duration: 130ms
     transitionTimeoutId = setTimeout(() => {
       root.classList.remove('theme-transitioning');
       transitionTimeoutId = null;
-    }, 250);
+    }, 130);
   }
+}
+
+/**
+ * Executes a theme transition utilizing document.startViewTransition
+ * where supported by the browser, falling back smoothly to fast CSS transition.
+ */
+function executeThemeSwitch(nextTheme: Theme) {
+  if (typeof document === 'undefined') return;
+
+  const supportsViewTransition = 
+    'startViewTransition' in document &&
+    typeof (document as unknown as { startViewTransition: unknown }).startViewTransition === 'function';
+  
+  const prefersReducedMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (supportsViewTransition && !prefersReducedMotion) {
+    try {
+      (document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+        applyTheme(nextTheme, false);
+      });
+      return;
+    } catch {
+      // Fallback to fast CSS transition if startViewTransition fails
+    }
+  }
+
+  // Fast CSS transition path (130ms)
+  applyTheme(nextTheme, true);
 }
 
 export function useTheme() {
@@ -78,7 +108,7 @@ export function useTheme() {
       if (!saved) {
         const newTheme: Theme = e.matches ? 'dark' : 'light';
         setThemeState(newTheme);
-        applyTheme(newTheme, true);
+        executeThemeSwitch(newTheme);
       }
     };
 
@@ -88,13 +118,13 @@ export function useTheme() {
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
-    applyTheme(newTheme, true);
+    executeThemeSwitch(newTheme);
   }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeState((prev) => {
       const nextTheme = prev === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme, true);
+      executeThemeSwitch(nextTheme);
       return nextTheme;
     });
   }, []);

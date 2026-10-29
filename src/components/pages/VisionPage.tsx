@@ -15,6 +15,7 @@ import {
   Sparkles,
   Milestone
 } from 'lucide-react';
+import { MilestonesTimeline } from '../MilestonesTimeline';
 
 interface VisionPageProps {
   onNavigate: (page: PageId) => void;
@@ -209,24 +210,24 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] pt-14 pb-18 border-b border-[#E5EAED]"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-14 pb-18 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
             <span>Long-Term Horizon</span>
             <span className="text-[#9ECC00]">·</span>
             <span>Sports Hub Vision</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#222222] font-display text-balance leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#222222] dark:text-[#F3F4F6] font-display text-balance leading-tight">
             Building a More Connected{' '}
-            <span className="bg-[#CDFF00] px-2 py-0.5 rounded-md inline-block">
+            <span className="bg-[#CDFF00] text-[#11161B] px-2 py-0.5 rounded-md inline-block">
               Future for Sports
             </span>
             .
           </h1>
 
-          <p className="text-base sm:text-lg text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#D5D8DD] max-w-2xl mx-auto leading-relaxed">
             Where geographic boundaries and communication silos no longer prevent people from
             discovering sports opportunities, facilities, and communities.
           </p>
@@ -239,35 +240,35 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white py-12 sm:py-16 border-b border-[#E5EAED]"
+        className="bg-white dark:bg-[#0B0F14] py-12 sm:py-16 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="bg-[#F8FFD9] border-2 border-[#CDFF00] rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-xs">
+          <FadeIn className="bg-[#F8FFD9] dark:bg-[#161B22] border-2 border-[#CDFF00] dark:border-[#CDFF00]/60 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider bg-[#222222] text-[#CDFF00] px-2.5 py-1 rounded-md">
+              <span className="text-[11px] font-bold uppercase tracking-wider bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00] border border-transparent dark:border-[#CDFF00]/40 px-2.5 py-1 rounded-md shadow-2xs">
                 Official Vision Statement
               </span>
             </div>
 
-            <blockquote className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#222222] font-display leading-snug sm:leading-tight">
+            <blockquote className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display leading-snug sm:leading-tight">
               &ldquo;We envision a future where{' '}
-              <span className="bg-[#CDFF00] px-1.5 py-0.5 rounded">
+              <span className="bg-[#CDFF00] text-[#11161B] px-1.5 py-0.5 rounded font-bold">
                 every athlete, sports enthusiast, facility owner, academy, organizer, and sports community
               </span>{' '}
               can more easily{' '}
-              <span className="underline decoration-[#9ECC00] decoration-4 underline-offset-4">
+              <span className="underline decoration-[#9ECC00] dark:decoration-[#CDFF00] decoration-4 underline-offset-4">
                 discover, access, and participate
               </span>{' '}
               in sports opportunities through a{' '}
-              <span className="bg-[#222222] text-white px-2 py-0.5 rounded inline-block mt-1">
+              <span className="bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00] border border-transparent dark:border-[#CDFF00]/40 px-2 py-0.5 rounded inline-block mt-1 font-bold">
                 connected digital ecosystem
               </span>
               .&rdquo;
             </blockquote>
 
-            <div className="mt-6 pt-4 border-t border-[#CDFF00]/60 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#4B5563] gap-2">
+            <div className="mt-6 pt-4 border-t border-[#CDFF00]/60 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#4B5563] dark:text-[#D5D8DD] gap-2">
               <span>Grounding our product roadmap in accessibility and shared value.</span>
-              <span className="font-bold text-[#222222]">The Sports Hub Guiding Principle</span>
+              <span className="font-bold text-[#222222] dark:text-[#CDFF00]">The Sports Hub Guiding Principle</span>
             </div>
           </FadeIn>
         </div>
@@ -279,17 +280,17 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] py-20 border-b border-[#E5EAED]"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Strategic Roadmap
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               The Long-Term Journey
             </h2>
-            <p className="text-base text-[#6B7280]">
+            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
               How Sports Hub advances systematically from initial discovery to a regional,
               multi-sport digital network.
             </p>
@@ -314,56 +315,64 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                   }}
                   className={`group relative text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                     isSelected
-                      ? 'bg-white border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
-                      : 'bg-white/70 border-[#E5EAED] hover:border-[#CDFF00] hover:bg-white hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
+                      ? 'bg-white dark:bg-[#161B22] border-[#222222] dark:border-[#CDFF00] ring-2 ring-[#CDFF00] shadow-sm'
+                      : 'bg-white dark:bg-[#12171F] border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:bg-white dark:hover:bg-[#1A222D] hover:shadow-md'
                   }`}
                 >
                   {/* Animated top lime highlight bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-mono font-bold text-[#6B7280] group-hover:text-[#222222] transition-colors">
+                    <span className={`text-[11px] font-mono font-bold transition-colors ${
+                      isSelected ? 'text-[#222222] dark:text-[#CDFF00]' : 'text-[#6B7280] dark:text-[#A4ABB6] group-hover:text-[#222222] dark:group-hover:text-white'
+                    }`}>
                       {p.phase}
                     </span>
                     {isSelected && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
                     )}
                   </div>
-                  <div className="font-black text-sm text-[#222222] tracking-tight group-hover:text-black transition-colors">{p.name}</div>
-                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] truncate mt-0.5 transition-colors">{p.subtitle}</div>
+                  <div className={`font-black text-sm tracking-tight transition-colors ${
+                    isSelected ? 'text-[#222222] dark:text-[#CDFF00]' : 'text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white'
+                  }`}>
+                    {p.name}
+                  </div>
+                  <div className="text-xs text-[#6B7280] dark:text-[#A4ABB6] group-hover:text-[#4B5563] dark:group-hover:text-[#D5D8DD] truncate mt-0.5 transition-colors">
+                    {p.subtitle}
+                  </div>
                 </motion.button>
               );
             })}
           </FadeIn>
 
           {/* Detailed Phase Spotlight Card */}
-          <FadeIn delay={0.15} className="bg-white border border-[#E5EAED] rounded-2xl p-6 sm:p-10 shadow-xs">
+          <FadeIn delay={0.15} className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-10 shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono font-black px-2.5 py-1 rounded bg-[#222222] text-[#CDFF00]">
+                  <span className="text-xs font-mono font-black px-2.5 py-1 rounded bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00] border border-transparent dark:border-[#CDFF00]/40 shadow-2xs">
                     {PHASES[activePhaseIndex].phase}
                   </span>
-                  <span className="text-xs font-bold text-[#9ECC00] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#9ECC00] dark:text-[#CDFF00] uppercase tracking-wider">
                     {PHASES[activePhaseIndex].subtitle}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#222222] font-display">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#222222] dark:text-[#F3F4F6] font-display">
                   {PHASES[activePhaseIndex].name}: {PHASES[activePhaseIndex].subtitle}
                 </h3>
 
-                <p className="text-sm sm:text-base text-[#4B5563] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#4B5563] dark:text-[#D5D8DD] leading-relaxed">
                   {PHASES[activePhaseIndex].description}
                 </p>
 
                 <div className="pt-2 space-y-2">
-                  <div className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-2">
+                  <div className="text-xs font-bold text-[#222222] dark:text-[#F3F4F6] uppercase tracking-wider mb-2">
                     Key Execution Targets:
                   </div>
                   {PHASES[activePhaseIndex].milestones.map((milestone, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#222222]">
-                      <div className="w-4 h-4 rounded-full bg-[#CDFF00] flex items-center justify-center text-[#222222] shrink-0 font-bold text-[10px]">
+                    <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#222222] dark:text-[#E2E8F0]">
+                      <div className="w-4 h-4 rounded-full bg-[#CDFF00] flex items-center justify-center text-[#11161B] shrink-0 font-bold text-[10px]">
                         ✓
                       </div>
                       <span>{milestone}</span>
@@ -373,8 +382,8 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
               </div>
 
               {/* Progress timeline indicator graphic */}
-              <div className="lg:col-span-5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl p-6 space-y-4">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#222222] flex items-center justify-between">
+              <div className="lg:col-span-5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl p-6 space-y-4">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] flex items-center justify-between">
                   <span>Implementation Stage</span>
                   <span className="font-mono text-[#9ECC00]">
                     0{activePhaseIndex + 1} / 05
@@ -382,30 +391,30 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                 </div>
 
                 {/* Progress bar */}
-                <div className="w-full bg-[#E5EAED] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#E5EAED] dark:bg-[#2A313C] h-2 rounded-full overflow-hidden">
                   <div
                     className="bg-[#CDFF00] h-full transition-all duration-300"
                     style={{ width: `${((activePhaseIndex + 1) / 5) * 100}%` }}
                   />
                 </div>
 
-                <p className="text-xs text-[#6B7280] leading-relaxed">
+                <p className="text-xs text-[#6B7280] dark:text-[#A4ABB6] leading-relaxed">
                   Each phase builds directly upon the verified data and trusted user base of the
                   preceding milestone, maintaining reliability at every step.
                 </p>
 
-                <div className="pt-2 border-t border-[#E5EAED] flex items-center justify-between">
+                <div className="pt-2 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between">
                   <button
                     disabled={activePhaseIndex === 0}
                     onClick={() => setActivePhaseIndex((prev) => Math.max(0, prev - 1))}
-                    className="text-xs font-semibold text-[#6B7280] hover:text-[#222222] disabled:opacity-30 cursor-pointer"
+                    className="text-xs font-semibold text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white disabled:opacity-30 cursor-pointer"
                   >
                     ← Previous Phase
                   </button>
                   <button
                     disabled={activePhaseIndex === PHASES.length - 1}
                     onClick={() => setActivePhaseIndex((prev) => Math.min(PHASES.length - 1, prev + 1))}
-                    className="text-xs font-bold text-[#222222] hover:text-[#9ECC00] disabled:opacity-30 cursor-pointer"
+                    className="text-xs font-bold text-[#222222] dark:text-[#F3F4F6] hover:text-[#9ECC00] dark:hover:text-[#CDFF00] disabled:opacity-30 cursor-pointer"
                   >
                     Next Phase →
                   </button>
@@ -416,23 +425,36 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         </div>
       </motion.section>
 
+      {/* 3B. FUTURE DEVELOPMENT MILESTONES TIMELINE */}
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.06 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+        className="bg-white dark:bg-[#0B0F14] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MilestonesTimeline onOpenGetInvolved={() => onOpenGetInvolved()} />
+        </div>
+      </motion.section>
+
       {/* 4. DESIGNED FOR MEANINGFUL IMPACT (6 Impact Blocks) */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white py-20 border-b border-[#E5EAED]"
+        className="bg-white dark:bg-[#0B0F14] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Societal &amp; Sports Impact
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               Designed for Meaningful Impact
             </h2>
-            <p className="text-base text-[#6B7280]">
+            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
               Measuring success not merely by app activity, but by genuine improvements in athletic
               participation and facility vitality.
             </p>
@@ -453,28 +475,28 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                       scale: 0.98,
                       transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                     }}
-                    className="group relative bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-xl p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
+                    className="group relative bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-xl p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                   >
                     {/* Animated top lime highlight bar */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
                     <div className="space-y-4">
-                      <div className="w-11 h-11 rounded-lg bg-[#F8FFD9] group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 group-hover:border-[#CDFF00] flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 shadow-2xs">
-                        <Icon className="w-5 h-5 text-[#222222] transition-transform duration-300 group-hover:scale-110" />
+                      <div className="w-11 h-11 rounded-lg bg-[#F8FFD9] dark:bg-[#CDFF00]/15 group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 group-hover:border-[#CDFF00] flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 shadow-2xs">
+                        <Icon className="w-5 h-5 text-[#222222] dark:text-[#CDFF00] group-hover:text-[#11161B] transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-[#222222] group-hover:text-black font-display mb-1.5 transition-colors">
+                        <h3 className="text-lg font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white font-display mb-1.5 transition-colors">
                           {block.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#6B7280] group-hover:text-[#4B5563] leading-relaxed transition-colors">
+                        <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#A4ABB6] group-hover:text-[#4B5563] dark:group-hover:text-[#D5D8DD] leading-relaxed transition-colors">
                           {block.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-3 border-t border-[#E5EAED] group-hover:border-[#E5EAED] flex items-center justify-between text-xs transition-colors">
-                      <span className="text-[#6B7280] group-hover:text-[#222222] transition-colors">Focus Indicator</span>
-                      <span className="font-bold text-[#222222] bg-neutral-100 group-hover:bg-[#F8FFD9] px-2 py-0.5 rounded transition-colors">{block.metric}</span>
+                    <div className="mt-6 pt-3 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between text-xs transition-colors">
+                      <span className="text-[#6B7280] dark:text-[#A4ABB6] group-hover:text-[#222222] dark:group-hover:text-white transition-colors">Focus Indicator</span>
+                      <span className="font-bold text-[#222222] dark:text-[#CDFF00] bg-neutral-100 dark:bg-[#161B22] group-hover:bg-[#F8FFD9] dark:group-hover:bg-[#CDFF00]/20 px-2 py-0.5 rounded transition-colors">{block.metric}</span>
                     </div>
                   </motion.div>
                 </StaggerItem>
@@ -490,17 +512,17 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] py-20 border-b border-[#E5EAED]"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Community &amp; Ecosystem Dialogue
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               Frequently Asked Questions
             </h2>
-            <p className="text-base text-[#6B7280]">
+            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
               Clear answers to common questions about platform mechanisms, stakeholder integration,
               and community impact.
             </p>

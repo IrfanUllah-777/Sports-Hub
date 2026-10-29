@@ -70,23 +70,23 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] pt-14 pb-18 border-b border-[#E5EAED]"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-14 pb-18 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+          <div className="inline-flex items-center gap-2 text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
             <span>Systemic Analysis</span>
             <span className="text-[#9ECC00]">·</span>
             <span>The Sports Disconnect</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#222222] font-display text-balance leading-tight">
+          <h1 className="text-heading-1 font-display text-[#222222] dark:text-[#F3F4F6] text-balance leading-tight">
             Bridging the Gap in the{' '}
-            <span className="bg-[#CDFF00] px-2 py-0.5 rounded-md inline-block">
+            <span className="text-highlight-neon">
               Sports Ecosystem
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-[#6B7280] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#D5D8DD] font-body max-w-3xl mx-auto leading-relaxed">
             The systemic issue is rarely a shortage of sporting desire. The core challenge is the
             structural friction preventing grounds, tournament leagues, and coaching academies from
             being easily discovered, verified, and booked.
@@ -100,17 +100,17 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white py-20 border-b border-[#E5EAED]"
+        className="bg-white dark:bg-[#161B22] py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Friction Funnel Analysis
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display mt-2">
+            <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6] mt-2">
               The Current Fragmented Journey
             </h2>
-            <p className="text-sm sm:text-base text-[#6B7280] mt-3">
+            <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] font-body mt-3">
               Follow the friction path athletes and organizers experience today when attempting to arrange a match or enter a competition. Notice how administrative drag compounds at every milestone.
             </p>
           </FadeIn>
@@ -144,8 +144,8 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                         }}
                         className={`group relative z-10 flex items-start gap-4 p-4 rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden ${
                           isSelected
-                            ? 'bg-[#F8FFD9] border-[#222222] ring-2 ring-[#CDFF00] shadow-sm'
-                            : 'bg-white border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
+                            ? 'bg-[#F8FFD9] dark:bg-[#CDFF00]/15 border-[#222222] dark:border-[#CDFF00] ring-2 ring-[#CDFF00] shadow-sm'
+                            : 'bg-white dark:bg-[#1F2530] border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.06),0_0_0_1px_#CDFF00]'
                         }`}
                       >
                         {/* Animated top lime highlight bar */}
@@ -155,8 +155,8 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                         <div
                           className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-all duration-300 group-hover:scale-105 ${
                             isSelected
-                              ? 'bg-[#222222] text-[#CDFF00]'
-                              : 'bg-[#F2F3F7] text-[#222222] group-hover:bg-[#CDFF00] group-hover:text-[#222222]'
+                              ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B]'
+                              : 'bg-[#F2F3F7] dark:bg-[#161B22] text-[#222222] dark:text-[#F3F4F6] group-hover:bg-[#CDFF00] group-hover:text-[#11161B]'
                           }`}
                         >
                           {step.step}
@@ -164,16 +164,16 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
 
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <h3 className="text-sm sm:text-base font-bold text-[#222222] group-hover:text-black transition-colors">
+                            <h3 className="text-sm sm:text-base font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white transition-colors">
                               {step.title}
                             </h3>
                             {isSelected && (
-                              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#CDFF00] text-[#222222] px-2 py-0.5 rounded">
+                              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#CDFF00] text-[#11161B] px-2 py-0.5 rounded">
                                 Selected
                               </span>
                             )}
                           </div>
-                          <p className="text-xs sm:text-sm text-[#6B7280] group-hover:text-[#4B5563] leading-relaxed transition-colors">
+                          <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#4B5563] dark:group-hover:text-white leading-relaxed transition-colors">
                             {step.desc}
                           </p>
                         </div>
@@ -231,17 +231,17 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] py-20 border-b border-[#E5EAED]"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Market Topology
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6]">
               The Digital Divide
             </h2>
-            <p className="text-base text-[#6B7280]">
+            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD] font-body max-w-2xl mx-auto">
               High demand and quality supply exist in the same geography, yet remain walled off by
               the absence of a neutral digital fabric.
             </p>
@@ -265,16 +265,16 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="lg:col-span-4 bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
+              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-              <div className="flex items-center gap-2.5 border-b border-[#E5EAED] pb-3">
-                <div className="w-9 h-9 rounded-lg bg-[#F8FFD9] group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 flex items-center justify-center text-[#222222] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-2xs">
-                  <Users className="w-4.5 h-4.5 text-[#222222] transition-transform duration-300 group-hover:scale-105" />
+              <div className="flex items-center gap-2.5 border-b border-[#E5EAED] dark:border-[#2A313C] pb-3">
+                <div className="w-9 h-9 rounded-lg bg-[#F8FFD9] dark:bg-[#CDFF00]/15 group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 flex items-center justify-center text-[#222222] dark:text-[#CDFF00] group-hover:text-[#11161B] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-2xs">
+                  <Users className="w-4.5 h-4.5 transition-transform duration-300 group-hover:scale-105" />
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] group-hover:text-black font-display transition-colors">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white font-display transition-colors">
                   Athletes &amp; Active Communities
                 </h3>
               </div>
@@ -282,52 +282,52 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
               <div className="space-y-3">
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Competitive Athletes</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Seeking verified open tryouts, sanctioned tournaments, and skill benchmarks.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Recreational Players</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Searching for available courts, premium floodlit turfs, and reliable match partners.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Fitness Enthusiasts</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Looking to participate in community 5Ks, cycling rides, and casual drop-in sessions.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Teams &amp; Squads</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Requiring consistent training pitches, friendly sparring fixtures, and league entry.
                   </div>
                 </motion.div>
@@ -335,8 +335,8 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
             </motion.div>
 
             {/* Center: Strong Dark Block #222222 with Lime Accents #CDFF00 */}
-            <FadeIn direction="up" delay={0.05} className="lg:col-span-3 bg-[#222222] border-2 border-[#CDFF00] rounded-2xl p-6 text-center text-white space-y-4 shadow-xl flex flex-col items-center justify-center my-2 lg:my-0">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#CDFF00] text-[#222222] font-black text-sm">
+            <FadeIn direction="up" delay={0.05} className="lg:col-span-3 bg-[#222222] dark:bg-[#0E1217] border-2 border-[#CDFF00] rounded-2xl p-6 text-center text-white space-y-4 shadow-xl flex flex-col items-center justify-center my-2 lg:my-0">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#CDFF00] text-[#11161B] font-black text-sm">
                 SH
               </div>
               <div>
@@ -371,16 +371,16 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="lg:col-span-4 bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
+              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-              <div className="flex items-center gap-2.5 border-b border-[#E5EAED] pb-3">
-                <div className="w-9 h-9 rounded-lg bg-[#F8FFD9] group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 flex items-center justify-center text-[#222222] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-2xs">
-                  <Building2 className="w-4.5 h-4.5 text-[#222222] transition-transform duration-300 group-hover:scale-105" />
+              <div className="flex items-center gap-2.5 border-b border-[#E5EAED] dark:border-[#2A313C] pb-3">
+                <div className="w-9 h-9 rounded-lg bg-[#F8FFD9] dark:bg-[#CDFF00]/15 group-hover:bg-[#CDFF00] border border-[#CDFF00]/60 flex items-center justify-center text-[#222222] dark:text-[#CDFF00] group-hover:text-[#11161B] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-2xs">
+                  <Building2 className="w-4.5 h-4.5 transition-transform duration-300 group-hover:scale-105" />
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] group-hover:text-black font-display transition-colors">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white font-display transition-colors">
                   Venues, Academies &amp; Organizers
                 </h3>
               </div>
@@ -388,52 +388,52 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
               <div className="space-y-3">
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Sports Facilities &amp; Grounds</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Wanting higher slot occupancy, digital bookings, and predictable revenue.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Academies &amp; Certified Coaches</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Seeking to reach prospective students and publicize training modules.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Tournament Organizers</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Promoting leagues, filling brackets, and publishing match schedules.
                   </div>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ x: 4, scale: 1.015, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
-                  className="p-3 bg-[#F2F3F7] hover:bg-white border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
+                  className="p-3 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] border border-transparent hover:border-[#CDFF00] rounded-lg transition-all duration-200 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.05),0_0_0_1px_#CDFF00] group/item cursor-default"
                 >
-                  <div className="font-bold text-xs text-[#222222] group-hover/item:text-black transition-colors flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#222222] dark:text-[#F3F4F6] group-hover/item:text-black dark:group-hover/item:text-white transition-colors flex items-center justify-between">
                     <span>Sports Organizations</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover/item:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover/item:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover/item:text-[#4B5563] dark:group-hover/item:text-white mt-0.5 transition-colors">
                     Fostering grassroots engagement, event participation, and sport growth.
                   </div>
                 </motion.div>
@@ -450,17 +450,17 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white py-20"
+        className="bg-white dark:bg-[#161B22] py-20 transition-colors duration-200"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+            <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Comparative Evaluation
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6]">
               A Clear Paradigm Shift
             </h2>
-            <p className="text-sm text-[#6B7280]">
+            <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] font-body">
               Evaluating how Sports Hub is designed to transform daily interaction models across the
               entire sporting landscape.
             </p>
@@ -468,51 +468,51 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Current Environment */}
-            <FadeIn direction="up" className="bg-[#F2F3F7] border border-[#E5EAED] rounded-2xl p-6 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between border-b border-[#E5EAED] pb-4">
-                <h3 className="text-lg font-bold text-[#222222]">Current Environment</h3>
-                <span className="text-xs font-semibold text-[#6B7280] bg-white px-2.5 py-1 rounded border border-[#E5EAED]">
+            <FadeIn direction="up" className="bg-[#F2F3F7] dark:bg-[#1F2530] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-8 space-y-6">
+              <div className="flex items-center justify-between border-b border-[#E5EAED] dark:border-[#2A313C] pb-4">
+                <h3 className="text-lg font-bold text-[#222222] dark:text-[#F3F4F6]">Current Environment</h3>
+                <span className="text-xs font-semibold text-[#6B7280] dark:text-[#D5D8DD] bg-white dark:bg-[#161B22] px-2.5 py-1 rounded border border-[#E5EAED] dark:border-[#2A313C]">
                   Fragmented
                 </span>
               </div>
 
-              <ul className="space-y-4 text-sm text-[#4B5563]">
+              <ul className="space-y-4 text-sm text-[#4B5563] dark:text-[#D5D8DD]">
                 <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] mt-2 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] dark:bg-[#A4ABB6] mt-2 shrink-0" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Information scattered</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Information scattered</strong>
                     Vital schedule, pricing, and location details sit isolated across disparate chats,
                     word-of-mouth networks, and social pages.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] mt-2 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] dark:bg-[#A4ABB6] mt-2 shrink-0" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Manual communication</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Manual communication</strong>
                     Every match slot or registration inquiry requires multiple calls, manual texts,
                     and waiting for replies.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] mt-2 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] dark:bg-[#A4ABB6] mt-2 shrink-0" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Difficult discovery</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Difficult discovery</strong>
                     Finding high-quality facilities or open tournaments outside personal connections
                     is tedious and hit-or-miss.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] mt-2 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] dark:bg-[#A4ABB6] mt-2 shrink-0" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Limited visibility</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Limited visibility</strong>
                     Venues and coaches outside prime commercial districts struggle to surface their
                     offerings to relevant players.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] mt-2 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] dark:bg-[#A4ABB6] mt-2 shrink-0" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Separate channels</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Separate channels</strong>
                     Ground bookings happen in one app, tournament brackets in another, and community
                     chats in yet another silo.
                   </div>
@@ -521,51 +521,51 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
             </FadeIn>
 
             {/* With Sports Hub */}
-            <FadeIn direction="up" delay={0.1} className="bg-white border-2 border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-6 shadow-md relative">
-              <div className="flex items-center justify-between border-b border-[#E5EAED] pb-4">
-                <h3 className="text-lg font-bold text-[#222222]">With Sports Hub</h3>
-                <span className="text-xs font-bold text-[#222222] bg-[#CDFF00] px-2.5 py-1 rounded">
+            <FadeIn direction="up" delay={0.1} className="bg-white dark:bg-[#1F2530] border-2 border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-6 shadow-md relative">
+              <div className="flex items-center justify-between border-b border-[#E5EAED] dark:border-[#2A313C] pb-4">
+                <h3 className="text-lg font-bold text-[#222222] dark:text-[#F3F4F6]">With Sports Hub</h3>
+                <span className="text-xs font-bold text-[#11161B] bg-[#CDFF00] px-2.5 py-1 rounded">
                   Connected
                 </span>
               </div>
 
-              <ul className="space-y-4 text-sm text-[#4B5563]">
+              <ul className="space-y-4 text-sm text-[#4B5563] dark:text-[#D5D8DD]">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] dark:text-[#CDFF00] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Centralized discovery</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Centralized discovery</strong>
                     Designed to enable rapid searching across sports, locations, turf types, pricing,
                     and participant skill levels.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] dark:text-[#CDFF00] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Digital access</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Digital access</strong>
                     Designed to improve access by structuring real-time availability and verified
                     booking workflows without phone tag.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] dark:text-[#CDFF00] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Better visibility</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Better visibility</strong>
                     Aims to make independent grounds, emerging academies, and grassroots tournaments
                     discoverable by the entire community.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] dark:text-[#CDFF00] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Connected stakeholders</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Connected stakeholders</strong>
                     Unites athletes, venues, organizers, and coaches under one transparent digital
                     interaction layer.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#9ECC00] dark:text-[#CDFF00] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-[#222222] block font-semibold">Organized information</strong>
+                    <strong className="text-[#222222] dark:text-[#F3F4F6] block font-semibold">Organized information</strong>
                     Structured profiles with clear photos, amenities, pricing, rules, and entry
                     deadlines all in one place.
                   </div>
@@ -576,21 +576,21 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
           </div>
 
           {/* Bottom Next Step Callout */}
-          <FadeIn className="mt-12 p-6 rounded-xl bg-[#F8FFD9] border border-[#CDFF00] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <FadeIn className="mt-12 p-6 rounded-xl bg-[#F8FFD9] dark:bg-[#CDFF00]/10 border border-[#CDFF00] dark:border-[#CDFF00]/40 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <div className="font-bold text-sm text-[#222222]">
+              <div className="font-bold text-sm text-[#222222] dark:text-[#F3F4F6]">
                 Ready to examine the architectural solution in detail?
               </div>
-              <div className="text-xs text-[#6B7280]">
+              <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD]">
                 Explore how Sports Hub&apos;s 5-step process and 8 core capabilities operationalize this vision.
               </div>
             </div>
             <button
               onClick={() => onNavigate('solution')}
-              className="px-5 py-2.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
+              className="px-5 py-2.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#b8e600] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
             >
               Explore the Solution
-              <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00]" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
             </button>
           </FadeIn>
         </div>

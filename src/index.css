@@ -1,9 +1,12 @@
 @import "tailwindcss";
 @import "./globals.css";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
+
 @theme {
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sports: 'Barlow Condensed', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Semantic Theme Color Mappings to CSS variables */
   --color-background: hsl(var(--background));
@@ -88,13 +91,19 @@
 }
 
 /* ==========================================================================
-   Smooth Color-Only Theme Transition System
-   Ensures seamless color interpolation across resting, hover, focus,
-   and active states without flickering or disrupting existing transforms.
+   High-Performance, Rapid Theme Transition System (130ms)
+   Provides instantaneous, silky-smooth color & border interpolation 
+   leveraging native View Transitions when supported, and crisp 130ms CSS fallback.
    ========================================================================== */
 
-/* Universal baseline transition for complex UI elements (cards, buttons, inputs, interactive rows).
-   Guarantees smooth, continuous color interpolation during user interaction AND theme switching. */
+/* Native View Transitions (Supported in modern Chrome, Edge, Safari 18+) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 130ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Universal interactive transitions (snappy 150ms micro-interactions) */
 button,
 a,
 input,
@@ -106,154 +115,51 @@ label,
 [role="tab"],
 [role="link"],
 [role="menuitem"],
-[tabindex],
-[class*="card"],
-[class*="Card"],
-[class*="btn"],
-[class*="badge"],
-[class*="chip"],
-[class*="tab"],
-[class*="hover:"],
-[class*="border"],
-[class*="bg-"],
-[class*="group"],
-[class*="group-hover:"],
-.group,
-.group *,
-.group::before,
-.group::after,
-svg,
-svg path,
-svg circle,
-svg rect,
-svg line,
-svg polyline {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Explicit interactive states transition rule:
-   Ensures resting, hover, focus, focus-visible, and active states continuously interpolate
-   background-color, border-color, and color together without flickering or snapping during theme transitions */
-button:is(:hover, :focus, :focus-visible, :active),
-a:is(:hover, :focus, :focus-visible, :active),
-input:is(:hover, :focus, :focus-visible, :active),
-select:is(:hover, :focus, :focus-visible, :active),
-textarea:is(:hover, :focus, :focus-visible, :active),
-summary:is(:hover, :focus, :focus-visible, :active),
-label:is(:hover, :focus, :focus-visible, :active),
-[role="button"]:is(:hover, :focus, :focus-visible, :active),
-[role="tab"]:is(:hover, :focus, :focus-visible, :active),
-[role="link"]:is(:hover, :focus, :focus-visible, :active),
-[role="menuitem"]:is(:hover, :focus, :focus-visible, :active),
-[tabindex]:is(:hover, :focus, :focus-visible, :active),
-[class*="card"]:is(:hover, :focus, :focus-visible, :active),
-[class*="Card"]:is(:hover, :focus, :focus-visible, :active),
-[class*="btn"]:is(:hover, :focus, :focus-visible, :active),
-[class*="badge"]:is(:hover, :focus, :focus-visible, :active),
-[class*="chip"]:is(:hover, :focus, :focus-visible, :active),
-[class*="tab"]:is(:hover, :focus, :focus-visible, :active),
-[class*="hover:"]:is(:hover, :focus, :focus-visible, :active),
-[class*="group-hover:"]:is(:hover, :focus, :focus-visible, :active),
-.group:is(:hover, :focus-within, :active),
-.group:is(:hover, :focus-within, :active) *,
-.group:is(:hover, :focus-within, :active)::before,
-.group:is(:hover, :focus-within, :active)::after,
-.group:is(:hover, :focus-within, :active) [class*="group-hover:"],
-[class*="group"]:is(:hover, :focus-within, :active),
-[class*="group"]:is(:hover, :focus-within, :active) *,
-[class*="group"]:is(:hover, :focus-within, :active) [class*="group-hover:"] {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+.theme-toggle-btn {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .transition-colors {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow, outline-color;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Global theme switching state: active for 220ms when toggling theme */
+/* Scoped, rapid theme transition: active for 130ms when toggling theme */
 html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-  transition-property: 
-    background-color,
-    border-color,
-    color,
-    fill,
-    stroke,
-    box-shadow,
-    outline-color,
-    text-decoration-color,
-    column-rule-color,
-    caret-color,
-    opacity,
-    backdrop-filter,
-    -webkit-backdrop-filter !important;
-  transition-duration: 220ms !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+html.theme-transitioning body,
+html.theme-transitioning header,
+html.theme-transitioning nav,
+html.theme-transitioning main,
+html.theme-transitioning section,
+html.theme-transitioning footer,
+html.theme-transitioning article,
+html.theme-transitioning aside,
+html.theme-transitioning [class*="bg-"],
+html.theme-transitioning [class*="card"],
+html.theme-transitioning [class*="Card"],
+html.theme-transitioning [class*="border"],
+html.theme-transitioning button,
+html.theme-transitioning a,
+html.theme-transitioning input,
+html.theme-transitioning textarea,
+html.theme-transitioning select,
+html.theme-transitioning .theme-toggle-btn {
+  transition-property: background-color, border-color, color, box-shadow !important;
+  transition-duration: 130ms !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   transition-delay: 0s !important;
 }
 
-/* Maintain smooth color interpolation on complex UI elements with active hover/focus/active states */
-html.theme-transitioning :is(
-  *:hover,
-  *:hover *,
-  *:hover::before,
-  *:hover::after,
-  *:focus,
-  *:focus-visible,
-  *:focus-within,
-  *:active,
-  *:active *,
-  .group,
-  .group:hover,
-  .group:hover *,
-  .group:hover [class*="group-hover:"],
-  .group:active,
-  .group:active *,
-  .group:active [class*="group-hover:"],
-  [class*="group"]:hover,
-  [class*="group"]:hover *,
-  [class*="group"]:hover [class*="group-hover:"],
-  [class*="group"]:active,
-  [class*="group"]:active *,
-  [class*="group"]:active [class*="group-hover:"],
-  [class*="hover:"],
-  [class*="hover:"]:hover,
-  [class*="hover:"]:active,
-  [class*="peer"]:hover ~ *,
-  [class*="peer"]:active ~ *
-) {
-  transition-property: 
-    background-color,
-    border-color,
-    color,
-    fill,
-    stroke,
-    box-shadow,
-    outline-color,
-    text-decoration-color,
-    caret-color,
-    opacity,
-    backdrop-filter,
-    -webkit-backdrop-filter !important;
-  transition-duration: 220ms !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-delay: 0s !important;
+/* Prevent image/video/canvas elements from layout/filter thrashing during theme transitions */
+html.theme-transitioning img,
+html.theme-transitioning video,
+html.theme-transitioning canvas,
+html.theme-transitioning iframe {
+  transition: none !important;
 }
-
-/* ==========================================================================
-   Selective 'will-change' GPU Optimizations
-   Carefully scoped to avoid memory bloat and layout shifts:
-   1. Theme toggle button & icon components (transform, opacity)
-   2. Primary surfaces & controls strictly during active theme transitions (color/shadow only)
-   3. Micro-interaction scaling elements strictly when active/hovered
-   ========================================================================== */
 
 /* Theme Toggle Component GPU Acceleration */
 .theme-toggle-btn {
@@ -264,28 +170,6 @@ html.theme-transitioning :is(
   will-change: transform, opacity;
 }
 
-/* Scoped GPU hints active exclusively during the 220ms theme-transitioning window */
-html.theme-transitioning {
-  will-change: background-color, color;
-}
-
-html.theme-transitioning :is(
-  body,
-  header,
-  nav,
-  main,
-  footer,
-  .theme-toggle-btn,
-  button,
-  [role="button"],
-  [class*="card"],
-  [class*="Card"],
-  input,
-  select,
-  textarea
-) {
-  will-change: background-color, border-color, color;
-}
 
 /* Primary interactive elements: hint transform strictly when hovered or active to prevent layer thrashing */
 :where(
@@ -432,7 +316,10 @@ button.floating-button:active {
   .bg-white,
   .bg-\[\#FFFFFF\],
   .bg-\[\#FBFBFC\],
-  .bg-\[\#FAFBFD\] {
+  .bg-\[\#FAFBFD\],
+  .bg-white\/70,
+  .bg-white\/80,
+  .bg-white\/90 {
     background-color: var(--bg-surface) !important;
   }
 
@@ -450,7 +337,7 @@ button.floating-button:active {
   .bg-\[\#1E2023\],
   .bg-\[\#1E232B\],
   .bg-\[\#0A0D14\],
-  .bg-\[\#11161B\] {
+  .bg-\[\#11161B\]:not([class*="dark:bg-"]) {
     background-color: var(--bg-elevated) !important;
   }
 
@@ -742,25 +629,25 @@ button.floating-button:active {
 
   /* 1. Primary Headings, Titles & Strong Body Text (Strictly mapped to --text-primary)
      Covers all gray-800, neutral-800, slate-800, zinc-800, and equivalent dark values */
-  .text-gray-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-neutral-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-slate-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-zinc-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-stone-800:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  [class*="text-gray-800"]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  [class*="text-neutral-800"]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-gray-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-neutral-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-slate-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-zinc-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-stone-900:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#1F2937\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#111827\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#0F172A\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#0A0D14\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#11161B\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-\[\#222222\]:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
-  .text-black:not(.bg-\[\#CDFF00\]):not([class*="bg-[#CDFF00]"]),
+  .text-gray-800:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-neutral-800:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-slate-800:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-zinc-800:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-stone-800:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  [class*="text-gray-800"]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  [class*="text-neutral-800"]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-gray-900:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-neutral-900:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-slate-900:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-zinc-900:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-stone-900:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#1F2937\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#111827\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#0F172A\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#0A0D14\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#11161B\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-\[\#222222\]:not(.bg-\[\#CDFF00\]):not(.bg-primary),
+  .text-black:not(.bg-\[\#CDFF00\]):not(.bg-primary),
   .dark-text-primary {
     color: var(--text-primary) !important;
   }
@@ -812,19 +699,41 @@ button.floating-button:active {
     background-color: var(--accent-neon) !important;
   }
 
-  /* 5. Strict Contrast Guard for Elements with Neon Lime Backgrounds */
-  /* Whenever a button/badge has a neon lime background, all internal text & icons MUST stay deep carbon */
-  :is(.bg-\[\#CDFF00\], [class*="bg-[#CDFF00]"], .bg-primary) {
-    color: var(--text-inverse, #0B0E14) !important;
+  /* 5. Strict Contrast Guard for Elements with Solid Neon Lime Backgrounds */
+  /* Resting solid neon-lime buttons & badges keep crisp dark charcoal typography */
+  :is(.bg-\[\#CDFF00\], .dark\:bg-\[\#CDFF00\], .bg-primary) {
+    color: #0B0E14 !important;
   }
-  :is(.bg-\[\#CDFF00\], [class*="bg-[#CDFF00]"], .bg-primary) :is(
-    span, p, h1, h2, h3, h4, h5, h6, div, svg,
-    .text-\[\#222222\],
-    .text-\[\#11161B\],
-    .text-\[\#0A0D14\],
-    .text-black
+  :is(.bg-\[\#CDFF00\], .dark\:bg-\[\#CDFF00\], .bg-primary) :is(
+    span, p, h1, h2, h3, h4, h5, h6, div, svg
   ) {
-    color: var(--text-inverse, #0B0E14) !important;
+    color: #0B0E14 !important;
+  }
+
+  /* Interactive hover states into neon lime */
+  :is(
+    .hover\:bg-\[\#CDFF00\]:hover,
+    .dark\:hover\:bg-\[\#CDFF00\]:hover,
+    .hover\:bg-\[\#9ECC00\]:hover,
+    .hover\:bg-\[\#B8E600\]:hover,
+    .hover\:bg-\[\#D6FF33\]:hover
+  ) {
+    color: #0B0E14 !important;
+  }
+  :is(
+    .hover\:bg-\[\#CDFF00\]:hover,
+    .dark\:hover\:bg-\[\#CDFF00\]:hover,
+    .hover\:bg-\[\#9ECC00\]:hover,
+    .hover\:bg-\[\#B8E600\]:hover,
+    .hover\:bg-\[\#D6FF33\]:hover
+  ) :is(span, p, div, svg) {
+    color: #0B0E14 !important;
+  }
+  .group:hover :is(.group-hover\:bg-\[\#CDFF00\], .group-hover\:bg-\[\#9ECC00\]) {
+    color: #0B0E14 !important;
+  }
+  .group:hover :is(.group-hover\:bg-\[\#CDFF00\], .group-hover\:bg-\[\#9ECC00\]) :is(span, p, div, svg) {
+    color: #0B0E14 !important;
   }
 
   /* 6. Hover & Interactive Text States */
@@ -888,7 +797,7 @@ button.floating-button:active {
   }
 
   /* Neon Lime Tints & Badges */
-  .bg-\[\#F8FFD9\] {
+  .bg-\[\#F8FFD9\]:not([class*="dark:bg-"]) {
     background-color: var(--accent-subtle) !important;
     color: var(--accent-text) !important;
   }
@@ -944,6 +853,6 @@ button.floating-button:active {
   }
 
   .text-\[\#FFFFFF\] {
-    color: var(--text-inverse, #FFFFFF) !important;
+    color: #FFFFFF !important;
   }
 }

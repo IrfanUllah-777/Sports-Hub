@@ -166,14 +166,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-black/70 border border-white/20 backdrop-blur-md shadow-xs select-none"
+                className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-black/75 border border-white/20 backdrop-blur-md shadow-xs select-none"
               >
                 <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_10px_#CDFF00]" />
-                <span className="text-[#CDFF00] font-bold text-[11px] sm:text-[12px] tracking-[0.05em] uppercase font-mono leading-none">
+                <span className="text-[#CDFF00] font-sports font-bold text-xs sm:text-sm tracking-wider uppercase leading-none">
                   PLAY. COMPETE. CONNECT.
                 </span>
                 <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
-                <span className="text-neutral-200 font-semibold text-[10.5px] sm:text-[11.5px] tracking-[0.04em] uppercase leading-none">
+                <span className="text-neutral-200 font-sports font-semibold text-xs sm:text-sm tracking-wider uppercase leading-none">
                   UNIFIED SPORTS INFRASTRUCTURE
                 </span>
               </motion.div>
@@ -183,12 +183,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.08, ease: 'easeOut' }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black tracking-[-0.03em] text-white font-display leading-[1.04] sm:leading-[1.06] lg:leading-[1.08] max-w-[720px] text-balance"
+                className="text-hero-headline font-display text-white max-w-[740px] text-balance"
               >
                 <span className="block">Connecting People, Places</span>
                 <span className="block mt-1 sm:mt-1.5 text-white">
                   &amp;{' '}
-                  <span className="inline-flex items-baseline px-2.5 sm:px-3 py-[0.04em] rounded-md bg-[#CDFF00] text-[#11161B] font-black tracking-[-0.02em] shadow-[0_2px_10px_rgba(205,255,0,0.3)] align-baseline">
+                  <span className="text-highlight-neon tracking-[-0.02em] align-baseline">
                     Opportunities
                   </span>{' '}
                   in Sports.
@@ -200,7 +200,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.16, ease: 'easeOut' }}
-                className="text-[15px] sm:text-[17px] text-neutral-300/95 leading-[1.62] max-w-[620px] font-normal antialiased"
+                className="text-[15px] sm:text-[17px] text-neutral-300/95 leading-[1.65] max-w-[620px] font-body font-normal antialiased"
               >
                 Sports Hub unites athletic venues, competitive leagues, coaching academies, and active communities into one seamless digital ecosystem. Discover verified grounds, enter tournaments, and connect with athletes across your city.
               </motion.p>
@@ -219,7 +219,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                     scale: 0.98,
                     transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                   }}
-                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-extrabold text-sm sm:text-[15px] rounded-xl transition-colors shadow-[0_4px_16px_rgba(205,255,0,0.22)] hover:shadow-[0_8px_24px_rgba(205,255,0,0.32)] flex items-center justify-center gap-2 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
+                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-[#CDFF00] hover:bg-[#b8e600] text-[#11161B] font-body font-extrabold text-sm sm:text-[15px] tracking-wide rounded-xl transition-colors shadow-[0_4px_16px_rgba(205,255,0,0.22)] hover:shadow-[0_8px_24px_rgba(205,255,0,0.32)] flex items-center justify-center gap-2 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00]"
                 >
                   Explore Our Solution
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -232,7 +232,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                     scale: 0.98,
                     transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                   }}
-                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-white/10 hover:bg-white/16 text-white border border-white/20 hover:border-white/35 font-bold text-sm sm:text-[15px] rounded-xl transition-colors backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="h-[48px] sm:h-[50px] px-6 sm:px-7 bg-white/10 hover:bg-white/16 text-white border border-white/20 hover:border-white/35 font-body font-bold text-sm sm:text-[15px] tracking-wide rounded-xl transition-colors backdrop-blur-md flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   Discover Opportunities
                 </motion.button>
@@ -250,24 +250,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                   whileTap={{ scale: 0.98 }}
                   className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">6 Core Pillars</div>
-                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Unified Network</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">6 Core Pillars</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Unified Network</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
                   className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">Direct Access</div>
-                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Real-Time Bookings</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">Direct Access</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Real-Time Bookings</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
                   className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-extrabold text-white group-hover:text-[#CDFF00] text-sm sm:text-base tracking-tight leading-tight transition-colors">Full Transparency</div>
-                  <div className="text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Facilities &amp; Squads</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">Full Transparency</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Facilities &amp; Squads</div>
                 </motion.div>
               </motion.div>
             </div>
@@ -287,18 +287,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         className="bg-[#222222] text-white py-20 relative overflow-hidden bg-dark-grid-pattern"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-800 border border-neutral-700 text-xs text-[#CDFF00] font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-700 text-sports-badge text-[#CDFF00]">
             <span className="w-2 h-2 rounded-full bg-[#CDFF00]" />
             Architectural Paradigm
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-balance leading-tight text-white">
+          <h2 className="text-heading-1 font-display tracking-tight text-balance text-white">
             A fragmented sporting landscape demands a{' '}
             <span className="text-[#CDFF00] underline decoration-[#CDFF00]/40 decoration-4 underline-offset-6">
               unified digital foundation
             </span>
             .
           </h2>
-          <p className="text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto leading-relaxed font-body font-normal">
             Rather than navigating isolated turf checkout portals, unindexed tournament flyers,
             and unorganized messaging channels, Sports Hub operates as an integrated operating substrate.
           </p>
@@ -320,14 +320,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] dark:bg-[#CDFF00]/10 border border-[#CDFF00]/40 text-xs font-bold text-[var(--text-primary)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--accent-subtle)] dark:bg-[#CDFF00]/10 border border-[#CDFF00]/40 text-sports-badge text-[var(--text-primary)]">
               <span className="w-2 h-2 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00]" />
               <span className="text-[var(--text-primary)]">Multi-Sided Architecture</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] font-display tracking-tight">
+            <h2 className="text-heading-2 font-display text-[var(--text-primary)]">
               Explore the Connected Sports Ecosystem
             </h2>
-            <p className="text-sm sm:text-base text-[var(--text-primary)] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-[var(--text-primary)] max-w-2xl mx-auto leading-relaxed font-body">
               Select or hover over any stakeholder node below to inspect how Sports Hub interlinks
               athletic facilities, competitive tournaments, coaching academies, and local clubs.
             </p>
@@ -354,24 +354,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] py-20"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span className="text-xs font-bold tracking-wider uppercase text-[#6B7280]">
+            <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Unified Operating Layer
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display">
+            <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6]">
               One connected platform for the sports ecosystem.
             </h2>
-            <p className="text-base text-[#6B7280]">
+            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD] font-body">
               Sports Hub bridges the divide between people seeking sports opportunities and the
               venues, academies, and organizations that provide them.
             </p>
           </FadeIn>
 
           {/* Interactive Visual Ecosystem flow */}
-          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white border border-[#E5EAED] rounded-2xl p-6 sm:p-10 shadow-xs relative overflow-hidden">
+          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-10 shadow-xs relative overflow-hidden transition-colors duration-200">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
               
               {/* Left participants */}
@@ -379,14 +379,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative p-4 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                  <div className="font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white text-sm transition-colors flex items-center justify-between">
                     <span>Athletes &amp; Players</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/40 group-hover:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#4B5563] dark:group-hover:text-white mt-0.5 transition-colors">
                     Discover grounds, tournaments, open trials &amp; teams
                   </div>
                 </motion.div>
@@ -394,14 +394,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative p-4 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                  <div className="font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white text-sm transition-colors flex items-center justify-between">
                     <span>Sports Communities</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/40 group-hover:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#4B5563] dark:group-hover:text-white mt-0.5 transition-colors">
                     Organize weekly pickups, recruit squadmates &amp; run leagues
                   </div>
                 </motion.div>
@@ -415,7 +415,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                     scale: 0.98,
                     transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                   }}
-                  className="group w-full py-6 px-3 bg-[#222222] text-white rounded-xl border-2 border-[#CDFF00] shadow-[0_4px_20px_rgba(205,255,0,0.20)] hover:shadow-[0_8px_28px_rgba(205,255,0,0.35)] text-center flex flex-col items-center cursor-pointer transition-all duration-300"
+                  className="group w-full py-6 px-3 bg-[#222222] dark:bg-[#0E1217] text-white rounded-xl border-2 border-[#CDFF00] shadow-[0_4px_20px_rgba(205,255,0,0.20)] hover:shadow-[0_8px_28px_rgba(205,255,0,0.35)] text-center flex flex-col items-center cursor-pointer transition-all duration-300"
                 >
                   <span className="text-[10px] font-bold text-[#CDFF00] tracking-wider uppercase group-hover:tracking-widest transition-all">
                     Platform
@@ -432,14 +432,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative p-4 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                  <div className="font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white text-sm transition-colors flex items-center justify-between">
                     <span>Facilities &amp; Grounds</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/40 group-hover:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#4B5563] dark:group-hover:text-white mt-0.5 transition-colors">
                     Live slot calendars, automated booking &amp; verified reach
                   </div>
                 </motion.div>
@@ -447,14 +447,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative p-4 bg-[#F2F3F7] hover:bg-white rounded-xl border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative p-4 bg-[#F2F3F7] dark:bg-[#1F2530] hover:bg-white dark:hover:bg-[#27303E] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="font-bold text-[#222222] group-hover:text-black text-sm transition-colors flex items-center justify-between">
+                  <div className="font-bold text-[#222222] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white text-sm transition-colors flex items-center justify-between">
                     <span>Academies &amp; Organizers</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:scale-125 transition-transform duration-200 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/40 group-hover:scale-125 transition-transform duration-200 shrink-0" />
                   </div>
-                  <div className="text-xs text-[#6B7280] group-hover:text-[#4B5563] mt-0.5 transition-colors">
+                  <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#4B5563] dark:group-hover:text-white mt-0.5 transition-colors">
                     Official brackets, coaching clinics &amp; talent development
                   </div>
                 </motion.div>
@@ -463,8 +463,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
             </div>
 
             {/* CTA bar */}
-            <div className="mt-8 pt-6 border-t border-[#E5EAED] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-[#6B7280] text-center sm:text-left font-medium">
+            <div className="mt-8 pt-6 border-t border-[#E5EAED] dark:border-[#2A313C] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-[#6B7280] dark:text-[#D5D8DD] text-center sm:text-left font-medium">
                 Every stakeholder gains a direct, verified digital touchpoint across the ecosystem.
               </div>
               <button

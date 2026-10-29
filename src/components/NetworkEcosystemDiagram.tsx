@@ -291,8 +291,8 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
                 }}
                 className={`group relative flex flex-col items-center justify-center rounded-2xl p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden ${
                   isActive
-                    ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'
-                    : 'w-22 sm:w-26 md:w-28 bg-[#F2F4F7] border border-[#E2E6EA] hover:bg-white hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
+                    ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] dark:bg-[#162014] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'
+                    : 'w-22 sm:w-26 md:w-28 bg-[#F2F4F7] dark:bg-[#161B22] border border-[#E2E6EA] dark:border-[#2A313C] hover:bg-white dark:hover:bg-[#1F2530] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
                 }`}
               >
                 {/* Animated top lime highlight bar */}
@@ -302,17 +302,17 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
                 <div
                   className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 ${
                     isActive
-                      ? 'bg-white text-[#222222] shadow-xs'
-                      : 'bg-white text-[#4B5563] group-hover:bg-[#CDFF00] group-hover:text-[#222222]'
+                      ? 'bg-white dark:bg-[#0E1217] text-[#222222] dark:text-[#CDFF00] shadow-xs'
+                      : 'bg-white dark:bg-[#1F2530] text-[#4B5563] dark:text-[#9CA3AF] group-hover:bg-[#CDFF00] group-hover:text-[#222222] dark:group-hover:text-[#11161B]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:scale-110 ${isActive ? 'text-[#222222]' : 'text-[#4B5563]'}`} />
+                  <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:scale-110 ${isActive ? 'text-[#222222] dark:text-[#CDFF00]' : 'text-[#4B5563] dark:text-[#9CA3AF]'}`} />
                 </div>
 
                 {/* Node Label */}
                 <span
                   className={`text-[11px] sm:text-xs font-bold mt-1.5 sm:mt-2 tracking-tight transition-colors ${
-                    isActive ? 'text-[#222222]' : 'text-[#4B5563] group-hover:text-[#222222]'
+                    isActive ? 'text-[#222222] dark:text-[#CDFF00]' : 'text-[#4B5563] dark:text-[#D5D8DD] group-hover:text-[#222222] dark:group-hover:text-white'
                   }`}
                 >
                   {node.name}
@@ -326,18 +326,18 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
       {/* Active Node Detail Callout */}
       <motion.div
         layout
-        className="w-full max-w-3xl mt-6 p-4 sm:p-5 rounded-2xl bg-[#F8FFD9] border-2 border-[#CDFF00] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
+        className="w-full max-w-3xl mt-6 p-4 sm:p-5 rounded-2xl bg-[#F8FFD9] dark:bg-[#121822] border-2 border-[#CDFF00] dark:border-[#CDFF00]/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
       >
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#222222]" />
-            <h4 className="text-sm font-extrabold text-[#222222] font-display uppercase tracking-wide">
+            <span className="w-2 h-2 rounded-full bg-[#222222] dark:bg-[#CDFF00]" />
+            <h4 className="text-sm font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display uppercase tracking-wide">
               {activeNode.name}
             </h4>
-            <span className="text-xs text-[#6B7280]">·</span>
-            <span className="text-xs font-bold text-[#8DBF00]">{activeNode.category}</span>
+            <span className="text-xs text-[#6B7280] dark:text-[#8B949E]">·</span>
+            <span className="text-xs font-bold text-[#8DBF00] dark:text-[#CDFF00]">{activeNode.category}</span>
           </div>
-          <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed max-w-xl">
+          <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D5D8DD] leading-relaxed max-w-xl">
             {activeNode.description}
           </p>
         </div>
@@ -346,10 +346,10 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
           {onNavigateToSolution && (
             <button
               onClick={onNavigateToSolution}
-              className="px-4 py-2 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-4 py-2 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               Explore Pillar
-              <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00]" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
             </button>
           )}
         </div>

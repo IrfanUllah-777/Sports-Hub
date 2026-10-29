@@ -109,7 +109,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            className="relative w-full max-w-3xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6]"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
@@ -148,14 +148,14 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex items-center border-b border-[#E5EAED] bg-[#F2F3F7] px-6">
+          <div className="flex items-center border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F2F3F7] dark:bg-[#161B22] px-6">
             <button
               type="button"
               onClick={() => setActiveTab('fixtures')}
               className={`py-3 px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
                 activeTab === 'fixtures'
-                  ? 'border-[#222222] text-[#222222] bg-white'
-                  : 'border-transparent text-[#6B7280] hover:text-[#222222]'
+                  ? 'border-[#222222] dark:border-[#CDFF00] text-[#222222] dark:text-[#CDFF00] bg-white dark:bg-[#12171F]'
+                  : 'border-transparent text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
               }`}
             >
               <Swords className="w-3.5 h-3.5" />
@@ -166,8 +166,8 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
               onClick={() => setActiveTab('register')}
               className={`py-3 px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
                 activeTab === 'register'
-                  ? 'border-[#222222] text-[#222222] bg-white'
-                  : 'border-transparent text-[#6B7280] hover:text-[#222222]'
+                  ? 'border-[#222222] dark:border-[#CDFF00] text-[#222222] dark:text-[#CDFF00] bg-white dark:bg-[#12171F]'
+                  : 'border-transparent text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -181,12 +181,12 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             {activeTab === 'fixtures' && (
               <div className="space-y-6">
                 {/* Status Bar */}
-                <div className="p-3.5 bg-[#F8FFD9] border border-[#CDFF00] rounded-xl flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 text-[#222222]">
-                    <Medal className="w-4 h-4 text-[#9ECC00]" />
+                <div className="p-3.5 bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] dark:border-[#CDFF00]/40 rounded-xl flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2 text-[#222222] dark:text-[#F3F4F6]">
+                    <Medal className="w-4 h-4 text-[#9ECC00] dark:text-[#CDFF00]" />
                     <span className="font-bold">Format: Single Elimination Knockout Bracket</span>
                   </div>
-                  <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded border border-[#CDFF00] font-bold">
+                  <span className="font-mono text-[11px] bg-white dark:bg-[#1E2530] px-2 py-0.5 rounded border border-[#CDFF00] dark:border-[#CDFF00]/40 text-[#222222] dark:text-[#CDFF00] font-bold">
                     Official Seedings
                   </span>
                 </div>
@@ -195,25 +195,25 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {tournament.brackets.map((round) => (
                     <div key={round.roundName} className="space-y-3">
-                      <div className="text-xs font-extrabold uppercase tracking-wider text-[#222222] pb-1 border-b border-[#E5EAED]">
+                      <div className="text-xs font-extrabold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] pb-1 border-b border-[#E5EAED] dark:border-[#2A313C]">
                         {round.roundName}
                       </div>
                       <div className="space-y-2.5">
                         {round.matches.map((m) => (
                           <div 
                             key={m.matchId} 
-                            className="p-3 bg-[#F2F3F7] rounded-xl border border-[#E5EAED] space-y-1.5 text-xs hover:border-[#222222] transition-colors"
+                            className="p-3 bg-[#F2F3F7] dark:bg-[#161B22] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] space-y-1.5 text-xs hover:border-[#222222] dark:hover:border-[#CDFF00] transition-colors"
                           >
-                            <div className="flex items-center justify-between text-[11px] text-[#6B7280]">
+                            <div className="flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
                               <span>{m.timeSlot || 'Scheduled'}</span>
                               <span className="font-mono text-[10px] font-bold">Match #{m.matchId.replace('m-', '')}</span>
                             </div>
                             <div className="space-y-1">
-                              <div className="flex items-center justify-between font-bold text-[#222222] bg-white p-1.5 rounded border border-[#E5EAED]">
+                              <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
                                 <span className="truncate">{m.teamA}</span>
                                 <span className="font-mono text-xs">{m.scoreA !== undefined ? m.scoreA : '-'}</span>
                               </div>
-                              <div className="flex items-center justify-between font-bold text-[#222222] bg-white p-1.5 rounded border border-[#E5EAED]">
+                              <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
                                 <span className="truncate">{m.teamB}</span>
                                 <span className="font-mono text-xs">{m.scoreB !== undefined ? m.scoreB : '-'}</span>
                               </div>
@@ -226,23 +226,23 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                 </div>
 
                 {/* Registered Squads List */}
-                <div className="pt-4 border-t border-[#E5EAED]">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2.5">
+                <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C]">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-2.5">
                     Confirmed Registered Squads ({tournament.registeredTeams.length})
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {tournament.registeredTeams.map((team, idx) => (
                       <div 
                         key={team.teamName}
-                        className="p-2.5 bg-white border border-[#E5EAED] rounded-lg text-xs flex items-center justify-between"
+                        className="p-2.5 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-lg text-xs flex items-center justify-between"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-[10px] bg-[#F2F3F7] w-5 h-5 rounded flex items-center justify-center">
+                          <span className="font-mono font-bold text-[10px] bg-[#F2F3F7] dark:bg-[#1E2530] text-[#222222] dark:text-[#F3F4F6] w-5 h-5 rounded flex items-center justify-center">
                             {idx + 1}
                           </span>
-                          <span className="font-bold text-[#222222]">{team.teamName}</span>
+                          <span className="font-bold text-[#222222] dark:text-[#F3F4F6]">{team.teamName}</span>
                         </div>
-                        <span className="text-[11px] text-[#6B7280]">Capt. {team.captain}</span>
+                        <span className="text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">Capt. {team.captain}</span>
                       </div>
                     ))}
                   </div>
@@ -254,22 +254,22 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             {activeTab === 'register' && (
               <div className="space-y-6">
                 {isFull ? (
-                  <div className="p-8 text-center bg-amber-50 border border-amber-200 rounded-xl space-y-2">
-                    <ShieldAlert className="w-8 h-8 text-amber-600 mx-auto" />
-                    <div className="text-sm font-bold text-amber-900">Tournament Capacity Full</div>
-                    <p className="text-xs text-amber-700 max-w-md mx-auto">
+                  <div className="p-8 text-center bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 rounded-xl space-y-2">
+                    <ShieldAlert className="w-8 h-8 text-amber-600 dark:text-amber-400 mx-auto" />
+                    <div className="text-sm font-bold text-amber-900 dark:text-amber-200">Tournament Capacity Full</div>
+                    <p className="text-xs text-amber-700 dark:text-amber-300 max-w-md mx-auto">
                       All {tournament.squadCapacity} squad spots have been claimed. You can join the reserve waitlist by contacting the tournament director.
                     </p>
                   </div>
                 ) : successMsg ? (
-                  <div className="p-8 text-center bg-emerald-50 border border-emerald-200 rounded-xl space-y-3">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                    <div className="text-base font-extrabold text-emerald-950">Registration Complete!</div>
-                    <p className="text-xs text-emerald-800">{successMsg}</p>
+                  <div className="p-8 text-center bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 rounded-xl space-y-3">
+                    <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                    <div className="text-base font-extrabold text-emerald-950 dark:text-emerald-200">Registration Complete!</div>
+                    <p className="text-xs text-emerald-800 dark:text-emerald-300">{successMsg}</p>
                     <button
                       type="button"
                       onClick={() => setActiveTab('fixtures')}
-                      className="px-5 py-2 bg-[#222222] text-[#CDFF00] text-xs font-bold rounded-lg cursor-pointer"
+                      className="px-5 py-2 bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#0A0D14] text-xs font-bold rounded-lg cursor-pointer transition-colors"
                     >
                       View in Tournament Fixtures
                     </button>
@@ -277,22 +277,22 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                 ) : (
                   <form onSubmit={handleRegister} className="space-y-4">
                     {/* Capacity Indicator */}
-                    <div className="p-3 bg-[#F2F3F7] rounded-xl flex items-center justify-between text-xs">
-                      <span className="font-semibold text-[#4B5563]">Registration Fee: PKR {tournament.entryFee.toLocaleString()} per squad</span>
-                      <span className="font-bold text-[#222222]">
+                    <div className="p-3 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl flex items-center justify-between text-xs">
+                      <span className="font-semibold text-[#4B5563] dark:text-[#D5D8DD]">Registration Fee: PKR {tournament.entryFee.toLocaleString()} per squad</span>
+                      <span className="font-bold text-[#222222] dark:text-[#CDFF00]">
                         {tournament.squadCapacity - tournament.registeredTeams.length} Spots Remaining
                       </span>
                     </div>
 
                     {formError && (
-                      <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-center gap-2">
+                      <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 rounded-xl text-xs text-red-700 dark:text-red-300 flex items-center gap-2">
                         <AlertCircle className="w-4 h-4 shrink-0" />
                         <span>{formError}</span>
                       </div>
                     )}
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                         Squad / Club Team Name *
                       </label>
                       <input
@@ -301,13 +301,13 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                         value={teamName}
                         onChange={(e) => setTeamName(e.target.value)}
                         placeholder="e.g. Northern Wolves FC"
-                        className="w-full px-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                        className="w-full px-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                           Team Captain Name *
                         </label>
                         <input
@@ -316,12 +316,12 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                           value={captainName}
                           onChange={(e) => setCaptainName(e.target.value)}
                           placeholder="e.g. Tariq Vance"
-                          className="w-full px-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                          className="w-full px-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                           Captain Phone Number *
                         </label>
                         <input
@@ -330,12 +330,12 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                           value={contact}
                           onChange={(e) => setContact(e.target.value)}
                           placeholder="+1 (555) 345-6789"
-                          className="w-full px-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                          className="w-full px-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                         />
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#E5EAED] flex items-center justify-end">
+                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-end">
                       <button
                         type="submit"
                         disabled={isSubmitting}

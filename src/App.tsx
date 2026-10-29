@@ -73,10 +73,10 @@ export default function App() {
   return (
     <ErrorBoundary>
       <SportsStoreProvider>
-        <div className="min-h-screen flex flex-col bg-[#F2F3F7] text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground relative overflow-x-hidden">
+        <div className="min-h-screen flex flex-col bg-[#F2F3F7] dark:bg-[#0E1217] text-[#222222] dark:text-[#F3F4F6] font-sans antialiased selection:bg-primary selection:text-primary-foreground relative overflow-x-hidden transition-colors duration-200">
           {/* Precision architectural sports tech background overlay */}
           <div 
-            className="fixed inset-0 pointer-events-none z-0 bg-grid-pattern opacity-80" 
+            className="fixed inset-0 pointer-events-none z-0 bg-grid-pattern dark:opacity-25 opacity-80" 
             aria-hidden="true" 
           />
           {/* Subtle top ambient stadium spotlight depth */}

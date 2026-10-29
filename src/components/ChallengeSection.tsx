@@ -101,7 +101,7 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
       viewport={{ once: true, amount: 0.06 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       id="challenge-section"
-      className="bg-white py-14 sm:py-20 border-b border-[#E5EAED] relative overflow-hidden"
+      className="bg-white dark:bg-[#161B22] py-14 sm:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] relative overflow-hidden transition-colors duration-200"
     >
       {/* Subtle background ambient lighting accent */}
       <div
@@ -115,11 +115,11 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
           <div className="max-w-3xl space-y-3">
             {/* Top eyebrow badge */}
             <FadeIn>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4F5F7] border border-[#E5EAED] text-xs font-bold text-[#222222] tracking-wider uppercase">
-                <span className="w-2 h-2 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F4F5F7] dark:bg-[#1F2530] border border-[#E5EAED] dark:border-[#2A313C] text-sports-badge text-[#222222] dark:text-[#F3F4F6]">
+                <span className="w-2 h-2 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30 dark:ring-white/30" />
                 <span>Current Landscape Analysis</span>
-                <span className="text-[#9CA3AF] font-normal">|</span>
-                <span className="text-[#6B7280] font-mono text-[11px] font-semibold lowercase">
+                <span className="text-[#9CA3AF] dark:text-[#A4ABB6] font-normal">|</span>
+                <span className="text-[#6B7280] dark:text-[#D5D8DD] font-sports text-xs font-bold uppercase tracking-wider">
                   4 friction points
                 </span>
               </div>
@@ -127,10 +127,10 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
 
             {/* Main Headline */}
             <FadeIn delay={0.04}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#222222] font-display tracking-tight text-balance leading-tight">
+              <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6] tracking-tight text-balance leading-tight">
                 Sports opportunities exist.{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-[#222222]">Finding them</span>
+                  <span className="relative z-10 text-[#222222] dark:text-[#F3F4F6]">Finding them</span>
                   <span className="absolute bottom-1 left-0 right-0 h-2 bg-[#CDFF00] -z-0 rounded-xs" />
                 </span>{' '}
                 shouldn&apos;t be the challenge.
@@ -139,7 +139,7 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
 
             {/* Description */}
             <FadeIn delay={0.08}>
-              <p className="text-sm sm:text-base text-[#6B7280] leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] font-body leading-relaxed max-w-2xl">
                 High coordination friction, unlisted schedules, and scattered channels prevent athletes,
                 facilities, and communities from finding each other effortlessly.
               </p>
@@ -161,9 +161,9 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
 
         {/* Enhanced Interactive Filter Menu / Segmented Pills Bar (Request 9) */}
         <FadeIn delay={0.14} className="mb-8">
-          <div className="p-1.5 bg-[#F4F5F7] rounded-2xl border border-[#E5EAED] flex items-center gap-1.5 overflow-x-auto scrollbar-none">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#6B7280] border-r border-[#E5EAED] shrink-0">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#222222]" />
+          <div className="p-1.5 bg-[#F4F5F7] dark:bg-[#1F2530] rounded-2xl border border-[#E5EAED] dark:border-[#2A313C] flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#6B7280] dark:text-[#D5D8DD] border-r border-[#E5EAED] dark:border-[#2A313C] shrink-0">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#222222] dark:text-[#F3F4F6]" />
               <span className="uppercase tracking-wider text-[11px]">Filter:</span>
             </div>
 
@@ -174,22 +174,22 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
                   <button
                     key={tab.id}
                     onClick={() => setSelectedFilter(tab.id)}
-                    className={`relative px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222] ${
+                    className={`relative px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#222222] dark:focus-visible:ring-[#CDFF00] ${
                       isActive
-                        ? 'text-[#222222] shadow-sm'
-                        : 'text-[#6B7280] hover:text-[#222222] hover:bg-white/60'
+                        ? 'text-[#222222] dark:text-[#F3F4F6] shadow-sm'
+                        : 'text-[#6B7280] dark:text-[#D5D8DD] hover:text-[#222222] dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeChallengeFilterPill"
                         transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-                        className="absolute inset-0 bg-white border border-[#E5EAED] rounded-xl -z-0"
+                        className="absolute inset-0 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl -z-0"
                       />
                     )}
                     <span className="relative z-10 flex items-center gap-1.5">
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-1 ring-[#222222]/20" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-1 ring-[#222222]/20 dark:ring-white/30" />
                       )}
                       <span>{tab.label}</span>
                     </span>
@@ -197,7 +197,7 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
                       className={`relative z-10 text-[10px] font-mono px-1.5 py-0.2 rounded-md font-semibold transition-colors ${
                         isActive
                           ? 'bg-[#CDFF00] text-[#11161B]'
-                          : 'bg-[#E5EAED]/80 text-[#6B7280]'
+                          : 'bg-[#E5EAED]/80 dark:bg-[#2A313C] text-[#6B7280] dark:text-[#D5D8DD]'
                       }`}
                     >
                       {tab.count}
@@ -249,7 +249,7 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
                   onMouseEnter={() => setHoveredCardId(item.id)}
                   onMouseLeave={() => setHoveredCardId(null)}
                   onClick={onNavigateToSolution}
-                  className="group relative bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-5 sm:p-6 hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
+                  className="group relative bg-white dark:bg-[#1F2530] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-5 sm:p-6 hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                 >
                   {/* Animated top lime highlight bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -265,56 +265,56 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
                     {/* Top Row: Icon Container & Problem Label */}
                     <div className="flex items-center justify-between mb-4">
                       {/* Polished layered icon container */}
-                      <div className="w-10 h-10 rounded-xl bg-[#F4F5F7] group-hover:bg-[#222222] border border-[#E5EAED] group-hover:border-[#222222] flex items-center justify-center text-[#222222] group-hover:text-[#CDFF00] group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 shadow-xs">
+                      <div className="w-10 h-10 rounded-xl bg-[#F4F5F7] dark:bg-[#161B22] group-hover:bg-[#222222] dark:group-hover:bg-[#CDFF00] border border-[#E5EAED] dark:border-[#2A313C] group-hover:border-[#222222] dark:group-hover:border-[#CDFF00] flex items-center justify-center text-[#222222] dark:text-[#F3F4F6] group-hover:text-[#CDFF00] dark:group-hover:text-[#11161B] group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 shadow-xs">
                         <Icon className="w-4.5 h-4.5 transition-transform duration-300 group-hover:scale-110" />
                       </div>
 
                       {/* Problem Number badge */}
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-[#6B7280] group-hover:text-[#11161B] bg-[#F4F5F7] group-hover:bg-[#CDFF00] px-2 py-0.5 rounded-md border border-[#E5EAED] group-hover:border-[#CDFF00] transition-all duration-200">
+                        <span className="text-[10px] font-sports font-bold tracking-wider uppercase text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#11161B] bg-[#F4F5F7] dark:bg-[#161B22] group-hover:bg-[#CDFF00] px-2 py-0.5 rounded-md border border-[#E5EAED] dark:border-[#2A313C] group-hover:border-[#CDFF00] transition-all duration-200">
                           {item.problemLabel}
                         </span>
                       </div>
                     </div>
 
                     {/* Category micro-tag */}
-                    <div className="text-[11px] font-semibold tracking-wide text-[#9CA3AF] group-hover:text-[#6B7280] uppercase mb-1.5 transition-colors">
+                    <div className="text-sports-tag text-[11px] text-[#9CA3AF] dark:text-[#A4ABB6] group-hover:text-[#6B7280] dark:group-hover:text-[#D5D8DD] mb-1.5 transition-colors">
                       {item.category}
                     </div>
 
                     {/* Headline */}
-                    <h3 className="text-base sm:text-[17px] font-bold text-[#11161B] group-hover:text-black font-display tracking-tight mb-2.5 leading-snug transition-colors">
+                    <h3 className="text-card-title font-display text-[#11161B] dark:text-[#F3F4F6] group-hover:text-black dark:group-hover:text-white tracking-tight mb-2 leading-snug transition-colors">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-[13px] text-[#6B7280] group-hover:text-[#374151] leading-relaxed transition-colors">
+                    <p className="font-body text-xs sm:text-[13px] text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#374151] dark:group-hover:text-white leading-relaxed transition-colors">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Card Bottom: Takeaway / Impact Capsule */}
-                  <div className="relative z-10 mt-6 pt-4 border-t border-[#F4F5F7] group-hover:border-[#E5EAED] transition-colors space-y-2.5">
+                  <div className="relative z-10 mt-6 pt-4 border-t border-[#F4F5F7] dark:border-[#2A313C] group-hover:border-[#E5EAED] dark:group-hover:border-white/20 transition-colors space-y-2.5">
                     {/* Impact capsule */}
-                    <div className="bg-[#F9FAFB] group-hover:bg-[#F4F5F7] rounded-xl p-2.5 border border-[#E5EAED]/80 group-hover:border-[#CDFF00]/60 transition-all flex items-start gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#CDFF00] border border-[#222222]/30 group-hover:border-[#222222] group-hover:scale-110 transition-all duration-200 mt-1 shrink-0" />
+                    <div className="bg-[#F9FAFB] dark:bg-[#161B22] group-hover:bg-[#F4F5F7] dark:group-hover:bg-[#1C222C] rounded-xl p-2.5 border border-[#E5EAED]/80 dark:border-[#2A313C] group-hover:border-[#CDFF00]/60 transition-all flex items-start gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#CDFF00] border border-[#222222]/30 dark:border-white/30 group-hover:border-[#222222] group-hover:scale-110 transition-all duration-200 mt-1 shrink-0" />
                       <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-[#9CA3AF] group-hover:text-[#6B7280]">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-[#9CA3AF] dark:text-[#A4ABB6] group-hover:text-[#6B7280] dark:group-hover:text-[#D5D8DD]">
                           Direct Impact
                         </div>
-                        <div className="text-[11.5px] font-semibold text-[#1F2937] leading-tight mt-0.5">
+                        <div className="text-[11.5px] font-semibold text-[#1F2937] dark:text-[#F3F4F6] leading-tight mt-0.5">
                           {item.impact}
                         </div>
                       </div>
                     </div>
 
                     {/* Interactive Solution Hint Link */}
-                    <div className="flex items-center justify-between text-[11px] font-bold text-[#6B7280] group-hover:text-[#11161B] pt-0.5 transition-colors">
-                      <span className="flex items-center gap-1 text-[#222222] font-semibold">
+                    <div className="flex items-center justify-between text-[11px] font-bold text-[#6B7280] dark:text-[#D5D8DD] group-hover:text-[#11161B] dark:group-hover:text-[#CDFF00] pt-0.5 transition-colors">
+                      <span className="flex items-center gap-1 text-[#222222] dark:text-[#F3F4F6] font-semibold">
                         <Sparkles className="w-3 h-3 text-[#9ECC00] group-hover:text-[#7EA600]" />
                         <span>{item.solutionLink}</span>
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1 text-[#222222]" />
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1 text-[#222222] dark:text-[#F3F4F6]" />
                     </div>
                   </div>
                 </motion.div>

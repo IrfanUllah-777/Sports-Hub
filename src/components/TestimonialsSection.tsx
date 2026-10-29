@@ -279,14 +279,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'organizer':
-        return <Trophy className="w-3.5 h-3.5 text-[#222222]" />;
+        return <Trophy className="w-3.5 h-3.5 text-[#222222] dark:text-[#CDFF00]" />;
       case 'facility':
-        return <Building2 className="w-3.5 h-3.5 text-[#222222]" />;
+        return <Building2 className="w-3.5 h-3.5 text-[#222222] dark:text-[#CDFF00]" />;
       case 'academy':
-        return <GraduationCap className="w-3.5 h-3.5 text-[#222222]" />;
+        return <GraduationCap className="w-3.5 h-3.5 text-[#222222] dark:text-[#CDFF00]" />;
       case 'athlete':
       default:
-        return <Users className="w-3.5 h-3.5 text-[#222222]" />;
+        return <Users className="w-3.5 h-3.5 text-[#222222] dark:text-[#CDFF00]" />;
     }
   };
 
@@ -311,104 +311,111 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
       viewport={{ once: true, amount: 0.06 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       id="testimonials-section"
-      className="bg-white py-16 sm:py-20 border-b border-[#E5EAED] relative overflow-hidden"
+      className="bg-white dark:bg-[#0B0F14] py-16 sm:py-20 border-b border-[#E5EAED] dark:border-[#202731] relative overflow-hidden transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
         {/* Header Section with Navigation Controls */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <FadeIn className="max-w-2xl space-y-2">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#F8FFD9] text-[11px] font-bold uppercase tracking-wider text-[#222222] border border-[#CDFF00]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30" />
-              <span>Real-World Social Proof</span>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#F8FFD9] dark:bg-[#CDFF00]/15 text-[11px] font-bold uppercase tracking-wider text-[#222222] dark:text-[#CDFF00] border border-[#CDFF00] dark:border-[#CDFF00]/40">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30 dark:ring-[#CDFF00]/30" />
+              <span>Athletic Community Perspectives</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] font-display tracking-tight">
-              Trusted by Athletes, Organizers &amp; Facilities
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight">
+              Proven Impact Across the Sports Ecosystem
             </h2>
-            <p className="text-sm sm:text-base text-[#6B7280] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] leading-relaxed">
               Read how grassroots competitors, league directors, academy coaches, and venue operators
-              overcome sports fragmentation with Sports Hub.
+              unify operations and unlock access through Sports Hub.
             </p>
           </FadeIn>
 
           {/* Controls: Category Filter Tabs & Play/Pause/Scroll buttons */}
           <FadeIn delay={0.06} className="flex flex-wrap items-center gap-3 shrink-0">
-            <div className="flex items-center gap-1.5 bg-[#F2F3F7] p-1 rounded-xl border border-[#E5EAED]">
-              <button
+            <div className="flex items-center gap-1.5 bg-[#F2F3F7] dark:bg-[#161B22] p-1 rounded-xl border border-[#E5EAED] dark:border-[#2A313C]">
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setActiveCategory('all')}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                   activeCategory === 'all'
-                    ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'
-                    : 'text-[#6B7280] hover:text-[#222222]'
+                    ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] font-bold shadow-2xs'
+                    : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white'
                 }`}
               >
                 All Voices ({TESTIMONIALS.length})
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setActiveCategory('athlete')}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                   activeCategory === 'athlete'
-                    ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'
-                    : 'text-[#6B7280] hover:text-[#222222]'
+                    ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] font-bold shadow-2xs'
+                    : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white'
                 }`}
               >
                 Athletes
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setActiveCategory('organizer')}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                   activeCategory === 'organizer'
-                    ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'
-                    : 'text-[#6B7280] hover:text-[#222222]'
+                    ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] font-bold shadow-2xs'
+                    : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white'
                 }`}
               >
                 Organizers
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setActiveCategory('facility')}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                   activeCategory === 'facility'
-                    ? 'bg-[#222222] text-[#CDFF00] font-bold shadow-2xs'
-                    : 'text-[#6B7280] hover:text-[#222222]'
+                    ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] font-bold shadow-2xs'
+                    : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white'
                 }`}
               >
                 Facilities
-              </button>
+              </motion.button>
             </div>
 
             {/* Manual controls */}
             <div className="flex items-center gap-1.5">
-              <button
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setIsPaused((prev) => !prev)}
                 title={isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
                 aria-label={isPaused ? 'Resume scrolling' : 'Pause scrolling'}
-                className="w-8 h-8 rounded-lg bg-white hover:bg-[#F2F3F7] border border-[#E5EAED] text-[#222222] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => handleManualScroll('left')}
                 title="Scroll previous"
                 aria-label="Scroll left"
-                className="w-8 h-8 rounded-lg bg-white hover:bg-[#F2F3F7] border border-[#E5EAED] text-[#222222] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
+                whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => handleManualScroll('right')}
                 title="Scroll next"
                 aria-label="Scroll right"
-                className="w-8 h-8 rounded-lg bg-white hover:bg-[#F2F3F7] border border-[#E5EAED] text-[#222222] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </motion.button>
             </div>
           </FadeIn>
         </div>
@@ -432,7 +439,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] hover:bg-white border border-[#E5EAED] hover:border-[#CDFF00] rounded-2xl p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
+              className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] dark:bg-[#12171F] hover:bg-white dark:hover:bg-[#18202A] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -441,14 +448,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 {/* Card Top: Persona info & Metric */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#222222] text-[#CDFF00] border border-[#CDFF00]/40 flex items-center justify-center font-bold text-xs shadow-2xs group-hover:scale-105 group-hover:border-[#CDFF00] transition-all duration-300">
+                    <div className="w-10 h-10 rounded-xl bg-[#222222] dark:bg-[#1F2530] text-[#CDFF00] border border-[#CDFF00]/40 flex items-center justify-center font-bold text-xs shadow-2xs group-hover:scale-105 group-hover:border-[#CDFF00] transition-all duration-300">
                       {item.initials}
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm text-[#222222] font-display leading-tight group-hover:text-black transition-colors">
+                      <h3 className="font-bold text-sm text-[#222222] dark:text-[#F3F4F6] font-display leading-tight group-hover:text-black dark:group-hover:text-white transition-colors">
                         {item.name}
                       </h3>
-                      <p className="text-[11px] text-[#6B7280]">
+                      <p className="text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
                         {item.roleTitle} · {item.organization}
                       </p>
                     </div>
@@ -456,10 +463,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
                   {/* Impact Metric Badge */}
                   <div className="text-right shrink-0">
-                    <span className="inline-block text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#F8FFD9] text-[#222222] border border-[#CDFF00]/70 group-hover:bg-[#CDFF00] transition-colors">
+                    <span className="inline-block text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#F8FFD9] dark:bg-[#CDFF00]/15 text-[#222222] dark:text-[#CDFF00] border border-[#CDFF00]/70 dark:border-[#CDFF00]/40 group-hover:bg-[#CDFF00] dark:group-hover:text-[#11161B] transition-colors">
                       {item.metric}
                     </span>
-                    <span className="block text-[9.5px] text-[#6B7280] mt-0.5 uppercase tracking-wider font-semibold">
+                    <span className="block text-[9.5px] text-[#6B7280] dark:text-[#A4ABB6] mt-0.5 uppercase tracking-wider font-semibold">
                       {item.metricLabel}
                     </span>
                   </div>
@@ -473,21 +480,21 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                       className="w-3.5 h-3.5 fill-[#CDFF00] text-[#9ECC00]"
                     />
                   ))}
-                  <span className="text-[10px] font-semibold text-[#6B7280] ml-1.5">
+                  <span className="text-[10px] font-semibold text-[#6B7280] dark:text-[#A4ABB6] ml-1.5">
                     {item.sport} · {item.location}
                   </span>
                 </div>
 
                 {/* Testimonial Quote */}
-                <p className="text-xs sm:text-[13px] text-[#4B5563] leading-relaxed relative pl-3 border-l-2 border-[#CDFF00]">
+                <p className="text-xs sm:text-[13px] text-[#4B5563] dark:text-[#D5D8DD] leading-relaxed relative pl-3 border-l-2 border-[#CDFF00]">
                   &ldquo;{item.quote}&rdquo;
                 </p>
               </div>
 
               {/* Card Bottom: Role Tag & CTA trigger */}
-              <div className="mt-5 pt-4 border-t border-[#E5EAED] flex items-center justify-between text-xs">
-                <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#4B5563]">
-                  <span className="w-6 h-6 rounded-md bg-[#F2F3F7] group-hover:bg-[#F8FFD9] flex items-center justify-center transition-colors">
+              <div className="mt-5 pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#4B5563] dark:text-[#D5D8DD]">
+                  <span className="w-6 h-6 rounded-md bg-[#F2F3F7] dark:bg-[#1F2530] group-hover:bg-[#F8FFD9] dark:group-hover:bg-[#CDFF00]/20 flex items-center justify-center transition-colors">
                     {getCategoryIcon(item.roleCategory)}
                   </span>
                   <span>{getCategoryLabel(item.roleCategory)}</span>
@@ -496,10 +503,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => onOpenGetInvolved(item.targetRole)}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold text-[#222222] hover:text-[#9ECC00] cursor-pointer transition-colors"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-[#222222] dark:text-[#F3F4F6] hover:text-[#9ECC00] dark:hover:text-[#CDFF00] cursor-pointer transition-colors"
                 >
                   <span>Connect</span>
-                  <ArrowRight className="w-3 h-3 text-[#222222] transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight className="w-3 h-3 text-[#222222] dark:text-[#F3F4F6] transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
               </div>
             </motion.div>
@@ -512,7 +519,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pt-5 sm:pt-6 border-t border-[#E5EAED]"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pt-5 sm:pt-6 border-t border-[#E5EAED] dark:border-[#2A313C]"
         >
           {PROOFPOINTS.map((proof) => {
             const Icon = proof.icon;
@@ -529,7 +536,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   scale: 0.98,
                   transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                 }}
-                className="group relative bg-white hover:bg-[#FAFBFD] border border-[#E5EAED] hover:border-[#CDFF00] hover:shadow-[0_8px_24px_rgba(205,255,0,0.22)] rounded-2xl sm:rounded-full py-2 px-2.5 sm:py-2.5 sm:px-3.5 transition-all duration-300 flex items-center gap-2.5 sm:gap-3 cursor-default overflow-hidden"
+                className="group relative bg-white dark:bg-[#12171F] hover:bg-[#FAFBFD] dark:hover:bg-[#161D26] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_8px_24px_rgba(205,255,0,0.22)] rounded-2xl sm:rounded-full py-2 px-2.5 sm:py-2.5 sm:px-3.5 transition-all duration-300 flex items-center gap-2.5 sm:gap-3 cursor-default overflow-hidden"
               >
                 {/* Dynamic Light Sweep Shimmer animation on hover */}
                 <div
@@ -541,21 +548,21 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 <div className="absolute inset-y-0 left-0 w-1 bg-[#CDFF00] opacity-0 group-hover:opacity-100 transition-opacity duration-200 sm:hidden" />
 
                 {/* Left: Compact Circular Icon with Spring Tilt & Scale on hover */}
-                <div className="w-8 h-8 rounded-full bg-[#F2F3F7] group-hover:bg-[#CDFF00] text-[#222222] flex items-center justify-center shrink-0 transition-all duration-300 border border-[#E5EAED]/80 group-hover:border-[#CDFF00] shadow-2xs group-hover:rotate-6">
-                  <Icon className="w-3.5 h-3.5 text-[#222222] transition-transform duration-300 group-hover:scale-110" />
+                <div className="w-8 h-8 rounded-full bg-[#F2F3F7] dark:bg-[#1F2530] group-hover:bg-[#CDFF00] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center shrink-0 transition-all duration-300 border border-[#E5EAED]/80 dark:border-[#2A313C] group-hover:border-[#CDFF00] shadow-2xs group-hover:rotate-6">
+                  <Icon className="w-3.5 h-3.5 text-[#222222] dark:text-[#F3F4F6] group-hover:text-[#11161B] transition-transform duration-300 group-hover:scale-110" />
                 </div>
 
                 {/* Right: Compact Stat & Label */}
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline gap-1.5 leading-tight">
-                    <span className="text-sm sm:text-base font-black text-[#222222] font-display tracking-tight group-hover:text-black transition-colors">
+                    <span className="text-sm sm:text-base font-black text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
                       {proof.value}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-bold text-[#222222] truncate">
+                    <span className="text-[11px] sm:text-xs font-bold text-[#222222] dark:text-[#F3F4F6] truncate">
                       {proof.label}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[9.5px] font-medium text-[#6B7280] leading-none mt-0.5">
+                  <div className="flex items-center gap-1.5 text-[9.5px] font-medium text-[#6B7280] dark:text-[#A4ABB6] leading-none mt-0.5">
                     {/* Live radar pulse beacon animation */}
                     <span className="relative flex h-1.5 w-1.5 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CDFF00] opacity-75 group-hover:opacity-100 duration-1000" />

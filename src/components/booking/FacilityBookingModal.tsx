@@ -138,7 +138,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            className="relative w-full max-w-2xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6] transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
@@ -178,7 +178,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
               <div className="space-y-6">
                 {/* Date Picker Ribbon */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-2.5">
                     Select Reservation Date
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -198,8 +198,8 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                           }}
                           className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                             isSelected
-                              ? 'bg-[#222222] text-[#CDFF00] border-[#222222] shadow-sm ring-2 ring-[#CDFF00]/30'
-                              : 'bg-[#F2F3F7] hover:bg-[#E5EAED] text-[#4B5563] border-[#E5EAED]'
+                              ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] border-[#222222] dark:border-[#CDFF00] shadow-sm ring-2 ring-[#CDFF00]/30'
+                              : 'bg-[#F2F3F7] dark:bg-[#161B22] hover:bg-[#E5EAED] dark:hover:bg-[#1F2530] text-[#4B5563] dark:text-[#D5D8DD] border-[#E5EAED] dark:border-[#2A313C]'
                           }`}
                         >
                           <div className="text-[11px] font-bold uppercase tracking-wider">{dayName}</div>
@@ -213,10 +213,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                 {/* Slots Matrix */}
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+                    <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
                       Available Court Slots ({visibleSlots.length})
                     </label>
-                    <div className="flex items-center gap-3 text-[11px] text-[#6B7280]">
+                    <div className="flex items-center gap-3 text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
                       <span className="flex items-center gap-1">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Open
                       </span>
@@ -230,7 +230,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                   </div>
 
                   {visibleSlots.length === 0 ? (
-                    <div className="p-8 text-center bg-[#F2F3F7] rounded-xl text-sm text-[#6B7280]">
+                    <div className="p-8 text-center bg-[#F2F3F7] dark:bg-[#161B22] rounded-xl text-sm text-[#6B7280] dark:text-[#A4ABB6] border border-[#E5EAED] dark:border-[#2A313C]">
                       No timetable slots configured for this date.
                     </div>
                   ) : (
@@ -247,10 +247,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                             onClick={() => handleSlotSelect(slot)}
                             className={`p-3.5 rounded-xl border flex items-center justify-between text-left transition-all ${
                               !isAvailable
-                                ? 'bg-neutral-100 text-neutral-400 border-neutral-200 cursor-not-allowed opacity-60'
+                                ? 'bg-neutral-100 dark:bg-neutral-800/60 text-neutral-400 dark:text-neutral-500 border-neutral-200 dark:border-neutral-700 cursor-not-allowed opacity-60'
                                 : isSelected
                                 ? 'bg-[#CDFF00] text-[#0A0D14] border-[#9ECC00] shadow-md ring-2 ring-[#0A0D14]/20 font-bold'
-                                : 'bg-[#FFFFFF] hover:bg-[#F8FFD9]/60 text-[#222222] border-[#E5EAED] cursor-pointer'
+                                : 'bg-[#FFFFFF] dark:bg-[#161B22] hover:bg-[#F8FFD9]/60 dark:hover:bg-[#1F2618] text-[#222222] dark:text-[#F3F4F6] border-[#E5EAED] dark:border-[#2A313C] cursor-pointer'
                             }`}
                           >
                             <div className="space-y-0.5">
@@ -266,10 +266,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                               <span
                                 className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${
                                   slot.status === 'available'
-                                    ? 'bg-emerald-100 text-emerald-800'
+                                    ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
                                     : slot.status === 'reserved'
-                                    ? 'bg-red-100 text-red-800'
-                                    : 'bg-amber-100 text-amber-800'
+                                    ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300'
+                                    : 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300'
                                 }`}
                               >
                                 {slot.status}
@@ -283,10 +283,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                 </div>
 
                 {/* Footer Controls */}
-                <div className="pt-4 border-t border-[#E5EAED] flex items-center justify-between">
-                  <div className="text-xs text-[#6B7280]">
+                <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between">
+                  <div className="text-xs text-[#6B7280] dark:text-[#A4ABB6]">
                     {selectedSlot ? (
-                      <span className="font-semibold text-[#222222]">
+                      <span className="font-semibold text-[#222222] dark:text-[#CDFF00]">
                         Selected: {selectedSlot.time} (PKR {selectedSlot.price.toLocaleString()})
                       </span>
                     ) : (
@@ -298,10 +298,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                     type="button"
                     disabled={!selectedSlot}
                     onClick={handleProceedToConfirm}
-                    className="px-6 py-2.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer shadow-xs"
+                    className="px-6 py-2.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold text-xs uppercase tracking-wider rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer shadow-xs"
                   >
                     <span>Proceed to Confirm</span>
-                    <ArrowRight className="w-4 h-4 text-[#CDFF00]" />
+                    <ArrowRight className="w-4 h-4 text-[#CDFF00] dark:text-[#11161B]" />
                   </button>
                 </div>
               </div>
@@ -311,23 +311,23 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
             {step === 'confirm' && selectedSlot && (
               <form onSubmit={handleConfirmBooking} className="space-y-5">
                 {/* Summary banner */}
-                <div className="p-4 bg-[#F8FFD9] border border-[#CDFF00] rounded-xl flex items-center justify-between text-xs">
+                <div className="p-4 bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] dark:border-[#CDFF00]/60 rounded-xl flex items-center justify-between text-xs transition-colors">
                   <div>
-                    <div className="font-bold text-[#222222]">{facility.name}</div>
-                    <div className="text-[#4B5563] mt-0.5">
+                    <div className="font-bold text-[#222222] dark:text-[#F3F4F6]">{facility.name}</div>
+                    <div className="text-[#4B5563] dark:text-[#D5D8DD] mt-0.5">
                       {selectedSlot.date} · {selectedSlot.time} ({selectedSlot.court})
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-black text-[#222222]">PKR {selectedSlot.price.toLocaleString()}</div>
-                    <span className="text-[10px] text-emerald-700 font-bold uppercase">Ready to Reserve</span>
+                    <div className="text-lg font-black text-[#222222] dark:text-[#CDFF00]">PKR {selectedSlot.price.toLocaleString()}</div>
+                    <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold uppercase">Ready to Reserve</span>
                   </div>
                 </div>
 
                 {/* Conflict/Error alert */}
                 {bookingError && (
-                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
+                  <div className="p-3.5 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 rounded-xl text-xs text-red-700 dark:text-red-300 flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600 dark:text-red-400" />
                     <span>{bookingError}</span>
                   </div>
                 )}
@@ -335,17 +335,17 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                 {/* Form fields */}
                 <div className="space-y-3.5">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                       Lead Player / Team Captain Name *
                     </label>
                     <div className="relative">
-                      <User className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF]" />
+                      <User className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF] dark:text-[#64748B]" />
                       <input
                         type="text"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                        className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                         placeholder="e.g. Kai Sterling"
                       />
                     </div>
@@ -353,34 +353,34 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                         Confirmation Email *
                       </label>
                       <div className="relative">
-                        <Mail className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF]" />
+                        <Mail className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF] dark:text-[#64748B]" />
                         <input
                           type="email"
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                          className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                           placeholder="kai@sportshub.net"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-1">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-1">
                         Contact Phone / WhatsApp *
                       </label>
                       <div className="relative">
-                        <Phone className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF]" />
+                        <Phone className="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF] dark:text-[#64748B]" />
                         <input
                           type="tel"
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] border border-[#E5EAED] rounded-xl text-sm font-medium text-[#222222] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#222222]"
+                          className="w-full pl-9 pr-3.5 py-2.5 bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-xl text-sm font-medium text-[#222222] dark:text-[#F3F4F6] placeholder:text-[#9CA3AF] dark:placeholder:text-[#64748B] focus:bg-white dark:focus:bg-[#1C232E] focus:outline-none focus:ring-2 focus:ring-[#222222] dark:focus:ring-[#CDFF00]"
                           placeholder="+1 (555) 019-2831"
                         />
                       </div>
@@ -389,12 +389,12 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                 </div>
 
                 {/* Idempotent Action Row */}
-                <div className="pt-4 border-t border-[#E5EAED] flex items-center justify-between gap-3">
+                <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between gap-3">
                   <button
                     type="button"
                     disabled={isSubmitting}
                     onClick={() => setStep('select')}
-                    className="px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-[#4B5563] text-xs font-bold rounded-xl transition-colors cursor-pointer"
+                    className="px-4 py-2.5 bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#4B5563] dark:text-[#D5D8DD] text-xs font-bold rounded-xl transition-colors cursor-pointer"
                   >
                     Back to Slots
                   </button>
@@ -428,10 +428,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                 </div>
 
                 <div className="space-y-1.5">
-                  <h3 className="text-xl sm:text-2xl font-black font-display text-[#222222]">
+                  <h3 className="text-xl sm:text-2xl font-black font-display text-[#222222] dark:text-[#F3F4F6]">
                     Slot Confirmed &amp; Secured!
                   </h3>
-                  <p className="text-xs text-[#6B7280]">
+                  <p className="text-xs text-[#6B7280] dark:text-[#A4ABB6]">
                     Your entry pass has been issued and locked in the Sports Hub ledger.
                   </p>
                 </div>
@@ -477,7 +477,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="px-6 py-2.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors cursor-pointer"
+                    className="px-6 py-2.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold text-xs uppercase tracking-wider rounded-xl transition-colors cursor-pointer"
                   >
                     Done &amp; Return
                   </button>

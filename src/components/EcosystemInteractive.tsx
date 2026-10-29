@@ -373,24 +373,28 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
         {/* Action Buttons - Spacious, comfortable touch targets */}
         <div className="shrink-0 flex flex-wrap items-center gap-2 pt-1 md:pt-0">
           {onOpenGetInvolved && (
-            <button
+            <motion.button
               type="button"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
               onClick={() => onOpenGetInvolved(NODE_ROLE_MAP[activeNode.id])}
-              className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-[#CDFF00] hover:bg-[#D6FF33] active:bg-[#B8E600] text-[#11161B] font-extrabold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-[0_2px_10px_rgba(205,255,0,0.25)] hover:shadow-[0_4px_14px_rgba(205,255,0,0.35)] active:scale-98 select-none"
+              className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-[#CDFF00] hover:bg-[#D6FF33] active:bg-[#B8E600] text-[#11161B] font-extrabold text-xs sm:text-sm rounded-xl transition-colors flex items-center gap-2 cursor-pointer shadow-[0_2px_10px_rgba(205,255,0,0.25)] hover:shadow-[0_4px_14px_rgba(205,255,0,0.35)] select-none"
             >
               <span>Inquire as {activeNode.name}</span>
               <ArrowRight className="w-4 h-4 text-[#11161B]" />
-            </button>
+            </motion.button>
           )}
 
           {onNavigateToOpportunities && (
-            <button
+            <motion.button
               type="button"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
               onClick={onNavigateToOpportunities}
-              className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 active:bg-black/15 text-[var(--text-primary)] border border-[var(--border-default)] dark:border-white/20 font-bold text-xs sm:text-sm rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer active:scale-98 select-none"
+              className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 active:bg-black/15 text-[var(--text-primary)] border border-[var(--border-default)] dark:border-white/20 font-bold text-xs sm:text-sm rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer select-none"
             >
               <span>Explore Opportunities</span>
-            </button>
+            </motion.button>
           )}
         </div>
       </motion.div>

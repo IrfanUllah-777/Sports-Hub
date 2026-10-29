@@ -52,7 +52,7 @@ export const MyPassesModal: React.FC<MyPassesModalProps> = ({ isOpen, onClose })
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E5EAED] overflow-hidden text-[#222222]"
+            className="relative w-full max-w-2xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6]"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
@@ -78,10 +78,10 @@ export const MyPassesModal: React.FC<MyPassesModalProps> = ({ isOpen, onClose })
 
           <div className="p-6 max-h-[70vh] overflow-y-auto space-y-4">
             {bookings.length === 0 ? (
-              <div className="p-12 text-center bg-[#F2F3F7] rounded-2xl space-y-3">
-                <Ticket className="w-10 h-10 text-[#9CA3AF] mx-auto" />
-                <div className="font-bold text-sm text-[#222222]">No Active Passes Yet</div>
-                <p className="text-xs text-[#6B7280] max-w-sm mx-auto">
+              <div className="p-12 text-center bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl space-y-3">
+                <Ticket className="w-10 h-10 text-[#9CA3AF] dark:text-[#64748B] mx-auto" />
+                <div className="font-bold text-sm text-[#222222] dark:text-[#F3F4F6]">No Active Passes Yet</div>
+                <p className="text-xs text-[#6B7280] dark:text-[#A4ABB6] max-w-sm mx-auto">
                   Browse verified sports facilities or tournaments to reserve your first court or register your squad!
                 </p>
               </div>
@@ -92,7 +92,7 @@ export const MyPassesModal: React.FC<MyPassesModalProps> = ({ isOpen, onClose })
                   className={`p-4 rounded-2xl border transition-all ${
                     booking.status === 'confirmed'
                       ? 'bg-[#0A0D14] text-white border-neutral-800 shadow-md'
-                      : 'bg-neutral-100 text-neutral-500 border-neutral-200 opacity-60'
+                      : 'bg-neutral-100 dark:bg-[#161B22] text-neutral-500 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 opacity-60'
                   }`}
                 >
                   <div className="flex items-start justify-between border-b border-neutral-800 pb-3 mb-3">
