@@ -311,7 +311,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
       viewport={{ once: true, amount: 0.06 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       id="testimonials-section"
-      className="bg-white dark:bg-[#0B0F14] py-16 sm:py-20 border-b border-[#E5EAED] dark:border-[#202731] relative overflow-hidden transition-colors"
+      className="bg-white dark:bg-[#0B0F14] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] relative overflow-hidden transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
@@ -322,7 +322,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30 dark:ring-[#CDFF00]/30" />
               <span>Athletic Community Perspectives</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight">
               Proven Impact Across the Sports Ecosystem
             </h2>
             <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] leading-relaxed">
@@ -385,14 +385,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
             </div>
 
             {/* Manual controls */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}
                 onClick={() => setIsPaused((prev) => !prev)}
                 title={isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
                 aria-label={isPaused ? 'Resume scrolling' : 'Pause scrolling'}
-                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
               </motion.button>
@@ -402,7 +402,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 onClick={() => handleManualScroll('left')}
                 title="Scroll previous"
                 aria-label="Scroll left"
-                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 <ChevronLeft className="w-4 h-4" />
               </motion.button>
@@ -412,7 +412,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 onClick={() => handleManualScroll('right')}
                 title="Scroll next"
                 aria-label="Scroll right"
-                className="w-8 h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white dark:bg-[#1F2530] hover:bg-[#F2F3F7] dark:hover:bg-[#2A313C] border border-[#E5EAED] dark:border-[#2A313C] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
               >
                 <ChevronRight className="w-4 h-4" />
               </motion.button>
@@ -425,7 +425,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           ref={scrollContainerRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="flex items-stretch gap-5 overflow-x-auto no-scrollbar scroll-smooth py-2 px-1 cursor-grab active:cursor-grabbing"
+          className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth py-2 px-1 cursor-grab active:cursor-grabbing"
         >
           {filteredTestimonials.map((item) => (
             <motion.div
@@ -439,7 +439,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="w-[340px] sm:w-[380px] shrink-0 bg-[#FBFBFC] dark:bg-[#12171F] hover:bg-white dark:hover:bg-[#18202A] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
+              className="w-[min(340px,calc(100vw-2.5rem))] sm:w-[380px] shrink-0 bg-[#FBFBFC] dark:bg-[#12171F] hover:bg-white dark:hover:bg-[#18202A] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-5 sm:p-6 shadow-2xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -519,7 +519,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pt-5 sm:pt-6 border-t border-[#E5EAED] dark:border-[#2A313C]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-3.5 lg:gap-4 pt-5 sm:pt-6 border-t border-[#E5EAED] dark:border-[#2A313C]"
         >
           {PROOFPOINTS.map((proof) => {
             const Icon = proof.icon;
@@ -536,7 +536,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   scale: 0.98,
                   transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                 }}
-                className="group relative bg-white dark:bg-[#12171F] hover:bg-[#FAFBFD] dark:hover:bg-[#161D26] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_8px_24px_rgba(205,255,0,0.22)] rounded-2xl sm:rounded-full py-2 px-2.5 sm:py-2.5 sm:px-3.5 transition-all duration-300 flex items-center gap-2.5 sm:gap-3 cursor-default overflow-hidden"
+                className="group relative bg-white dark:bg-[#12171F] hover:bg-[#FAFBFD] dark:hover:bg-[#161D26] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_8px_24px_rgba(205,255,0,0.22)] rounded-2xl md:rounded-full py-2.5 px-3.5 sm:py-3 sm:px-4 transition-all duration-300 flex items-center gap-3 cursor-default overflow-hidden"
               >
                 {/* Dynamic Light Sweep Shimmer animation on hover */}
                 <div
@@ -545,30 +545,30 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 />
 
                 {/* Micro Neon Accent Highlight on hover (Mobile) */}
-                <div className="absolute inset-y-0 left-0 w-1 bg-[#CDFF00] opacity-0 group-hover:opacity-100 transition-opacity duration-200 sm:hidden" />
+                <div className="absolute inset-y-0 left-0 w-1 bg-[#CDFF00] opacity-0 group-hover:opacity-100 transition-opacity duration-200 md:hidden" />
 
                 {/* Left: Compact Circular Icon with Spring Tilt & Scale on hover */}
-                <div className="w-8 h-8 rounded-full bg-[#F2F3F7] dark:bg-[#1F2530] group-hover:bg-[#CDFF00] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center shrink-0 transition-all duration-300 border border-[#E5EAED]/80 dark:border-[#2A313C] group-hover:border-[#CDFF00] shadow-2xs group-hover:rotate-6">
-                  <Icon className="w-3.5 h-3.5 text-[#222222] dark:text-[#F3F4F6] group-hover:text-[#11161B] transition-transform duration-300 group-hover:scale-110" />
+                <div className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-[#F2F3F7] dark:bg-[#1F2530] group-hover:bg-[#CDFF00] text-[#222222] dark:text-[#F3F4F6] flex items-center justify-center shrink-0 transition-all duration-300 border border-[#E5EAED]/80 dark:border-[#2A313C] group-hover:border-[#CDFF00] shadow-2xs group-hover:rotate-6">
+                  <Icon className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-[#222222] dark:text-[#F3F4F6] group-hover:text-[#11161B] transition-transform duration-300 group-hover:scale-110" />
                 </div>
 
                 {/* Right: Compact Stat & Label */}
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline gap-1.5 leading-tight">
-                    <span className="text-sm sm:text-base font-black text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
+                    <span className="text-base sm:text-base font-black text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
                       {proof.value}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-bold text-[#222222] dark:text-[#F3F4F6] truncate">
+                    <span className="text-xs font-bold text-[#222222] dark:text-[#F3F4F6] truncate">
                       {proof.label}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[9.5px] font-medium text-[#6B7280] dark:text-[#A4ABB6] leading-none mt-0.5">
+                  <div className="flex items-center gap-1.5 text-[10px] font-medium text-[#6B7280] dark:text-[#A4ABB6] leading-none mt-1">
                     {/* Live radar pulse beacon animation */}
                     <span className="relative flex h-1.5 w-1.5 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CDFF00] opacity-75 group-hover:opacity-100 duration-1000" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#9ECC00] group-hover:bg-[#CDFF00] transition-colors" />
                     </span>
-                    <span className="truncate">{proof.badge}</span>
+                    <span className="truncate">{proof.badge} · {proof.caption}</span>
                   </div>
                 </div>
               </motion.div>

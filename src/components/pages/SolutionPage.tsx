@@ -135,7 +135,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-14 pb-18 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-10 sm:pt-14 pb-12 sm:pb-18 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
           <div className="inline-flex items-center gap-2 text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
@@ -164,7 +164,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#161B22] py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
+        className="bg-white dark:bg-[#161B22] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12">
@@ -179,6 +179,38 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
               sustainable participation.
             </p>
           </FadeIn>
+
+          {/* Mobile/Tablet Horizontal Scrollable Stepper Strip */}
+          <div className="flex lg:hidden overflow-x-auto gap-2.5 pb-2 mb-6 scrollbar-none snap-x">
+            {PROCESS_STEPS.map((item, index) => {
+              const isActive = activeStep === index;
+              return (
+                <button
+                  key={`mobile-step-${item.step}`}
+                  type="button"
+                  onClick={() => setActiveStep(index)}
+                  className={`shrink-0 snap-start flex items-center gap-2 px-3.5 py-2.5 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] ${
+                    isActive
+                      ? 'bg-[#F8FFD9] dark:bg-[#CDFF00]/15 border-[#222222] dark:border-[#CDFF00] ring-2 ring-[#CDFF00]'
+                      : 'bg-[#F2F3F7] dark:bg-[#1F2530] border-[#E5EAED] dark:border-[#2A313C] text-[#6B7280]'
+                  }`}
+                >
+                  <span
+                    className={`text-xs font-black font-mono px-2 py-0.5 rounded ${
+                      isActive
+                        ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B]'
+                        : 'bg-white dark:bg-[#161B22] text-[#6B7280] dark:text-[#D5D8DD]'
+                    }`}
+                  >
+                    {item.step}
+                  </span>
+                  <span className={`text-xs font-bold whitespace-nowrap ${isActive ? 'text-[#222222] dark:text-[#F3F4F6]' : 'text-[#6B7280] dark:text-[#D5D8DD]'}`}>
+                    {item.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
           {/* Desktop Stepper Bar */}
           <FadeIn delay={0.1} className="hidden lg:grid grid-cols-5 gap-3 mb-8">
@@ -319,10 +351,10 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 transition-colors duration-200"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-3xl mb-14 space-y-3">
+          <FadeIn className="max-w-3xl mb-10 sm:mb-14 space-y-3">
             <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Modular Architecture
             </span>
@@ -336,7 +368,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
           </FadeIn>
 
           {/* 8 Feature Cards Grid with Staggered Entrance */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {CAPABILITIES.map((cap) => {
               const Icon = cap.icon;
               const isSelected = selectedCapability === cap.id;
@@ -354,7 +386,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
                       scale: 0.98,
                       transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                     }}
-                    className={`group relative bg-white dark:bg-[#161B22] border rounded-xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full overflow-hidden ${
+                    className={`group relative bg-white dark:bg-[#161B22] border rounded-xl p-5 sm:p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full overflow-hidden ${
                       isSelected
                         ? 'border-[#222222] dark:border-[#CDFF00] ring-2 ring-[#CDFF00] shadow-md -translate-y-1'
                         : 'border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00]'
@@ -390,7 +422,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
           </StaggerContainer>
 
           {/* Expanded Capability Detail Callout */}
-          <FadeIn delay={0.2} className="mt-10 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xs transition-colors duration-200">
+          <FadeIn delay={0.2} className="mt-10 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xs transition-colors duration-200">
             <div className="space-y-1 max-w-2xl">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#9ECC00] dark:text-[#CDFF00]">
@@ -403,19 +435,19 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ onNavigate, onOpenGe
                 {currentCap.details}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
               <button
                 onClick={() => onOpenGetInvolved('facility_owner')}
-                className="px-4 py-2.5 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+                className="px-4 py-2.5 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
               >
-                Get Involved
+                <span>Get Involved</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => onNavigate('opportunities')}
-                className="px-5 py-2.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#b8e600] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+                className="px-5 py-2.5 min-h-[44px] bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#b8e600] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
-                See Connected Opportunities
+                <span>See Connected Opportunities</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
               </button>
             </div>

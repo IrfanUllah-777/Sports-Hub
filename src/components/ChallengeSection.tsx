@@ -101,7 +101,7 @@ export const ChallengeSection: React.FC<{ onNavigateToSolution: () => void }> = 
       viewport={{ once: true, amount: 0.06 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       id="challenge-section"
-      className="bg-white dark:bg-[#161B22] py-14 sm:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] relative overflow-hidden transition-colors duration-200"
+      className="bg-white dark:bg-[#161B22] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] relative overflow-hidden transition-colors duration-200"
     >
       {/* Subtle background ambient lighting accent */}
       <div

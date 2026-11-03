@@ -155,9 +155,9 @@ export function BackgroundPaths({
     >
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Animated letter-by-letter headline with gradient from foreground to foreground/70 */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-balance leading-none">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-balance leading-none">
           {words.map((word, wordIndex) => (
-            <span key={wordIndex} className="inline-block mr-3 sm:mr-4 last:mr-0">
+            <span key={wordIndex} className="inline-block mr-2 sm:mr-4 last:mr-0">
               {word.split("").map((letter, letterIndex) => (
                 <motion.span
                   key={letterIndex}

@@ -82,7 +82,7 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
           role="dialog"
           aria-modal="true"
           aria-labelledby="gov-scheme-title"
@@ -93,17 +93,17 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6] transition-colors"
+            className="relative w-full max-w-xl max-h-[92dvh] flex flex-col bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6] transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
-          <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
-            <div className="space-y-1 pr-6">
+          <div className="bg-[#0A0D14] text-white p-4 sm:p-6 flex items-start justify-between border-b border-neutral-800 shrink-0">
+            <div className="space-y-1 pr-4 sm:pr-6">
               <div className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-widest text-[#CDFF00]">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Verified Public Department Initiative</span>
               </div>
-              <h2 id="gov-scheme-title" className="text-xl sm:text-2xl font-black font-display tracking-tight text-white">
+              <h2 id="gov-scheme-title" className="text-lg sm:text-2xl font-black font-display tracking-tight text-white leading-tight">
                 {scheme.title}
               </h2>
               <div className="text-xs text-neutral-400">
@@ -114,14 +114,14 @@ export const GovernmentSchemeModal: React.FC<GovernmentSchemeModalProps> = ({
             <button
               onClick={onClose}
               disabled={isSubmitting}
-              className="p-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer shrink-0"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <div className="p-6 max-h-[75vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1">
             {submitted ? (
               <div className="text-center py-6 space-y-4">
                 <div className="w-14 h-14 rounded-2xl bg-[#CDFF00] text-[#0A0D14] flex items-center justify-center mx-auto shadow-md">

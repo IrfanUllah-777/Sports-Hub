@@ -98,7 +98,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
           role="dialog"
           aria-modal="true"
           aria-labelledby="tournament-modal-title"
@@ -109,20 +109,20 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-3xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6]"
+            className="relative w-full max-w-3xl max-h-[92dvh] flex flex-col bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6]"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
-          <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
-            <div className="space-y-1 pr-6">
+          <div className="bg-[#0A0D14] text-white p-4 sm:p-6 flex items-start justify-between border-b border-neutral-800 shrink-0">
+            <div className="space-y-1 pr-4 sm:pr-6">
               <div className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-widest text-[#CDFF00]">
                 <Trophy className="w-3.5 h-3.5" />
                 <span>Sanctioned Tournament &amp; Championship Hub</span>
               </div>
-              <h2 id="tournament-modal-title" className="text-xl sm:text-2xl font-black font-display tracking-tight text-white">
+              <h2 id="tournament-modal-title" className="text-lg sm:text-2xl font-black font-display tracking-tight text-white leading-tight">
                 {tournament.name}
               </h2>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-400">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-neutral-400">
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5 text-[#CDFF00]" />
                   {tournament.venueName}, {tournament.city}
@@ -140,7 +140,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             <button
               onClick={onClose}
               disabled={isSubmitting}
-              className="p-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer shrink-0"
               aria-label="Close tournament modal"
             >
               <X className="w-5 h-5" />
@@ -148,11 +148,11 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex items-center border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F2F3F7] dark:bg-[#161B22] px-6">
+          <div className="flex items-center border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F2F3F7] dark:bg-[#161B22] px-3 sm:px-6 shrink-0 overflow-x-auto scrollbar-none">
             <button
               type="button"
               onClick={() => setActiveTab('fixtures')}
-              className={`py-3 px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+              className={`py-3 px-3 sm:px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer whitespace-nowrap min-h-[44px] ${
                 activeTab === 'fixtures'
                   ? 'border-[#222222] dark:border-[#CDFF00] text-[#222222] dark:text-[#CDFF00] bg-white dark:bg-[#12171F]'
                   : 'border-transparent text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
@@ -164,7 +164,7 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('register')}
-              className={`py-3 px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer ${
+              className={`py-3 px-3 sm:px-4 text-xs font-bold uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all cursor-pointer whitespace-nowrap min-h-[44px] ${
                 activeTab === 'register'
                   ? 'border-[#222222] dark:border-[#CDFF00] text-[#222222] dark:text-[#CDFF00] bg-white dark:bg-[#12171F]'
                   : 'border-transparent text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
@@ -176,12 +176,12 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
           </div>
 
           {/* Modal Body */}
-          <div className="p-6 max-h-[70vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1">
             {/* TAB 1: FIXTURES & BRACKETS */}
             {activeTab === 'fixtures' && (
               <div className="space-y-6">
                 {/* Status Bar */}
-                <div className="p-3.5 bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] dark:border-[#CDFF00]/40 rounded-xl flex items-center justify-between text-xs">
+                <div className="p-3.5 bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] dark:border-[#CDFF00]/40 rounded-xl flex flex-wrap items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2 text-[#222222] dark:text-[#F3F4F6]">
                     <Medal className="w-4 h-4 text-[#9ECC00] dark:text-[#CDFF00]" />
                     <span className="font-bold">Format: Single Elimination Knockout Bracket</span>
@@ -191,60 +191,113 @@ export const TournamentModal: React.FC<TournamentModalProps> = ({
                   </span>
                 </div>
 
-                {/* Brackets Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {tournament.brackets.map((round) => (
-                    <div key={round.roundName} className="space-y-3">
-                      <div className="text-xs font-extrabold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] pb-1 border-b border-[#E5EAED] dark:border-[#2A313C]">
-                        {round.roundName}
-                      </div>
-                      <div className="space-y-2.5">
-                        {round.matches.map((m) => (
-                          <div 
-                            key={m.matchId} 
-                            className="p-3 bg-[#F2F3F7] dark:bg-[#161B22] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] space-y-1.5 text-xs hover:border-[#222222] dark:hover:border-[#CDFF00] transition-colors"
-                          >
-                            <div className="flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
-                              <span>{m.timeSlot || 'Scheduled'}</span>
-                              <span className="font-mono text-[10px] font-bold">Match #{m.matchId.replace('m-', '')}</span>
-                            </div>
-                            <div className="space-y-1">
-                              <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
-                                <span className="truncate">{m.teamA}</span>
-                                <span className="font-mono text-xs">{m.scoreA !== undefined ? m.scoreA : '-'}</span>
-                              </div>
-                              <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
-                                <span className="truncate">{m.teamB}</span>
-                                <span className="font-mono text-xs">{m.scoreB !== undefined ? m.scoreB : '-'}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                {/* Mobile scroll hint for Brackets */}
+                <div className="md:hidden flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6] px-1">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#CDFF00] animate-pulse" />
+                    Swipe tournament bracket horizontally
+                  </span>
+                  <span className="font-mono text-[10px] tracking-wider uppercase bg-[#F2F3F7] dark:bg-[#1E2530] px-1.5 py-0.5 rounded font-bold">
+                    ⟷ Swipe Brackets
+                  </span>
                 </div>
 
-                {/* Registered Squads List */}
-                <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C]">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6] mb-2.5">
-                    Confirmed Registered Squads ({tournament.registeredTeams.length})
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {tournament.registeredTeams.map((team, idx) => (
-                      <div 
-                        key={team.teamName}
-                        className="p-2.5 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-lg text-xs flex items-center justify-between"
-                      >
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-[10px] bg-[#F2F3F7] dark:bg-[#1E2530] text-[#222222] dark:text-[#F3F4F6] w-5 h-5 rounded flex items-center justify-center">
-                            {idx + 1}
-                          </span>
-                          <span className="font-bold text-[#222222] dark:text-[#F3F4F6]">{team.teamName}</span>
+                {/* Brackets Horizontal Scrolling Container */}
+                <div className="table-scroll-container w-full overflow-x-auto overscroll-x-contain pb-2">
+                  <div className="flex md:grid md:grid-cols-3 gap-4 min-w-[700px] md:min-w-0">
+                    {tournament.brackets.map((round) => (
+                      <div key={round.roundName} className="w-[220px] shrink-0 md:w-auto space-y-3">
+                        <div className="text-xs font-extrabold uppercase tracking-wider text-[#222222] dark:text-[#F3F4F6] pb-1 border-b border-[#E5EAED] dark:border-[#2A313C]">
+                          {round.roundName}
                         </div>
-                        <span className="text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">Capt. {team.captain}</span>
+                        <div className="space-y-2.5">
+                          {round.matches.map((m) => (
+                            <div 
+                              key={m.matchId} 
+                              className="p-3 bg-[#F2F3F7] dark:bg-[#161B22] rounded-xl border border-[#E5EAED] dark:border-[#2A313C] space-y-1.5 text-xs hover:border-[#222222] dark:hover:border-[#CDFF00] transition-colors"
+                            >
+                              <div className="flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
+                                <span>{m.timeSlot || 'Scheduled'}</span>
+                                <span className="font-mono text-[10px] font-bold">Match #{m.matchId.replace('m-', '')}</span>
+                              </div>
+                              <div className="space-y-1">
+                                <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
+                                  <span className="truncate">{m.teamA}</span>
+                                  <span className="font-mono text-xs">{m.scoreA !== undefined ? m.scoreA : '-'}</span>
+                                </div>
+                                <div className="flex items-center justify-between font-bold text-[#222222] dark:text-[#F3F4F6] bg-white dark:bg-[#12171F] p-1.5 rounded border border-[#E5EAED] dark:border-[#2A313C]">
+                                  <span className="truncate">{m.teamB}</span>
+                                  <span className="font-mono text-xs">{m.scoreB !== undefined ? m.scoreB : '-'}</span>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+
+                {/* Registered Squads List / Roster Table */}
+                <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C]">
+                  <div className="flex flex-wrap items-center justify-between gap-1 mb-2">
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
+                      Confirmed Registered Squads ({tournament.registeredTeams.length})
+                    </div>
+                    <span className="text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
+                      {tournament.squadCapacity - tournament.registeredTeams.length} spots remaining
+                    </span>
+                  </div>
+
+                  {/* Mobile horizontal scroll hint badge */}
+                  <div className="sm:hidden flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6] mb-2 px-1">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#CDFF00] animate-pulse" />
+                      Swipe roster table horizontally
+                    </span>
+                    <span className="font-mono text-[10px] tracking-wider uppercase bg-[#F2F3F7] dark:bg-[#1E2530] px-1.5 py-0.5 rounded font-bold">
+                      ⟷ Scroll
+                    </span>
+                  </div>
+
+                  <div className="table-scroll-container w-full overflow-x-auto overscroll-x-contain rounded-xl border border-[#E5EAED] dark:border-[#2A313C] bg-white dark:bg-[#161B22] shadow-xs">
+                    <table className="w-full min-w-[480px] text-left text-xs border-collapse">
+                      <thead>
+                        <tr className="border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F2F3F7] dark:bg-[#12171F]">
+                          <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]"># Seed</th>
+                          <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Squad Name</th>
+                          <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Captain</th>
+                          <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Division</th>
+                          <th className="py-2.5 px-3 text-right font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Registration Status</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#E5EAED] dark:divide-[#2A313C]">
+                        {tournament.registeredTeams.map((team, idx) => (
+                          <tr key={team.teamName} className="hover:bg-[#F8FFD9]/30 dark:hover:bg-[#1E2530]/50 transition-colors">
+                            <td className="py-2.5 px-3">
+                              <span className="font-mono font-bold text-[10px] bg-[#F2F3F7] dark:bg-[#1E2530] text-[#222222] dark:text-[#F3F4F6] w-6 h-6 rounded flex items-center justify-center border border-[#E5EAED] dark:border-[#2A313C]">
+                                #{idx + 1}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-3 font-bold text-[#222222] dark:text-[#F3F4F6]">
+                              {team.teamName}
+                            </td>
+                            <td className="py-2.5 px-3 text-[#6B7280] dark:text-[#A4ABB6]">
+                              Capt. {team.captain}
+                            </td>
+                            <td className="py-2.5 px-3 text-[#6B7280] dark:text-[#A4ABB6]">
+                              Open Grassroots Cup
+                            </td>
+                            <td className="py-2.5 px-3 text-right">
+                              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/40">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                Confirmed
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>

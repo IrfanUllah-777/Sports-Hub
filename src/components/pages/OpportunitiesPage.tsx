@@ -69,7 +69,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#222222] text-white pt-16 pb-20 border-b border-neutral-800 bg-dark-grid-pattern"
+        className="bg-[#222222] text-white pt-12 sm:pt-16 pb-14 sm:pb-20 border-b border-neutral-800 bg-dark-grid-pattern"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#CDFF00]">
@@ -77,7 +77,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
             Multi-Dimensional Access
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white text-balance leading-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white text-balance leading-tight">
             More Than a{' '}
             <span className="text-[#CDFF00]">Place to Play</span>.
           </h1>
@@ -87,17 +87,17 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
             From recreational games to structured competitions and coaching academies.
           </p>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <button
               onClick={() => onOpenGetInvolved('athlete')}
-              className="px-6 py-3.5 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#222222] font-bold text-sm rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer shadow-xs"
+              className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#222222] font-bold text-sm rounded-lg transition-colors inline-flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
               Get Involved in the Ecosystem
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('solution')}
-              className="px-6 py-3.5 bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-bold text-sm rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-bold text-sm rounded-lg transition-colors inline-flex items-center justify-center gap-2 cursor-pointer"
             >
               How the Platform Works
             </button>
@@ -111,7 +111,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.05 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           {/* Header & Filter Controls Section */}
@@ -122,7 +122,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-[#CDFF00] ring-2 ring-[#222222]/30" />
                   <span>Discoverable Assets</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display tracking-tight">
                   Six Pathways of Sports Opportunity
                 </h2>
                 <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] leading-relaxed">
@@ -211,7 +211,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
             {/* Section 01: Sports Facilities */}
             {(selectedCategory === 'all' || selectedCategory === 'facilities') && (
               <FadeIn className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl overflow-hidden shadow-xs grid grid-cols-1 lg:grid-cols-12 transition-colors">
-                <div className="lg:col-span-6 p-8 sm:p-10 space-y-5 flex flex-col justify-between">
+                <div className="lg:col-span-6 p-5 sm:p-8 lg:p-10 space-y-5 flex flex-col justify-between">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-xs text-[#6B7280] dark:text-[#A4ABB6]">
                       <span className="font-mono font-bold text-[#222222] dark:text-[#CDFF00] bg-[#F2F3F7] dark:bg-[#1E2530] px-2 py-0.5 rounded">01</span>
@@ -280,16 +280,16 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                       <CheckCircle2 className="w-4 h-4 text-[#9ECC00] dark:text-[#CDFF00]" />
                       <span>{facilities[0]?.slots.filter(s => s.status === 'available').length || 7} open slots today</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         onClick={() => onOpenGetInvolved('facility_owner')}
-                        className="px-3 py-2 bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
+                        className="px-3 py-2 min-h-[44px] bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
                       >
                         List a Facility
                       </button>
                       <button
                         onClick={() => setActiveFacility(facilities[0])}
-                        className="px-4 py-2 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs group text-xs"
+                        className="px-4 py-2 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs group text-xs"
                       >
                         <span>Book Court / Check Slots</span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#0A0D14] group-hover:translate-x-0.5 transition-transform" />
@@ -305,7 +305,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-4 left-4 right-4 p-3.5 bg-black/80 backdrop-blur-md rounded-xl border border-neutral-700 text-xs text-white flex items-center justify-between shadow-lg">
+                  <div className="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 bg-black/80 backdrop-blur-md rounded-xl border border-neutral-700 text-xs text-white flex flex-wrap items-center justify-between gap-2 shadow-lg">
                     <div className="flex items-center gap-2">
                       <ShieldCheck className="w-4 h-4 text-[#CDFF00]" />
                       <span className="font-medium">Verified Venue Specifications</span>
@@ -329,7 +329,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-4 left-4 right-4 p-3.5 bg-black/80 backdrop-blur-md rounded-xl border border-neutral-700 text-xs text-white flex items-center justify-between shadow-lg">
+                  <div className="absolute bottom-4 left-4 right-4 p-3 sm:p-3.5 bg-black/80 backdrop-blur-md rounded-xl border border-neutral-700 text-xs text-white flex flex-wrap items-center justify-between gap-2 shadow-lg">
                     <div className="flex items-center gap-2">
                       <Trophy className="w-4 h-4 text-[#CDFF00]" />
                       <span className="font-medium">Structured Entry Brackets</span>
@@ -341,7 +341,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 p-8 sm:p-10 space-y-5 flex flex-col justify-between order-1 lg:order-2">
+                <div className="lg:col-span-6 p-5 sm:p-8 lg:p-10 space-y-5 flex flex-col justify-between order-1 lg:order-2">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-xs text-[#6B7280] dark:text-[#A4ABB6]">
                       <span className="font-mono font-bold text-[#222222] dark:text-[#CDFF00] bg-[#F2F3F7] dark:bg-[#1E2530] px-2 py-0.5 rounded">02</span>
@@ -410,16 +410,16 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                       <CheckCircle2 className="w-4 h-4 text-[#9ECC00] dark:text-[#CDFF00]" />
                       <span>{tournaments[0]?.registeredTeams.length || 4} squads currently registered</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         onClick={() => onOpenGetInvolved('organizer')}
-                        className="px-3 py-2 bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
+                        className="px-3 py-2 min-h-[44px] bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
                       >
                         Register Tournament
                       </button>
                       <button
                         onClick={() => setActiveTournament(tournaments[0])}
-                        className="px-4 py-2 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs group text-xs"
+                        className="px-4 py-2 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs group text-xs"
                       >
                         <span>View Fixtures &amp; Register Squad</span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#0A0D14] group-hover:translate-x-0.5 transition-transform" />
@@ -435,7 +435,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Section 03: Sports Events */}
                 {(selectedCategory === 'all' || selectedCategory === 'events') && (
-                  <FadeIn direction="right" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
+                  <FadeIn direction="right" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 lg:p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
                     <div className="space-y-4">
                       <div className="flex items-center gap-2.5">
                         <span className="text-xs font-mono font-black px-2.5 py-0.5 rounded bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00]">
@@ -472,11 +472,11 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                       </ul>
                     </div>
 
-                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between gap-3 text-xs">
+                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex flex-wrap items-center justify-between gap-3 text-xs">
                       <span className="text-[#6B7280] dark:text-[#A4ABB6]">Open showcase listings</span>
                       <button
                         onClick={() => onOpenGetInvolved('organizer')}
-                        className="px-3.5 py-1.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold rounded-lg transition-colors flex items-center gap-1 cursor-pointer shadow-xs"
+                        className="px-3.5 py-2 min-h-[44px] bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold rounded-lg transition-colors flex items-center justify-center gap-1 cursor-pointer shadow-xs"
                       >
                         <span>List an Event</span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
@@ -487,7 +487,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
                 {/* Section 04: Training & Academies */}
                 {(selectedCategory === 'all' || selectedCategory === 'academies') && (
-                  <FadeIn direction="left" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
+                  <FadeIn direction="left" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 lg:p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
                     <div className="space-y-4">
                       <div className="flex items-center gap-2.5">
                         <span className="text-xs font-mono font-black px-2.5 py-0.5 rounded bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00]">
@@ -518,11 +518,11 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between gap-3 text-xs">
+                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex flex-wrap items-center justify-between gap-3 text-xs">
                       <span className="text-[#6B7280] dark:text-[#A4ABB6]">Accredited coaching</span>
                       <button
                         onClick={() => onOpenGetInvolved('academy_coach')}
-                        className="px-3.5 py-1.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold rounded-lg transition-colors flex items-center gap-1 cursor-pointer shadow-xs"
+                        className="px-3.5 py-2 min-h-[44px] bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold rounded-lg transition-colors flex items-center justify-center gap-1 cursor-pointer shadow-xs"
                       >
                         <span>Join Academy Roster</span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
@@ -538,7 +538,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Section 05: Athlete Development */}
                 {(selectedCategory === 'all' || selectedCategory === 'development') && (
-                  <FadeIn direction="right" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
+                  <FadeIn direction="right" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 lg:p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
                     <div className="space-y-4">
                       <div className="flex items-center gap-2.5">
                         <span className="text-xs font-mono font-black px-2.5 py-0.5 rounded bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00]">
@@ -568,18 +568,18 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex items-center justify-between gap-3 text-xs">
+                    <div className="pt-4 border-t border-[#E5EAED] dark:border-[#2A313C] flex flex-wrap items-center justify-between gap-3 text-xs">
                       <span className="text-[#6B7280] dark:text-[#A4ABB6]">{schemes.length} Active Schemes</span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <button
                           onClick={() => onOpenGetInvolved('athlete')}
-                          className="px-3 py-1.5 bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
+                          className="px-3 py-2 min-h-[44px] bg-neutral-100 dark:bg-[#1E2530] hover:bg-neutral-200 dark:hover:bg-[#2A3442] text-[#222222] dark:text-[#F3F4F6] font-bold rounded-lg transition-colors cursor-pointer text-xs"
                         >
                           Join as Athlete
                         </button>
                         <button
                           onClick={() => setActiveScheme(schemes[0])}
-                          className="px-3.5 py-1.5 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1 cursor-pointer shadow-xs text-xs"
+                          className="px-3.5 py-2 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#0A0D14] font-extrabold rounded-lg transition-colors flex items-center gap-1 cursor-pointer shadow-xs text-xs"
                         >
                           <span>Apply for Scheme</span>
                           <ArrowRight className="w-3.5 h-3.5 text-[#0A0D14]" />
@@ -591,7 +591,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
                 {/* Section 06: Sports Communities */}
                 {(selectedCategory === 'all' || selectedCategory === 'communities') && (
-                  <FadeIn direction="left" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
+                  <FadeIn direction="left" className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 lg:p-8 space-y-5 shadow-xs flex flex-col justify-between transition-colors">
                     <div className="space-y-4">
                       <div className="flex items-center gap-2.5">
                         <span className="text-xs font-mono font-black px-2.5 py-0.5 rounded bg-[#222222] dark:bg-[#1E2530] text-[#CDFF00]">
@@ -649,14 +649,14 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#0B0F14] py-20 transition-colors"
+        className="bg-white dark:bg-[#0B0F14] py-12 sm:py-16 md:py-20 transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-3xl mb-14 space-y-2">
+          <FadeIn className="max-w-3xl mb-10 sm:mb-14 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Stakeholder Value Matrix
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               Who Benefits from a Connected Sports Hub
             </h2>
             <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
@@ -670,7 +670,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
             
             {/* 1. ATHLETES */}
             <StaggerItem>
-              <div className="bg-white dark:bg-[#12171F] border-2 border-[#CDFF00] rounded-2xl p-7 space-y-4 shadow-sm flex flex-col justify-between h-full transition-colors">
+              <div className="bg-white dark:bg-[#12171F] border-2 border-[#CDFF00] rounded-2xl p-5 sm:p-7 space-y-4 shadow-sm flex flex-col justify-between h-full transition-colors">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -702,7 +702,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* 2. SPORTS ENTHUSIASTS */}
             <StaggerItem>
-              <div className="bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] rounded-2xl p-7 space-y-4 shadow-xs flex flex-col justify-between h-full transition-colors">
+              <div className="bg-[#F8FFD9] dark:bg-[#162014] border border-[#CDFF00] rounded-2xl p-5 sm:p-7 space-y-4 shadow-xs flex flex-col justify-between h-full transition-colors">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -736,7 +736,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* 3. FACILITY OWNERS */}
             <StaggerItem>
-              <div className="bg-[#222222] dark:bg-[#161B22] text-white rounded-2xl p-7 space-y-4 shadow-md flex flex-col justify-between border border-neutral-800 dark:border-[#2A313C] h-full transition-colors">
+              <div className="bg-[#222222] dark:bg-[#161B22] text-white rounded-2xl p-5 sm:p-7 space-y-4 shadow-md flex flex-col justify-between border border-neutral-800 dark:border-[#2A313C] h-full transition-colors">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#CDFF00]">
@@ -768,7 +768,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* 4. ACADEMIES & COACHES */}
             <StaggerItem>
-              <div className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#CDFF00] dark:hover:border-[#CDFF00] transition-colors h-full">
+              <div className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#CDFF00] dark:hover:border-[#CDFF00] transition-colors h-full">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -799,7 +799,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* 5. EVENT ORGANIZERS */}
             <StaggerItem>
-              <div className="bg-[#F2F3F7] dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#222222] dark:hover:border-[#CDFF00] transition-colors h-full">
+              <div className="bg-[#F2F3F7] dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#222222] dark:hover:border-[#CDFF00] transition-colors h-full">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -830,7 +830,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
 
             {/* 6. SPORTS ORGANIZATIONS */}
             <StaggerItem>
-              <div className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#CDFF00] dark:hover:border-[#CDFF00] transition-colors h-full">
+              <div className="bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 space-y-4 shadow-xs flex flex-col justify-between hover:border-[#CDFF00] dark:hover:border-[#CDFF00] transition-colors h-full">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -862,9 +862,9 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
           </StaggerContainer>
 
           {/* Bottom CTA to Vision */}
-          <FadeIn delay={0.15} className="mt-14 p-6 sm:p-8 bg-[#222222] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+          <FadeIn delay={0.15} className="mt-12 sm:mt-14 p-5 sm:p-7 md:p-8 bg-[#222222] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
-              <h4 className="text-lg font-bold text-white">
+              <h4 className="text-base sm:text-lg font-bold text-white">
                 Learn how this scales into a long-term sporting impact.
               </h4>
               <p className="text-xs sm:text-sm text-neutral-300">
@@ -873,7 +873,7 @@ export const OpportunitiesPage: React.FC<OpportunitiesPageProps> = ({
             </div>
             <button
               onClick={() => onNavigate('vision')}
-              className="px-6 py-3 bg-[#CDFF00] hover:bg-[#9ECC00] text-[#222222] font-bold text-xs rounded-lg transition-colors flex items-center gap-2 shrink-0 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-[#CDFF00] hover:bg-[#9ECC00] text-[#222222] font-bold text-xs sm:text-sm rounded-lg transition-colors flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-xs"
             >
               Explore Vision &amp; Impact
               <ArrowRight className="w-3.5 h-3.5" />

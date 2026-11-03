@@ -452,7 +452,7 @@ export const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({
         </div>
 
         {/* Platform Proof Metrics Banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-[#E5EAED] dark:border-[#2A313C]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-[#E5EAED] dark:border-[#2A313C]">
           <motion.div
             whileHover={{ y: -4, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
             whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 } }}

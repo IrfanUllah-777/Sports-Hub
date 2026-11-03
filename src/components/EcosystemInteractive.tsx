@@ -154,8 +154,8 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
         </span>
       </div>
 
-      {/* Visual Canvas Area - Full generous scale matching older version */}
-      <div className="relative w-full max-w-2xl aspect-[4/3] sm:aspect-[16/11] flex items-center justify-center my-2 sm:my-4 relative z-10">
+      {/* Visual Canvas Area - Full generous scale with responsive mobile aspect ratio */}
+      <div className="relative w-full max-w-2xl aspect-square min-[480px]:aspect-[4/3] sm:aspect-[16/11] min-h-[350px] min-[420px]:min-h-[380px] sm:min-h-0 flex items-center justify-center my-2 sm:my-4 relative z-10">
         
         {/* SVG connection beams and dashed lines */}
         <svg
@@ -248,31 +248,31 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
           })}
         </svg>
 
-        {/* Central Core Box: THE DIGITAL CORE / SPORTS HUB - Older spacious sizing */}
+        {/* Central Core Box: THE DIGITAL CORE / SPORTS HUB - Enhanced comfortable sizing */}
         <motion.div
           whileHover={{ scale: 1.03 }}
-          className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl bg-[var(--bg-elevated)] dark:bg-[#161B22] border-2 border-[#CDFF00] p-3 sm:p-4 text-center flex flex-col items-center justify-center shadow-[0_0_24px_rgba(205,255,0,0.25)] cursor-default select-none transition-shadow"
+          className="relative z-10 w-28 h-28 min-[380px]:w-32 min-[380px]:h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl bg-[var(--bg-elevated)] dark:bg-[#161B22] border-2 border-[#CDFF00] p-2 min-[380px]:p-2.5 sm:p-4 text-center flex flex-col items-center justify-center shadow-[0_0_24px_rgba(205,255,0,0.25)] cursor-default select-none transition-shadow"
         >
           {/* Subtle green glowing dot */}
-          <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#CDFF00] mb-1.5 sm:mb-2 shadow-[0_0_8px_#CDFF00] animate-pulse" />
+          <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#CDFF00] mb-1 sm:mb-2 shadow-[0_0_8px_#CDFF00] animate-pulse" />
 
           {/* Core label - Using --text-primary */}
-          <span className="text-[9px] sm:text-[10.5px] font-black tracking-widest text-[var(--text-primary)] uppercase block leading-none mb-1">
+          <span className="text-[8.5px] min-[380px]:text-[9.5px] sm:text-[10.5px] font-black tracking-widest text-[var(--text-primary)] uppercase block leading-none mb-0.5 sm:mb-1">
             THE DIGITAL CORE
           </span>
 
           {/* Brand headline - Uses --text-primary */}
-          <h3 className="text-sm sm:text-lg md:text-xl font-black text-[var(--text-primary)] tracking-tight font-display">
+          <h3 className="text-sm min-[380px]:text-base sm:text-lg md:text-xl font-black text-[var(--text-primary)] tracking-tight font-display leading-tight">
             SPORTS HUB
           </h3>
 
           {/* Subtitle - Uses --text-primary for high contrast */}
-          <span className="text-[9.5px] sm:text-xs font-semibold text-[var(--text-primary)] mt-1 sm:mt-1.5 leading-tight">
+          <span className="text-[9.5px] min-[380px]:text-[10.5px] sm:text-xs font-semibold text-[var(--text-primary)] mt-0.5 sm:mt-1.5 leading-tight">
             Interconnected Network
           </span>
         </motion.div>
 
-        {/* 6 Satellite Nodes - Generous card proportions matching older version */}
+        {/* 6 Satellite Nodes - Adaptive proportions with comfortable touch targets */}
         {NODES.map((node) => {
           const Icon = node.icon;
           const isSelected = node.id === activeNodeId;
@@ -300,10 +300,10 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
                   scale: 0.98,
                   transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                 }}
-                className={`group relative flex flex-col items-center justify-center rounded-2xl p-2 sm:p-3 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] select-none ${
+                className={`group relative flex flex-col items-center justify-center rounded-2xl p-2 sm:p-3 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] select-none min-h-[44px] ${
                   isSelected
-                    ? 'w-22 sm:w-26 md:w-30 bg-[var(--bg-elevated)] dark:bg-[#161B22] border-2 border-[#CDFF00] shadow-[0_0_20px_rgba(205,255,0,0.40),0_4px_12px_rgba(0,0,0,0.3)] ring-2 ring-[#CDFF00]/25'
-                    : 'w-20 sm:w-24 md:w-26 bg-[var(--bg-surface)] dark:bg-[#161B22]/90 border border-[var(--border-default)] dark:border-white/15 hover:border-[#CDFF00]/80 hover:bg-[var(--bg-elevated)] dark:hover:bg-[#1F2530] hover:shadow-[0_6px_16px_rgba(0,0,0,0.2),0_0_10px_rgba(205,255,0,0.15)]'
+                    ? 'w-20 min-[380px]:w-22 sm:w-26 md:w-30 bg-[var(--bg-elevated)] dark:bg-[#161B22] border-2 border-[#CDFF00] shadow-[0_0_20px_rgba(205,255,0,0.40),0_4px_12px_rgba(0,0,0,0.3)] ring-2 ring-[#CDFF00]/25'
+                    : 'w-18 min-[380px]:w-20 sm:w-24 md:w-26 bg-[var(--bg-surface)] dark:bg-[#161B22]/90 border border-[var(--border-default)] dark:border-white/15 hover:border-[#CDFF00]/80 hover:bg-[var(--bg-elevated)] dark:hover:bg-[#1F2530] hover:shadow-[0_6px_16px_rgba(0,0,0,0.2),0_0_10px_rgba(205,255,0,0.15)]'
                 }`}
                 aria-label={`Select ${node.name}`}
               >
@@ -320,7 +320,7 @@ export const EcosystemInteractive: React.FC<EcosystemInteractiveProps> = ({
 
                 {/* Node Name Label - Strict --text-primary for guaranteed WCAG contrast */}
                 <span
-                  className={`text-[11px] sm:text-xs md:text-sm mt-1 sm:mt-1.5 tracking-tight transition-colors whitespace-nowrap text-[var(--text-primary)] ${
+                  className={`text-[10.5px] min-[380px]:text-[11.5px] sm:text-xs md:text-sm mt-1 sm:mt-1.5 tracking-tight transition-colors whitespace-nowrap text-[var(--text-primary)] ${
                     isSelected
                       ? 'font-black'
                       : 'font-bold group-hover:text-[var(--text-primary)]'

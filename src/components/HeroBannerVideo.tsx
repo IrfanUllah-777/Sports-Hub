@@ -49,7 +49,7 @@ export const HeroBannerVideo: React.FC<HeroBannerVideoProps> = ({
         src={posterSrc}
         alt=""
         aria-hidden="true"
-        className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ${
+        className={`hero-video-media absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ${
           isVideoLoaded && !shouldReduceMotion ? 'opacity-0' : 'opacity-100'
         }`}
         style={{
@@ -71,7 +71,7 @@ export const HeroBannerVideo: React.FC<HeroBannerVideoProps> = ({
           aria-hidden="true"
           onLoadedData={() => setIsVideoLoaded(true)}
           onError={() => setHasError(true)}
-          className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ${
+          className={`hero-video-media absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
@@ -83,7 +83,7 @@ export const HeroBannerVideo: React.FC<HeroBannerVideoProps> = ({
           {/* High-compatibility H.264 MP4 fallback */}
           {mp4Src && <source src={mp4Src} type="video/mp4" />}
           {/* Fallback visual for older browsers */}
-          <img src={posterSrc} alt="" aria-hidden="true" className="w-full h-full object-cover" />
+          <img src={posterSrc} alt="" aria-hidden="true" className="hero-video-media w-full h-full object-cover" />
         </video>
       )}
 

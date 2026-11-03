@@ -16,7 +16,7 @@ export function Demo() {
       <BackgroundPathsLayer />
 
       {/* Top Brand Bar */}
-      <header className="w-full max-w-5xl flex items-center justify-between py-4 border-b border-border bg-card/80 backdrop-blur-xs px-6 rounded-2xl shadow-xs">
+      <header className="w-full max-w-5xl flex flex-wrap items-center justify-between gap-3 py-4 border-b border-border bg-card/80 backdrop-blur-xs px-4 sm:px-6 rounded-2xl shadow-xs">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-primary border border-primary-dark flex items-center justify-center font-black text-xs text-primary-foreground">
             SH

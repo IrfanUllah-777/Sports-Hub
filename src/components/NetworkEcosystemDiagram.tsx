@@ -122,7 +122,7 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
   return (
     <div className={`w-full flex flex-col items-center ${className}`}>
       {/* Visual Canvas Area with exact radial arrangement */}
-      <div className="relative w-full max-w-2xl aspect-[4/3] sm:aspect-[16/11] flex items-center justify-center p-2 sm:p-4 select-none">
+      <div className="relative w-full max-w-2xl aspect-square min-[480px]:aspect-[4/3] sm:aspect-[16/11] min-h-[350px] min-[420px]:min-h-[380px] sm:min-h-0 flex items-center justify-center p-2 sm:p-4 select-none">
         
         {/* SVG Connectors Layer */}
         <svg
@@ -230,7 +230,7 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-2xl bg-[#1E2023] border-[2.5px] border-[#CDFF00] p-3 sm:p-4 text-center flex flex-col items-center justify-center shadow-xl select-none"
+          className="relative z-10 w-28 h-28 min-[380px]:w-32 min-[380px]:h-32 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-2xl bg-[#1E2023] border-[2.5px] border-[#CDFF00] p-2 min-[380px]:p-2.5 sm:p-4 text-center flex flex-col items-center justify-center shadow-xl select-none"
         >
           {/* Subtle neon glow back-layer */}
           <div className="absolute inset-0 rounded-2xl bg-[#CDFF00]/10 blur-md pointer-events-none -z-10" />
@@ -239,21 +239,21 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
           <motion.div 
             animate={{ scale: [1, 1.25, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-2.5 h-2.5 rounded-full bg-[#CDFF00] mb-2 sm:mb-2.5 shadow-[0_0_8px_#CDFF00]" 
+            className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#CDFF00] mb-1 sm:mb-2.5 shadow-[0_0_8px_#CDFF00]" 
           />
 
           {/* Core label */}
-          <span className="text-[9.5px] sm:text-[11px] font-black tracking-widest text-[#CDFF00] uppercase block">
+          <span className="text-[8.5px] min-[380px]:text-[9.5px] sm:text-[11px] font-black tracking-widest text-[#CDFF00] uppercase block leading-none">
             THE DIGITAL CORE
           </span>
 
           {/* Brand headline */}
-          <h3 className="text-base sm:text-xl md:text-2xl font-black text-white tracking-tight font-display mt-0.5 sm:mt-1">
+          <h3 className="text-sm min-[380px]:text-base sm:text-xl md:text-2xl font-black text-white tracking-tight font-display mt-0.5 sm:mt-1 leading-tight">
             SPORTS HUB
           </h3>
 
           {/* Subtitle */}
-          <span className="text-[10px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5 font-medium leading-tight">
+          <span className="text-[9.5px] min-[380px]:text-[10.5px] sm:text-xs text-neutral-400 mt-0.5 sm:mt-1.5 font-medium leading-tight">
             Interconnected Network
           </span>
         </motion.div>
@@ -289,10 +289,10 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
                   scale: 0.98,
                   transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                 }}
-                className={`group relative flex flex-col items-center justify-center rounded-2xl p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden ${
+                className={`group relative flex flex-col items-center justify-center rounded-2xl p-2 min-[380px]:p-2.5 sm:p-3.5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] overflow-hidden min-h-[44px] ${
                   isActive
-                    ? 'w-24 sm:w-28 md:w-32 bg-[#F8FFD9] dark:bg-[#162014] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'
-                    : 'w-22 sm:w-26 md:w-28 bg-[#F2F4F7] dark:bg-[#161B22] border border-[#E2E6EA] dark:border-[#2A313C] hover:bg-white dark:hover:bg-[#1F2530] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
+                    ? 'w-20 min-[380px]:w-22 sm:w-28 md:w-32 bg-[#F8FFD9] dark:bg-[#162014] border-2 border-[#CDFF00] shadow-[0_8px_20px_-4px_rgba(205,255,0,0.35)] ring-4 ring-[#CDFF00]/20'
+                    : 'w-18 min-[380px]:w-20 sm:w-26 md:w-28 bg-[#F2F4F7] dark:bg-[#161B22] border border-[#E2E6EA] dark:border-[#2A313C] hover:bg-white dark:hover:bg-[#1F2530] hover:border-[#CDFF00] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00]'
                 }`}
               >
                 {/* Animated top lime highlight bar */}
@@ -300,7 +300,7 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
 
                 {/* White inner rounded square container for icon */}
                 <div
-                  className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 ${
+                  className={`w-8 h-8 min-[380px]:w-9 min-[380px]:h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 ${
                     isActive
                       ? 'bg-white dark:bg-[#0E1217] text-[#222222] dark:text-[#CDFF00] shadow-xs'
                       : 'bg-white dark:bg-[#1F2530] text-[#4B5563] dark:text-[#9CA3AF] group-hover:bg-[#CDFF00] group-hover:text-[#222222] dark:group-hover:text-[#11161B]'
@@ -311,7 +311,7 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
 
                 {/* Node Label */}
                 <span
-                  className={`text-[11px] sm:text-xs font-bold mt-1.5 sm:mt-2 tracking-tight transition-colors ${
+                  className={`text-[10.5px] min-[380px]:text-[11.5px] sm:text-xs font-bold mt-1 sm:mt-2 tracking-tight transition-colors whitespace-nowrap ${
                     isActive ? 'text-[#222222] dark:text-[#CDFF00]' : 'text-[#4B5563] dark:text-[#D5D8DD] group-hover:text-[#222222] dark:group-hover:text-white'
                   }`}
                 >
@@ -342,13 +342,13 @@ export const NetworkEcosystemDiagram: React.FC<NetworkEcosystemDiagramProps> = (
           </p>
         </div>
 
-        <div className="shrink-0 flex items-center gap-2">
+        <div className="shrink-0 flex items-center gap-2 w-full sm:w-auto">
           {onNavigateToSolution && (
             <button
               onClick={onNavigateToSolution}
-              className="px-4 py-2 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="w-full sm:w-auto px-4 py-2.5 min-h-[44px] bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#9ECC00] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
             >
-              Explore Pillar
+              <span>Explore Pillar</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
             </button>
           )}

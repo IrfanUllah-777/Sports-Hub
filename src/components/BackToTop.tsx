@@ -42,7 +42,7 @@ export const BackToTop: React.FC = () => {
             transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
           }}
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="floating-btn fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-11 h-11 rounded-full bg-white dark:bg-[#1F2530] text-[#222222] dark:text-[#F3F4F6] border border-[#E5EAED] dark:border-[#2A313C] shadow-md hover:shadow-lg hover:border-[#CDFF00] dark:hover:border-[#CDFF00]/60 cursor-pointer flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] group"
+          className="floating-btn fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white dark:bg-[#1F2530] text-[#222222] dark:text-[#F3F4F6] border border-[#E5EAED] dark:border-[#2A313C] shadow-md hover:shadow-lg hover:border-[#CDFF00] dark:hover:border-[#CDFF00]/60 cursor-pointer flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] group mb-[env(safe-area-inset-bottom)] mr-[env(safe-area-inset-right)]"
           aria-label="Scroll back to top"
           title="Back to top"
         >

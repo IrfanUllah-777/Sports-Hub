@@ -195,13 +195,13 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 10 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-xl bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+            className="relative w-full max-w-xl bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl shadow-2xl overflow-hidden max-h-[92dvh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F8FAFC] dark:bg-[#161D26]">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F8FAFC] dark:bg-[#161D26] shrink-0">
               <div>
-                <h2 className="text-xl font-black text-[#11161B] dark:text-white font-display">
+                <h2 className="text-lg sm:text-xl font-black text-[#11161B] dark:text-white font-display">
                   Get Early Access to Sports Hub
                 </h2>
                 <p className="text-xs text-[#6B7280] dark:text-[#94A3B8] mt-0.5">
@@ -213,14 +213,14 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
                 type="button"
                 onClick={onClose}
                 aria-label="Close dialog"
-                className="p-2 text-[#6B7280] dark:text-[#94A3B8] hover:text-[#11161B] dark:hover:text-white hover:bg-[#E5EAED]/60 dark:hover:bg-[#202836] rounded-xl transition-colors cursor-pointer"
+                className="p-2 text-[#6B7280] dark:text-[#94A3B8] hover:text-[#11161B] dark:hover:text-white hover:bg-[#E5EAED]/60 dark:hover:bg-[#202836] rounded-xl transition-colors cursor-pointer shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Content Area */}
-            <div className="p-6 overflow-y-auto">
+            <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1">
               <AnimatePresence mode="wait">
                 {/* SUCCESS STATE */}
                 {submitted ? (
@@ -304,7 +304,7 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
                               type="button"
                               key={r.id}
                               onClick={() => handleRoleChange(r.id)}
-                              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2.5 ${
+                              className={`p-2.5 min-h-[44px] rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2.5 ${
                                 isSelected
                                   ? 'bg-[#F8FFD9] dark:bg-[#1E2836] border-[#11161B] dark:border-[#CDFF00] text-[#11161B] dark:text-[#CDFF00] ring-1 ring-[#11161B] dark:ring-[#CDFF00] shadow-sm font-bold'
                                   : 'bg-white dark:bg-[#151C25] border-[#E2E8F0] dark:border-[#2A313C] text-[#475569] dark:text-[#CBD5E1] hover:border-[#CBD5E1] dark:hover:border-[#4B5563] dark:hover:bg-[#1C2532]'
@@ -442,7 +442,7 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
                         <button
                           type="button"
                           onClick={onClose}
-                          className="px-3.5 py-2 text-xs font-bold text-[#64748B] dark:text-[#94A3B8] hover:text-[#11161B] dark:hover:text-white transition-colors cursor-pointer"
+                          className="px-3.5 py-2 min-h-[44px] text-xs font-bold text-[#64748B] dark:text-[#94A3B8] hover:text-[#11161B] dark:hover:text-white transition-colors cursor-pointer flex items-center"
                         >
                           Cancel
                         </button>
@@ -450,7 +450,7 @@ export const GetInvolvedModal: React.FC<GetInvolvedModalProps> = ({
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="px-5 py-2.5 text-xs font-black text-[#11161B] bg-[#CDFF00] hover:bg-[#b8e600] active:scale-98 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-50"
+                          className="px-5 py-2.5 min-h-[44px] text-xs sm:text-sm font-black text-[#11161B] bg-[#CDFF00] hover:bg-[#b8e600] active:scale-98 rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-50"
                         >
                           {isSubmitting ? (
                             <>

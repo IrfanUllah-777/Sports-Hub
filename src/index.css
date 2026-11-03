@@ -64,6 +64,41 @@
     }
   }
 
+  /* Hero section dvh-based height system & video aspect-ratio preservation */
+  .hero-dvh-section {
+    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100dvh - 4.5rem);
+  }
+
+  @media (min-width: 640px) {
+    .hero-dvh-section {
+      min-height: 620px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-dvh-section {
+      min-height: 660px;
+      height: clamp(660px, 80dvh, 780px);
+    }
+  }
+
+  /* Maintain true aspect ratio of background video without distortion or letterboxing */
+  .hero-video-media {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: var(--hero-focus, center 35%);
+    aspect-ratio: auto !important;
+    pointer-events: none;
+  }
+
+  @media (orientation: portrait), (max-width: 768px) {
+    .hero-video-media {
+      object-position: var(--hero-focus, center 25%);
+    }
+  }
+
   * {
     border-color: hsl(var(--border));
   }
@@ -823,16 +858,51 @@ button.floating-button:active {
     color: var(--text-muted) !important;
   }
 
-  /* Table Components */
+  /* Table Components & Mobile Horizontal Scroll Containers */
+  .table-scroll-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(158, 204, 0, 0.4) transparent;
+  }
+
+  .table-scroll-container::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .table-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .table-scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(158, 204, 0, 0.35);
+    border-radius: 9999px;
+  }
+
+  .table-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-neon);
+  }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
   table th {
     background-color: var(--bg-elevated) !important;
     color: var(--text-secondary) !important;
     border-color: var(--border-default) !important;
+    white-space: nowrap;
   }
 
   table td {
     border-color: var(--border-default) !important;
     color: var(--text-primary) !important;
+    white-space: nowrap;
   }
 
   table tr:hover td {

@@ -104,8 +104,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        /* Professional controlled desktop height: clamp(660px, 80vh, 780px); responsive and content-driven on mobile/tablet */
-        className="relative overflow-hidden bg-[#0A0D14] text-white min-h-[620px] lg:min-h-[660px] lg:h-[clamp(660px,80vh,780px)] flex items-center py-12 md:py-16 lg:py-0 border-b border-neutral-800"
+        /* dvh-based dynamic height: remains perfectly sized as mobile browser bars appear/disappear without layout jumps */
+        className="hero-dvh-section relative overflow-hidden bg-[#0A0D14] text-white min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100dvh-4.5rem)] sm:min-h-[620px] lg:min-h-[660px] lg:h-[clamp(660px,80dvh,780px)] flex items-center py-8 sm:py-12 md:py-16 lg:py-0 border-b border-neutral-800"
       >
         {/* Full-bleed background video container */}
         <div
@@ -117,11 +117,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
             src="/hero-poster.jpg"
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            className="hero-video-media absolute inset-0 w-full h-full object-cover pointer-events-none"
             style={{ objectPosition: 'var(--hero-focus, center 35%)' }}
           />
 
-          {/* Native <video> element (No CSS filters, scaling transforms, or blur applied) */}
+          {/* Native <video> element: aspect ratio preserved without stretching or distortion */}
           {!shouldReduceMotion && !isSlowConnection && (
             <video
               ref={videoRef}
@@ -133,14 +133,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
               poster="/hero-poster.jpg"
               controls={false}
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              className="hero-video-media absolute inset-0 w-full h-full object-cover pointer-events-none"
               style={{ objectPosition: 'var(--hero-focus, center 35%)' }}
             >
               {/* 1. Modern VP9 WebM */}
               <source src="/videos/sports-hub-hero.webm" type="video/webm" />
               {/* 2. Universal H.264 MP4 production video */}
               <source src="/videos/sports-hub-hero.mp4" type="video/mp4" />
-              <img src="/hero-poster.jpg" alt="" aria-hidden="true" className="w-full h-full object-cover" />
+              <img src="/hero-poster.jpg" alt="" aria-hidden="true" className="hero-video-media w-full h-full object-cover" />
             </video>
           )}
 
@@ -155,7 +155,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         </div>
 
         {/* Global centered container: max-w-7xl aligned with page grid */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div className="relative z-10 w-full max-w-7xl mx-auto hero-content-padding-x px-[clamp(16px,4vw,20px)] sm:px-8 lg:px-12 xl:px-16">
           {/* Content Column: Professionally proportioned left-aligned column */}
           <div className="max-w-[700px] lg:max-w-[760px] py-4 sm:py-6 lg:py-8">
             
@@ -166,14 +166,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-black/75 border border-white/20 backdrop-blur-md shadow-xs select-none"
+                className="inline-flex items-center gap-1.5 min-[380px]:gap-2 sm:gap-2.5 px-2.5 py-1 min-[380px]:px-3 min-[380px]:py-1.25 sm:px-3.5 sm:py-1.5 rounded-full bg-black/80 border border-white/20 backdrop-blur-md shadow-xs select-none max-w-full flex-wrap gap-y-1"
               >
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_10px_#CDFF00]" />
-                <span className="text-[#CDFF00] font-sports font-bold text-xs sm:text-sm tracking-wider uppercase leading-none">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-[#CDFF00] shadow-[0_0_8px_#CDFF00] shrink-0" />
+                <span className="text-[#CDFF00] font-sports font-bold text-[10px] min-[360px]:text-[11px] sm:text-xs tracking-wider sm:tracking-widest uppercase leading-tight sm:leading-none">
                   PLAY. COMPETE. CONNECT.
                 </span>
-                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
-                <span className="text-neutral-200 font-sports font-semibold text-xs sm:text-sm tracking-wider uppercase leading-none">
+                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40 shrink-0 hidden min-[360px]:inline" />
+                <span className="text-neutral-200 font-sports font-medium sm:font-semibold text-[10px] min-[360px]:text-[11px] sm:text-xs tracking-wider sm:tracking-widest uppercase leading-tight sm:leading-none">
                   UNIFIED SPORTS INFRASTRUCTURE
                 </span>
               </motion.div>
@@ -243,31 +243,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.32, ease: 'easeOut' }}
-                className="pt-6 sm:pt-7 mt-2 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8 max-w-[640px]"
+                className="pt-5 sm:pt-7 mt-2 border-t border-white/15 grid grid-cols-3 gap-2 sm:gap-6 md:gap-8 max-w-[640px]"
               >
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                  className="group cursor-default p-1.5 sm:p-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">6 Core Pillars</div>
-                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Unified Network</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-sm sm:text-base md:text-lg tracking-wide uppercase leading-tight transition-colors">6 Core Pillars</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-tight sm:leading-normal mt-0.5 transition-colors">Unified Network</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                  className="group cursor-default p-1.5 sm:p-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">Direct Access</div>
-                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Real-Time Bookings</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-sm sm:text-base md:text-lg tracking-wide uppercase leading-tight transition-colors">Direct Access</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-tight sm:leading-normal mt-0.5 transition-colors">Real-Time Bookings</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ y: -2, scale: 1.02, transition: { type: 'spring', stiffness: 350, damping: 20 } }}
                   whileTap={{ scale: 0.98 }}
-                  className="group cursor-default p-2.5 -m-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                  className="group cursor-default p-1.5 sm:p-2.5 rounded-xl hover:bg-white/5 transition-colors"
                 >
-                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-base sm:text-lg tracking-wide uppercase leading-tight transition-colors">Full Transparency</div>
-                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-normal mt-0.5 transition-colors">Facilities &amp; Squads</div>
+                  <div className="font-sports font-bold text-white group-hover:text-[#CDFF00] text-sm sm:text-base md:text-lg tracking-wide uppercase leading-tight transition-colors">Full Transparency</div>
+                  <div className="font-body text-neutral-400 group-hover:text-neutral-300 text-[11px] sm:text-xs font-medium leading-tight sm:leading-normal mt-0.5 transition-colors">Facilities &amp; Squads</div>
                 </motion.div>
               </motion.div>
             </div>
@@ -284,7 +284,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#222222] text-white py-20 relative overflow-hidden bg-dark-grid-pattern"
+        className="bg-[#222222] text-white py-12 sm:py-16 md:py-20 relative overflow-hidden bg-dark-grid-pattern"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-700 text-sports-badge text-[#CDFF00]">
@@ -316,7 +316,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[var(--bg-surface)] dark:bg-[var(--bg-primary)] py-14 sm:py-16 md:py-20 border-b border-[var(--border-default)] transition-colors"
+        className="bg-[var(--bg-surface)] dark:bg-[var(--bg-primary)] py-12 sm:py-16 md:py-20 border-b border-[var(--border-default)] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5">
@@ -354,24 +354,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGetInvolve
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 transition-colors duration-200"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <FadeIn className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
             <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Unified Operating Layer
             </span>
             <h2 className="text-heading-2 font-display text-[#222222] dark:text-[#F3F4F6]">
               One connected platform for the sports ecosystem.
             </h2>
-            <p className="text-base text-[#6B7280] dark:text-[#D5D8DD] font-body">
+            <p className="text-sm sm:text-base text-[#6B7280] dark:text-[#D5D8DD] font-body">
               Sports Hub bridges the divide between people seeking sports opportunities and the
               venues, academies, and organizations that provide them.
             </p>
           </FadeIn>
 
           {/* Interactive Visual Ecosystem flow */}
-          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-10 shadow-xs relative overflow-hidden transition-colors duration-200">
+          <FadeIn delay={0.1} className="max-w-4xl mx-auto bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-4 sm:p-7 md:p-10 shadow-xs relative overflow-hidden transition-colors duration-200">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
               
               {/* Left participants */}

@@ -229,7 +229,7 @@ export const MilestonesTimeline: React.FC<{ onOpenGetInvolved?: () => void }> = 
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-3.5 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] ${
+                  className={`px-3.5 py-2 min-h-[44px] flex items-center text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CDFF00] ${
                     isActive
                       ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#0A0D14] shadow-xs'
                       : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-white hover:bg-white dark:hover:bg-[#1A222D]'
@@ -293,7 +293,7 @@ export const MilestonesTimeline: React.FC<{ onOpenGetInvolved?: () => void }> = 
                   <motion.div
                     onClick={() => setActiveMilestoneId(item.id)}
                     whileHover={{ y: -3, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                    className={`p-6 rounded-2xl border transition-all cursor-pointer relative overflow-hidden text-left ${
+                    className={`p-4 sm:p-6 rounded-2xl border transition-all cursor-pointer relative overflow-hidden text-left ${
                       isCurrentActive
                         ? 'bg-white dark:bg-[#161B22] border-[#222222] dark:border-[#CDFF00] ring-2 ring-[#CDFF00]/40 shadow-lg'
                         : 'bg-white dark:bg-[#12171F] border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00]/60 hover:shadow-md'

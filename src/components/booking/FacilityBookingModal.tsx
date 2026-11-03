@@ -14,7 +14,9 @@ import {
   ArrowRight,
   Phone,
   Mail,
-  User
+  User,
+  LayoutGrid,
+  Table as TableIcon
 } from 'lucide-react';
 import { Facility, FacilitySlot, Booking } from '../../types';
 import { useSportsStore } from '../../lib/sportsStore';
@@ -37,6 +39,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedSlot, setSelectedSlot] = useState<FacilitySlot | null>(null);
   const [step, setStep] = useState<'select' | 'confirm' | 'success'>('select');
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
   // Form input state
   const [name, setName] = useState(currentUser.name);
@@ -127,7 +130,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-xs"
           role="dialog"
           aria-modal="true"
           aria-labelledby="booking-modal-title"
@@ -138,20 +141,20 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative w-full max-w-2xl bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6] transition-colors"
+            className="relative w-full max-w-2xl max-h-[92dvh] flex flex-col bg-white dark:bg-[#12171F] rounded-2xl shadow-2xl border border-[#E5EAED] dark:border-[#2A313C] overflow-hidden text-[#222222] dark:text-[#F3F4F6] transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
           {/* Header */}
-          <div className="bg-[#0A0D14] text-white p-5 sm:p-6 flex items-start justify-between border-b border-neutral-800">
-            <div className="space-y-1 pr-6">
+          <div className="bg-[#0A0D14] text-white p-4 sm:p-6 flex items-start justify-between border-b border-neutral-800 shrink-0">
+            <div className="space-y-1 pr-4 sm:pr-6">
               <div className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-widest text-[#CDFF00]">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Verified Facility Booking Engine</span>
               </div>
-              <h2 id="booking-modal-title" className="text-xl sm:text-2xl font-black font-display tracking-tight text-white">
+              <h2 id="booking-modal-title" className="text-lg sm:text-2xl font-black font-display tracking-tight text-white leading-tight">
                 {facility.name}
               </h2>
-              <div className="flex items-center gap-3 text-xs text-neutral-400">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-neutral-400">
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5 text-[#CDFF00]" />
                   {facility.area}, {facility.city}
@@ -164,7 +167,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
             <button
               onClick={onClose}
               disabled={isSubmitting}
-              className="p-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer shrink-0"
               aria-label="Close booking modal"
             >
               <X className="w-5 h-5" />
@@ -172,7 +175,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
           </div>
 
           {/* Body Content */}
-          <div className="p-6 max-h-[75vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1">
             {/* STEP 1: SELECT DATE & TIME SLOT */}
             {step === 'select' && (
               <div className="space-y-6">
@@ -212,11 +215,44 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
 
                 {/* Slots Matrix */}
                 <div>
-                  <div className="flex items-center justify-between mb-2.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
-                      Available Court Slots ({visibleSlots.length})
-                    </label>
-                    <div className="flex items-center gap-3 text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-2">
+                      <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
+                        Available Court Slots ({visibleSlots.length})
+                      </label>
+                      
+                      {/* View Mode Toggle */}
+                      <div className="inline-flex items-center bg-[#F2F3F7] dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] rounded-lg p-0.5">
+                        <button
+                          type="button"
+                          onClick={() => setViewMode('grid')}
+                          className={`p-1 rounded-md text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer ${
+                            viewMode === 'grid'
+                              ? 'bg-white dark:bg-[#222222] text-[#222222] dark:text-[#CDFF00] shadow-2xs'
+                              : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
+                          }`}
+                          title="Card Grid View"
+                        >
+                          <LayoutGrid className="w-3.5 h-3.5" />
+                          <span className="hidden sm:inline">Grid</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setViewMode('table')}
+                          className={`p-1 rounded-md text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer ${
+                            viewMode === 'table'
+                              ? 'bg-white dark:bg-[#222222] text-[#222222] dark:text-[#CDFF00] shadow-2xs'
+                              : 'text-[#6B7280] dark:text-[#A4ABB6] hover:text-[#222222] dark:hover:text-[#F3F4F6]'
+                          }`}
+                          title="Timetable Table View"
+                        >
+                          <TableIcon className="w-3.5 h-3.5" />
+                          <span className="hidden sm:inline">Table</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2.5 text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
                       <span className="flex items-center gap-1">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Open
                       </span>
@@ -233,7 +269,7 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                     <div className="p-8 text-center bg-[#F2F3F7] dark:bg-[#161B22] rounded-xl text-sm text-[#6B7280] dark:text-[#A4ABB6] border border-[#E5EAED] dark:border-[#2A313C]">
                       No timetable slots configured for this date.
                     </div>
-                  ) : (
+                  ) : viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {visibleSlots.map((slot) => {
                         const isSelected = selectedSlot?.id === slot.id;
@@ -266,10 +302,10 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                               <span
                                 className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${
                                   slot.status === 'available'
-                                    ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
-                                    : slot.status === 'reserved'
-                                    ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300'
-                                    : 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300'
+                                  ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
+                                  : slot.status === 'reserved'
+                                  ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300'
+                                  : 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300'
                                 }`}
                               >
                                 {slot.status}
@@ -278,6 +314,92 @@ export const FacilityBookingModal: React.FC<FacilityBookingModalProps> = ({
                           </button>
                         );
                       })}
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {/* Mobile horizontal scroll hint badge */}
+                      <div className="sm:hidden flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A4ABB6] px-1">
+                        <span className="flex items-center gap-1.5 font-medium">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#CDFF00] animate-pulse" />
+                          Swipe timetable horizontally
+                        </span>
+                        <span className="font-mono text-[10px] tracking-wider uppercase bg-[#F2F3F7] dark:bg-[#1E2530] px-1.5 py-0.5 rounded font-bold">
+                          ⟷ Scroll
+                        </span>
+                      </div>
+
+                      <div className="table-scroll-container w-full overflow-x-auto overscroll-x-contain rounded-xl border border-[#E5EAED] dark:border-[#2A313C] bg-white dark:bg-[#161B22] shadow-xs">
+                        <table className="w-full min-w-[500px] text-left text-xs border-collapse">
+                          <thead>
+                            <tr className="border-b border-[#E5EAED] dark:border-[#2A313C] bg-[#F2F3F7] dark:bg-[#12171F]">
+                              <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Time Slot</th>
+                              <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Pitch / Court</th>
+                              <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Hourly Rate</th>
+                              <th className="py-2.5 px-3 font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Status</th>
+                              <th className="py-2.5 px-3 text-right font-bold uppercase tracking-wider text-[10px] text-[#6B7280] dark:text-[#A4ABB6]">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-[#E5EAED] dark:divide-[#2A313C]">
+                            {visibleSlots.map((slot) => {
+                              const isSelected = selectedSlot?.id === slot.id;
+                              const isAvailable = slot.status === 'available';
+
+                              return (
+                                <tr
+                                  key={slot.id}
+                                  className={`transition-colors ${
+                                    isSelected
+                                      ? 'bg-[#F8FFD9] dark:bg-[#1E2718]'
+                                      : 'hover:bg-[#F8FFD9]/30 dark:hover:bg-[#1E2530]/50'
+                                  }`}
+                                >
+                                  <td className="py-2.5 px-3 font-bold text-[#222222] dark:text-[#F3F4F6]">
+                                    <div className="flex items-center gap-1.5">
+                                      <Clock className="w-3.5 h-3.5 text-[#6B7280] dark:text-[#A4ABB6] shrink-0" />
+                                      <span>{slot.time}</span>
+                                    </div>
+                                  </td>
+                                  <td className="py-2.5 px-3 text-[11px] text-[#6B7280] dark:text-[#A4ABB6]">
+                                    {slot.court}
+                                  </td>
+                                  <td className="py-2.5 px-3 font-bold text-[#222222] dark:text-[#F3F4F6]">
+                                    PKR {slot.price.toLocaleString()}/hr
+                                  </td>
+                                  <td className="py-2.5 px-3">
+                                    <span
+                                      className={`inline-block px-2 py-0.5 rounded text-[10px] uppercase font-extrabold ${
+                                        slot.status === 'available'
+                                          ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
+                                          : slot.status === 'reserved'
+                                          ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300'
+                                          : 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300'
+                                      }`}
+                                    >
+                                      {slot.status}
+                                    </span>
+                                  </td>
+                                  <td className="py-2.5 px-3 text-right">
+                                    <button
+                                      type="button"
+                                      disabled={!isAvailable}
+                                      onClick={() => handleSlotSelect(slot)}
+                                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                                        !isAvailable
+                                          ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed opacity-50'
+                                          : isSelected
+                                          ? 'bg-[#222222] dark:bg-[#CDFF00] text-[#CDFF00] dark:text-[#11161B] ring-1 ring-[#CDFF00]'
+                                          : 'bg-neutral-100 dark:bg-[#1E2530] hover:bg-[#CDFF00] hover:text-[#0A0D14] text-[#222222] dark:text-[#F3F4F6]'
+                                      }`}
+                                    >
+                                      {isSelected ? 'Selected' : isAvailable ? 'Select' : 'Unavailable'}
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   )}
                 </div>

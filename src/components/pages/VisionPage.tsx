@@ -210,7 +210,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-14 pb-18 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-10 sm:pt-14 pb-12 sm:pb-18 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
@@ -219,7 +219,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
             <span>Sports Hub Vision</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#222222] dark:text-[#F3F4F6] font-display text-balance leading-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#222222] dark:text-[#F3F4F6] font-display text-balance leading-tight">
             Building a More Connected{' '}
             <span className="bg-[#CDFF00] text-[#11161B] px-2 py-0.5 rounded-md inline-block">
               Future for Sports
@@ -280,14 +280,14 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-3xl mb-12 space-y-2">
+          <FadeIn className="max-w-3xl mb-10 sm:mb-12 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Strategic Roadmap
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               The Long-Term Journey
             </h2>
             <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
@@ -431,7 +431,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#0B0F14] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-white dark:bg-[#0B0F14] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <MilestonesTimeline onOpenGetInvolved={() => onOpenGetInvolved()} />
@@ -444,14 +444,14 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#0B0F14] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-white dark:bg-[#0B0F14] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-3xl mb-14 space-y-2">
+          <FadeIn className="max-w-3xl mb-10 sm:mb-14 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Societal &amp; Sports Impact
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               Designed for Meaningful Impact
             </h2>
             <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
@@ -475,7 +475,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                       scale: 0.98,
                       transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
                     }}
-                    className="group relative bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-xl p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
+                    className="group relative bg-white dark:bg-[#12171F] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-xl p-5 sm:p-6 hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] transition-all duration-300 flex flex-col justify-between h-full cursor-pointer overflow-hidden"
                   >
                     {/* Animated top lime highlight bar */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -512,14 +512,14 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#202731] transition-colors"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-3xl mb-12 space-y-2">
+          <FadeIn className="max-w-3xl mb-10 sm:mb-12 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A4ABB6]">
               Community &amp; Ecosystem Dialogue
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222222] dark:text-[#F3F4F6] font-display">
               Frequently Asked Questions
             </h2>
             <p className="text-base text-[#6B7280] dark:text-[#D5D8DD]">
@@ -540,7 +540,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#222222] text-white py-24 relative overflow-hidden bg-dark-grid-pattern"
+        className="bg-[#222222] text-white py-14 sm:py-20 md:py-24 relative overflow-hidden bg-dark-grid-pattern"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-800 border border-neutral-700 text-xs text-[#CDFF00] font-semibold">
@@ -568,7 +568,7 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#CDFF00] text-[#222222] py-20"
+        className="bg-[#CDFF00] text-[#222222] py-12 sm:py-16 md:py-20"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#222222] text-balance">
@@ -584,13 +584,13 @@ export const VisionPage: React.FC<VisionPageProps> = ({ onNavigate, onOpenGetInv
                 onNavigate('home');
                 window.scrollTo(0, 0);
               }}
-              className="w-full sm:w-auto px-8 py-3.5 bg-[#222222] hover:bg-neutral-800 text-white font-bold text-sm rounded-lg transition-colors cursor-pointer shadow-md"
+              className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] bg-[#222222] hover:bg-neutral-800 text-white font-bold text-sm rounded-lg transition-colors cursor-pointer shadow-md flex items-center justify-center"
             >
               Explore Sports Hub
             </button>
             <button
               onClick={() => onOpenGetInvolved('enthusiast')}
-              className="w-full sm:w-auto px-8 py-3.5 bg-white/90 hover:bg-white text-[#222222] border-2 border-[#222222] font-bold text-sm rounded-lg transition-colors cursor-pointer shadow-xs"
+              className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] bg-white/90 hover:bg-white text-[#222222] border-2 border-[#222222] font-bold text-sm rounded-lg transition-colors cursor-pointer shadow-xs flex items-center justify-center"
             >
               Get Involved
             </button>

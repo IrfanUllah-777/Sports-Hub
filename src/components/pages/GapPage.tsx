@@ -70,7 +70,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-14 pb-18 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] pt-10 sm:pt-14 pb-12 sm:pb-18 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <FadeIn className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
           <div className="inline-flex items-center gap-2 text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
@@ -100,7 +100,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#161B22] py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
+        className="bg-white dark:bg-[#161B22] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mb-12">
@@ -231,7 +231,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
+        className="bg-[#F2F3F7] dark:bg-[#0E1217] py-12 sm:py-16 md:py-20 border-b border-[#E5EAED] dark:border-[#2A313C] transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center max-w-3xl mx-auto mb-14 space-y-3">
@@ -265,7 +265,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
+              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-5 sm:p-7 md:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -371,7 +371,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
                 scale: 0.98,
                 transition: { type: 'spring', stiffness: 500, damping: 28, mass: 0.5 },
               }}
-              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
+              className="lg:col-span-4 bg-white dark:bg-[#161B22] border border-[#E5EAED] dark:border-[#2A313C] hover:border-[#CDFF00] dark:hover:border-[#CDFF00] rounded-2xl p-5 sm:p-7 md:p-8 space-y-5 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_0_0_1px_#CDFF00] dark:hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.4),0_0_0_1px_#CDFF00] transition-all duration-300 relative group overflow-hidden cursor-default"
             >
               {/* Animated top lime highlight bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#CDFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -450,10 +450,10 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.06 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white dark:bg-[#161B22] py-20 transition-colors duration-200"
+        className="bg-white dark:bg-[#161B22] py-12 sm:py-16 md:py-20 transition-colors duration-200"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+          <FadeIn className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 space-y-3">
             <span className="text-sports-badge text-[#6B7280] dark:text-[#D5D8DD]">
               Comparative Evaluation
             </span>
@@ -466,9 +466,9 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Current Environment */}
-            <FadeIn direction="up" className="bg-[#F2F3F7] dark:bg-[#1F2530] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-6 sm:p-8 space-y-6">
+            <FadeIn direction="up" className="bg-[#F2F3F7] dark:bg-[#1F2530] border border-[#E5EAED] dark:border-[#2A313C] rounded-2xl p-5 sm:p-7 md:p-8 space-y-6">
               <div className="flex items-center justify-between border-b border-[#E5EAED] dark:border-[#2A313C] pb-4">
                 <h3 className="text-lg font-bold text-[#222222] dark:text-[#F3F4F6]">Current Environment</h3>
                 <span className="text-xs font-semibold text-[#6B7280] dark:text-[#D5D8DD] bg-white dark:bg-[#161B22] px-2.5 py-1 rounded border border-[#E5EAED] dark:border-[#2A313C]">
@@ -521,7 +521,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
             </FadeIn>
 
             {/* With Sports Hub */}
-            <FadeIn direction="up" delay={0.1} className="bg-white dark:bg-[#1F2530] border-2 border-[#CDFF00] rounded-2xl p-6 sm:p-8 space-y-6 shadow-md relative">
+            <FadeIn direction="up" delay={0.1} className="bg-white dark:bg-[#1F2530] border-2 border-[#CDFF00] rounded-2xl p-5 sm:p-7 md:p-8 space-y-6 shadow-md relative">
               <div className="flex items-center justify-between border-b border-[#E5EAED] dark:border-[#2A313C] pb-4">
                 <h3 className="text-lg font-bold text-[#222222] dark:text-[#F3F4F6]">With Sports Hub</h3>
                 <span className="text-xs font-bold text-[#11161B] bg-[#CDFF00] px-2.5 py-1 rounded">
@@ -576,7 +576,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
           </div>
 
           {/* Bottom Next Step Callout */}
-          <FadeIn className="mt-12 p-6 rounded-xl bg-[#F8FFD9] dark:bg-[#CDFF00]/10 border border-[#CDFF00] dark:border-[#CDFF00]/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <FadeIn className="mt-12 p-5 sm:p-6 rounded-xl bg-[#F8FFD9] dark:bg-[#CDFF00]/10 border border-[#CDFF00] dark:border-[#CDFF00]/40 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <div className="font-bold text-sm text-[#222222] dark:text-[#F3F4F6]">
                 Ready to examine the architectural solution in detail?
@@ -587,7 +587,7 @@ export const GapPage: React.FC<GapPageProps> = ({ onNavigate, onOpenGetInvolved 
             </div>
             <button
               onClick={() => onNavigate('solution')}
-              className="px-5 py-2.5 bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#b8e600] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
+              className="px-5 py-2.5 min-h-[44px] bg-[#222222] dark:bg-[#CDFF00] hover:bg-neutral-800 dark:hover:bg-[#b8e600] text-white dark:text-[#11161B] font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-xs w-full sm:w-auto"
             >
               Explore the Solution
               <ArrowRight className="w-3.5 h-3.5 text-[#CDFF00] dark:text-[#11161B]" />
